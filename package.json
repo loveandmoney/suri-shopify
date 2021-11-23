@@ -6,7 +6,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently --kill-others \"theme watch --allow-live\" \"webpack --watch --env production\""
+    "dev": "concurrently --kill-others \"shopify theme serve\" \"webpack --watch --env production\""
   },
   "dependencies": {
     "swiper": "^6.7.0",

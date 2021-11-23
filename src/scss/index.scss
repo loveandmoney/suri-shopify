@@ -8,16 +8,15 @@
 @import "base.scss";
 @import "transitions.scss";
 
-//
-
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
 @import "grid.scss";
 
+@import "components/Banner.scss";
+@import "components/Footer.scss";
 @import "components/Header.scss";
-
-// @import "sections/{id}.scss";
+@import "components/Page.scss";
 
 @import "templates/index.scss";
 @import "templates/product.scss";

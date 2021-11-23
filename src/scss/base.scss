@@ -18,12 +18,14 @@ body {
 }
 
 main {
+  min-height: 56.25vw;
   position: relative;
-  top: 48px;
+  padding-top: 48px;
+  // top: 48px;
 
-  @include md {
-    top: 56px;
-  }
+  // @include md {
+  //   top: 56px;
+  // }
 }
 
 //

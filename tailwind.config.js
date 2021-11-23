@@ -128,17 +128,23 @@ module.exports = {
   },
   theme: {
     colors: {
-      white: `#ffffff`,
-      strawberry: `#FFDADA`,
-      apricot: `#E28671`,
-      flame: `#DE562C`,
-      red: `#EB4025`,
-      tickle: `#F987A2`,
-      grey: `#E0C5C5`,
-      sun: `#FAD767`,
-      aqua: `#44B1B8`,
-      onyx: `#121212`,
-      black: `#000000`
+      "ux-green": "#097c07",
+      "midnight-black-50": "#9e9e9e",
+      "midnight-black-75": "#494949",
+      "midnight-black-100": "#302f2f",
+      "sea-mist-50": "#d4d4d4",
+      "sea-mist-75": "#a8a8a8",
+      "sea-mist-100": "#494949",
+      "winter-fern-50": "#b5bdb4",
+      "winter-fern-75": "#7a9a72",
+      "winter-fern-100": "#5e684f",
+      "mono-white": "#ffffff",
+      "mono-50": "#f2f2f2",
+      "mono-75": "#a4a4a4",
+      "mono-100": "#000000",
+      "brand-50": "#6e848d",
+      "brand-75": "#4f6068",
+      "brand-100": "#455055"
     },
     screens: {
       xs: {

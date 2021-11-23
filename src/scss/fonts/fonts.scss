@@ -1,9 +1,122 @@
-// @font-face {
-//   font-family: "Helvetic Neue";
-//   src: url("./fonts/helvetica-neue.woff2") format("woff2"),
-//     url("./fonts/helvetica-neue.woff") format("woff"),
-//     url("./fonts/helvetica-neue.ttf") format("truetype");
-//   font-display: block;
-//   font-weight: 400;
-//   font-style: normal;
-// }
+@font-face {
+  font-family: "Plain";
+  src: url("./fonts/plain-light.woff") format("woff"),
+    url("./fonts/plain-light.ttf") format("truetype");
+  font-display: block;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Plain";
+  src: url("./fonts/plain-ultralight.woff") format("woff"),
+    url("./fonts/plain-ultralight.ttf") format("truetype");
+  font-display: block;
+  font-weight: 200;
+  font-style: normal;
+}
+
+//
+
+.h1 {
+  font-family: "Plain";
+  font-size: 32px;
+  line-height: 120%;
+  letter-spacing: 0;
+}
+
+.h2 {
+  font-family: "Plain";
+  font-size: 28px;
+  line-height: 120%;
+  letter-spacing: 0;
+}
+
+//
+
+.b1 {
+  font-family: "Plain";
+  font-size: 18px;
+  line-height: 120%;
+  letter-spacing: 0;
+}
+
+.b2 {
+  font-family: "Plain";
+  font-size: 16px;
+  line-height: 120%;
+  letter-spacing: 0;
+}
+
+.b3 {
+  font-family: "Plain";
+  font-size: 14px;
+  line-height: 120%;
+  letter-spacing: 0;
+}
+
+.button {
+  font-family: "Plain";
+  font-size: 12px;
+}
+
+.caption {
+  font-family: "Plain";
+  font-size: 11px;
+}
+
+@media screen and (min-width: 1024px) {
+  .d1 {
+    font-family: "Plain";
+    font-size: 90px;
+    line-height: 120%;
+    letter-spacing: 0;
+  }
+
+  .h1 {
+    font-family: "Plain";
+    font-size: 40px;
+    line-height: 120%;
+    letter-spacing: 0;
+  }
+
+  .h2 {
+    font-family: "Plain";
+    font-size: 32px;
+    line-height: 120%;
+    letter-spacing: 0;
+  }
+
+  //
+
+  .b1 {
+    font-family: "Plain";
+    font-size: 18px;
+    line-height: 120%;
+    letter-spacing: 0;
+  }
+
+  .b2 {
+    font-family: "Plain";
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0;
+  }
+
+  .b3 {
+    font-family: "Plain";
+    font-size: 14px;
+    line-height: 120%;
+    letter-spacing: 0;
+  }
+
+  .button {
+    font-family: "Plain";
+    font-size: 12px;
+  }
+
+  .caption {
+    font-family: "Plain";
+    font-size: 10px;
+  }
+}
