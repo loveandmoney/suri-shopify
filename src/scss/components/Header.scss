@@ -1,0 +1,76 @@
+.header {
+  @include md {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  transition: $default-transition background;
+
+  //
+
+  &.menu-open {
+    background: theme("colors.tickle") !important;
+
+    .header--mobile__menu__close {
+      display: block;
+    }
+
+    .header--mobile__menu__open {
+      display: none;
+    }
+  }
+
+  //
+
+  &--mobile {
+    &__cart {
+      margin-bottom: 3px;
+    }
+
+    &__logo {
+      margin-bottom: 2px;
+    }
+
+    &__menu {
+      margin-bottom: 3px;
+
+      &__close {
+        display: none;
+      }
+    }
+  }
+
+  &__line {
+    &--sm {
+      bottom: -0.75vw;
+
+      @media screen and (min-width: 1024px) {
+        display: none;
+      }
+    }
+
+    &--md {
+      bottom: -0.75vw;
+
+      display: none;
+
+      @media screen and (min-width: 1024px) {
+        display: block;
+      }
+
+      @media screen and (min-width: 1440px) {
+        display: none;
+      }
+    }
+
+    &--lg {
+      bottom: -0.5vw;
+
+      display: none;
+
+      @media screen and (min-width: 1440px) {
+        display: block;
+      }
+    }
+  }
+}

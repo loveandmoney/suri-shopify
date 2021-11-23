@@ -1,0 +1,23 @@
+@charset 'UTF-8';
+
+@import "./fonts/fonts.scss";
+@import "./swiper.scss"; //
+@import "tailwindcss/base";
+
+@import "screen.scss";
+@import "base.scss";
+@import "transitions.scss";
+
+//
+
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "grid.scss";
+
+@import "components/Header.scss";
+
+// @import "sections/{id}.scss";
+
+@import "templates/index.scss";
+@import "templates/product.scss";

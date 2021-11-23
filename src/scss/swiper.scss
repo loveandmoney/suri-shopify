@@ -1,0 +1,15 @@
+.swiper-pagination {
+  .swiper-pagination-bullet,
+  .swiper-pagination-bullet-active {
+    background: #000 !important;
+    margin: 0 0.25rem;
+  }
+
+  :first-child {
+    margin-left: 0;
+  }
+
+  :last-child {
+    margin-right: 0;
+  }
+}
