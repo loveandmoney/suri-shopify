@@ -1,3 +1,15 @@
 .header {
-  border: 3px solid red;
+  height: 48px;
+
+  &__cart-text {
+    margin-top: -2px;
+  }
+
+  // &__subheading {
+  //   margin-top: -2px;
+  // }
+
+  svg {
+    height: 24px;
+  }
 }

@@ -1,0 +1,44 @@
+{
+  "settings_schema": {
+  },
+  "sections": {
+    "header": {
+      "name": "Header",
+      "settings": {
+        "logo": {
+          "label": "Logo Image",
+          "info": "This should be SVG code, e.g. <svg></svg>."
+        },
+        "subheading": {
+          "label": "Subheading"
+        },
+        "cart_text": {
+          "label": "Cart Label"
+        },
+        "cart_svg": {
+          "label": "Cart SVG",
+          "info": "This should be SVG code, e.g. <svg></svg>."
+        }
+      }
+    },
+    "footer": {
+      "name": "Footer",
+      "blocks": {
+        "link_list": {
+          "name": "Menu",
+          "settings": {
+            "heading": {
+              "label": "Footer link list"
+            }
+          }
+        }
+      },
+      "settings": {
+        "logo": {
+          "label": "Logo HTML",
+          "info": "This should be SVG code, e.g. <svg></svg>."
+        }
+      }
+    }
+  }
+}

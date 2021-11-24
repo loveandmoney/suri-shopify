@@ -1,3 +1,47 @@
-<header class="header w-full fixed top-0 right-0 left-0 z-50" data-component="Header">
-  <h2 class="b1">HEADER</h2>
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "logo",
+      "label": "t:sections.header.settings.logo.label",
+      "info": "t:sections.header.settings.logo.info"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:sections.header.settings.subheading.label"
+    },
+    {
+      "type": "text",
+      "id": "cart_text",
+      "label": "t:sections.header.settings.cart_text.label"
+    },
+    {
+      "type": "textarea",
+      "id": "cart_svg",
+      "label": "t:sections.header.settings.cart_svg.label",
+      "info": "t:sections.header.settings.cart_svg.info"
+    }
+  ]
+}
+{% endschema %}
+
+<header class="header w-full h-12 fixed top-0 right-0 left-0 z-40 flex items-center px-8 bg-white text-black">
+  <nav class="w-full relative flex items-center">
+    <div class="w-1/2 relative flex items-center">
+      <a aria-current="page" href="/">
+        {{ section.settings.logo }}
+      </a>
+
+      <p class="header__subheading hidden md:block md:ml-8 lg:ml-24 xl:ml-32 b3">{{ section.settings.subheading }}</p>
+    </div>
+
+    <div class="w-1/2 relative flex items-center justify-end">
+      <p class="header__cart-text mr-1 b3">{{ section.settings.cart_text }}</p>
+
+      {{ section.settings.cart_svg }}
+    </div>
+  </nav>
 </header>

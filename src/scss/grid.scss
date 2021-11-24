@@ -1,37 +1,7 @@
-$grid_columns: 12;
-$grid_columns_xs: 12;
-$grid_gutter: 1rem;
-$grid_gutter_xs: 0.25rem;
-$grid_padding: (
-  xl: 3rem,
-  lg: 3rem,
-  md: 3rem,
-  sm: 1rem,
-  xs: 1rem,
-);
-
 @layer utilities {
   .grid {
-    width: calc(100% - (#{map-get($grid_padding, "xs")} * 2));
-
-    @include sm {
-      width: calc(100% - (#{map-get($grid_padding, "sm")} * 2));
-    }
-
-    @include md {
-      width: calc(100% - (#{map-get($grid_padding, "md")} * 2));
-      grid-gap: 0 $grid_gutter;
-    }
-
-    @include lg {
-      width: calc(100% - (#{map-get($grid_padding, "lg")} * 2));
-      grid-gap: 0 $grid_gutter;
-    }
-
-    @include xl {
-      width: calc(100% - (#{map-get($grid_padding, "xl")} * 2));
-      grid-gap: 0 $grid_gutter;
-    }
+    width: 100%;
+    // grid-gap: 0 1rem;
 
     @include ms-all {
       display: flex;
@@ -44,7 +14,7 @@ $grid_padding: (
     position: relative;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat($grid_columns, minmax(0, 1fr));
-    grid-gap: 0 $grid_gutter_xs;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    // grid-gap: 0 1rem;
   }
 }

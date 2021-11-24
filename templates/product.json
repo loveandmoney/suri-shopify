@@ -1,7 +1,12 @@
 {
   "sections": {
     "main": {
-      "type": "banner"
+      "type": "product-main",
+      "blocks": {
+        "title": {
+          "type": "title"
+        }
+      }
     }
   },
   "order": [

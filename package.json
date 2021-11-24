@@ -1,8 +1,8 @@
 {
-  "name": "shopify-liquid-2.0",
+  "name": "suri-shopify",
   "author": "Love + Money <hello@loveandmoney.agency>",
-  "version": "0.1.0",
-  "description": "Love + Money 2.0 Shopify Theme",
+  "version": "0.1",
+  "description": "Suri Shopify 2.0 Theme",
   "private": true,
   "license": "MIT",
   "scripts": {
