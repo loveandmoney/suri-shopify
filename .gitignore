@@ -1,12 +1,6 @@
 .DS_Store
 clipboard
 
-assets/bundle.min.js
-assets/style.min.css
-assets/tailwind.css
-assets/theme.css.liquid
-assets/theme.js
-
 config.yml
 yarn-error.log
 node_modules
