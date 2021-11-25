@@ -79,9 +79,13 @@
       ],
       "settings": {
       }
+    },
+    "shipping-section": {
+      "type": "shipping-section"
     }
   },
   "order": [
-    "main"
+    "main",
+    "auxiliary"
   ]
 }
