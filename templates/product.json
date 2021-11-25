@@ -11,7 +11,7 @@
         "6f24faf0-3309-47a7-b0a7-2586736b630c": {
           "type": "price",
           "settings": {
-            "message": "40% off: limited stock pre-launch discount."
+            "message": ""
           }
         },
         "853e3779-2bc4-41fd-bafc-4d3956a3c93a": {
@@ -27,20 +27,13 @@
         "b83d4a20-6eb3-4f27-8326-73a24abdcbf9": {
           "type": "buy_buttons",
           "settings": {
-            "message": "Delivering February 2022"
-          }
-        },
-        "38d1ea61-f0ad-418c-8f28-ba5c7cc577e0": {
-          "type": "replacement_pack",
-          "settings": {
-            "heading": "Add a pack of Replacement Brush Heads",
-            "body": "A pack includes 3x replacement brush heads."
+            "message": ""
           }
         },
         "428024c0-f359-40af-a216-234fb886e0e4": {
           "type": "description",
           "settings": {
-            "content": "<p>Great health starts with your teeth. SURI is a revolutionary new sustainable electric toothbrush designed with dentists worldwide to deliver a deeper clean.*  Our new MicraSonic™ magnetic motor provides a high-powered clean in a slim form that's great for everyday use or traveling. SURI's heads are made from plant-based materials (cornstarch & castor oil) made to last in your bathroom not landfills.<\/p><p>*vs. a manual brush.<\/p>"
+            "content": ""
           }
         },
         "53567724-07c8-4635-9d0f-e1f91966d58b": {
@@ -71,7 +64,6 @@
         "853e3779-2bc4-41fd-bafc-4d3956a3c93a",
         "c32833c3-acb8-4665-95fc-e11c9042e735",
         "b83d4a20-6eb3-4f27-8326-73a24abdcbf9",
-        "38d1ea61-f0ad-418c-8f28-ba5c7cc577e0",
         "428024c0-f359-40af-a216-234fb886e0e4",
         "53567724-07c8-4635-9d0f-e1f91966d58b",
         "04c83383-dc48-4102-987a-bee78aee99b2",
