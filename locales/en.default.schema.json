@@ -7,7 +7,7 @@
       "settings": {
         "logo": {
           "label": "Logo Image",
-          "info": "This should be SVG code, e.g. <svg></svg>."
+          "info": "This should be SVG code, e.g. <svg><\/svg>."
         },
         "subheading": {
           "label": "Subheading"
@@ -17,7 +17,7 @@
         },
         "cart_svg": {
           "label": "Cart SVG",
-          "info": "This should be SVG code, e.g. <svg></svg>."
+          "info": "This should be SVG code, e.g. <svg><\/svg>."
         }
       }
     },
@@ -84,7 +84,7 @@
       "settings": {
         "logo": {
           "label": "Logo HTML",
-          "info": "This should be SVG code, e.g. <svg></svg>."
+          "info": "This should be SVG code, e.g. <svg><\/svg>."
         }
       }
     }
