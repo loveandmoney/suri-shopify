@@ -74,6 +74,8 @@ const Product = () => {
       }
 
       if (checked) {
+        displayedValue.innerHTML = value;
+
         selectedOptions.push({
           name,
           value

@@ -1,0 +1,30 @@
+{% schema %}
+{
+  "name": "t:sections.shipping-section.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }, {
+      "type": "text",
+      "id": "body",
+      "label": "Body"
+    }
+  ]
+}
+
+{% endschema %}
+
+<section class="shipping-section w-full relative block bg-mono-black text-mono-white">
+  <article class="grid">
+    <header class="col-span-6">
+      <p class="b1">{{ section.settings.heading }}</p>
+    </header>
+    
+    <div class="col-span-6">
+      <p class="b1">{{ section.settings.body }}</p>
+    </div>
+  </article>
+</section>

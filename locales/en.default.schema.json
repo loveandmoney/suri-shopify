@@ -59,13 +59,16 @@
         "product_attribute": {
           "name": "Product Attribute"
         }
-      },
-      "settings": {
-        "button_message": {
-          "label": "Button message"
+      }
+    },
+    "shipping-section": {
+      "name": "Shipping",
+      "blocks": {
+        "heading": {
+          "name": "Heading"
         },
-        "price_message": {
-          "label": "Price message"
+        "body": {
+          "name": "Body"
         }
       }
     },
