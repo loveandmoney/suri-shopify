@@ -21,6 +21,54 @@
         }
       }
     },
+    "main-product": {
+      "name": "Product information",
+      "blocks": {
+        "title": {
+          "name": "Title"
+        },
+        "price": {
+          "name": "Price"
+        },
+        "variant_picker": {
+          "name": "Variant picker",
+          "settings": {
+            "picker_type": {
+              "label": "Type",
+              "options__1": {
+                "label": "Dropdown"
+              },
+              "options__2": {
+                "label": "Button"
+              }
+            }
+          }
+        },
+        "quantity_selector": {
+          "name": "Quantity selector"
+        },
+        "buy_buttons": {
+          "name": "Buy buttons"
+        },
+        "replacement_pack": {
+          "name": "Replacement pack"
+        },
+        "description": {
+          "name": "Description"
+        },
+        "product_attribute": {
+          "name": "Product Attribute"
+        }
+      },
+      "settings": {
+        "button_message": {
+          "label": "Button message"
+        },
+        "price_message": {
+          "label": "Price message"
+        }
+      }
+    },
     "footer": {
       "name": "Footer",
       "blocks": {

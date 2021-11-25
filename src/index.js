@@ -17,7 +17,7 @@ const main = () => {
         Components[componentId]();
       }
     });
-    
+
     document.querySelectorAll(`[data-template]`).forEach((element) => {
       const templateId = element.getAttribute(`data-template`);
 
