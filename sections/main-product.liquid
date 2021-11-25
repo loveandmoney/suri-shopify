@@ -57,14 +57,7 @@
       ]
     }, {
       "type": "description",
-      "name": "t:sections.main-product.blocks.description.name",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Description"
-        }
-      ]
+      "name": "t:sections.main-product.blocks.description.name"
     }, {
       "type": "product_attribute",
       "name": "t:sections.main-product.blocks.product_attribute.name",
@@ -109,7 +102,7 @@
         {%- endfor -%}
       </ul>
 
-      <div class="col-span-4 col-start-8 h-screen sticky top-0 right-0 pt-16">
+      <div class="col-span-4 col-start-8 h-screen sticky top-0 right-0 pt-16 pb-24 overflow-y-scroll">
         {%- liquid
           assign product_form_id = 'product-form-' | append: section.id
           assign price = product.price | default: 1999
@@ -128,7 +121,7 @@
               <h1 class="h2">{{ product.title | escape }}</h1>
 
             {%- when 'price' -%}
-              <article>
+              <article class="relative pb-6">
                 <div class="w-full relative flex">
                   <h3 class="h2">{{ money_price }}</h3>
 
@@ -181,7 +174,7 @@
 
             {%- when 'quantity_selector' -%}
               <article class="relative mt-4">
-                <label class="form__label" for="Quantity-{{ section.id }}">
+                <label class="b3" for="Quantity-{{ section.id }}">
                   {{ 'products.product.quantity.label' | t }}
                 </label>
 
@@ -190,7 +183,7 @@
                     <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
                   </button> -->
 
-                  <input id="Quantity-{{ section.id }}" name="quantity" class="w-12 relative block mt-2 border" form="{{ product_form_id }}" min="1" value="1" type="number"/>
+                  <input id="Quantity-{{ section.id }}" name="quantity" class="w-12 relative block mt-1 border" form="{{ product_form_id }}" min="1" value="1" type="number"/>
 
                   <!-- <button name="plus" type="button">
                     <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
@@ -199,7 +192,7 @@
               </article>
 
             {%- when 'buy_buttons' -%}
-              <article class="relative mt-8">
+              <article class="relative mt-10">
                 {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
                   <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled/>
 
@@ -218,15 +211,16 @@
               </article>
 
             {%- when 'description' -%}
-              <div class="main-product__description relative mt-8 whitespace-pre-wrap b3">{{ block.settings.content }}</div>
+              <div class="main-product__description h-24 relative overflow-y-scroll mt-8 pt-6 mb-6 whitespace-pre-wrap border-t b3">{{ product.description }}</div>
 
             {%- when 'replacement_pack' -%}
+              {{ product.handle }}
               <article class="main-product__pack relative mt-8 p-4 bg-mono-white text-ux-green">
                 <div class="w-full relative flex justify-between">
                   <figure class="w-14 h-14 relative block rounded-full overflow-hidden bg-midnight-black-75"></figure>
 
                   <div class="main-product__pack__content relative">
-                    <div class="relative mb-4">
+                    <div class="relative mb-5">
                       <h3 class="b1">{{ block.settings.heading }}</h3>
                       <p class="mt-2 b3">{{ block.settings.body }}</p>
                     </div>
