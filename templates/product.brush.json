@@ -86,6 +86,6 @@
   },
   "order": [
     "main",
-    "auxiliary"
+    "shipping-section"
   ]
 }
