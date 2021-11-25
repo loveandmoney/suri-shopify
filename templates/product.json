@@ -33,7 +33,6 @@
         "428024c0-f359-40af-a216-234fb886e0e4": {
           "type": "description",
           "settings": {
-            "content": ""
           }
         },
         "53567724-07c8-4635-9d0f-e1f91966d58b": {
@@ -73,7 +72,9 @@
       }
     },
     "shipping-section": {
-      "type": "shipping-section"
+      "type": "shipping-section",
+      "settings": {
+      }
     }
   },
   "order": [
