@@ -42,25 +42,9 @@
           "settings": {
           }
         },
-        "53567724-07c8-4635-9d0f-e1f91966d58b": {
+        "daedba61-154c-4e7e-87df-248c8c568a8a": {
           "type": "product_attributes",
           "settings": {
-            "heading": "Product Attribute",
-            "content": ""
-          }
-        },
-        "04c83383-dc48-4102-987a-bee78aee99b2": {
-          "type": "product_attributes",
-          "settings": {
-            "heading": "Product Attribute",
-            "content": ""
-          }
-        },
-        "e0b08568-ef73-42df-9912-d96e0128b914": {
-          "type": "product_attributes",
-          "settings": {
-            "heading": "Product Attribute",
-            "content": ""
           }
         }
       },
@@ -72,9 +56,7 @@
         "b83d4a20-6eb3-4f27-8326-73a24abdcbf9",
         "d866ae0b-9c5d-4d0d-94d1-5c1fb7c49d37",
         "428024c0-f359-40af-a216-234fb886e0e4",
-        "53567724-07c8-4635-9d0f-e1f91966d58b",
-        "04c83383-dc48-4102-987a-bee78aee99b2",
-        "e0b08568-ef73-42df-9912-d96e0128b914"
+        "daedba61-154c-4e7e-87df-248c8c568a8a"
       ],
       "settings": {
       }
