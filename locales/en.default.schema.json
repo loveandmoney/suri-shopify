@@ -56,7 +56,7 @@
         "description": {
           "name": "Description"
         },
-        "product_attribute": {
+        "product_attributes": {
           "name": "Product Attribute"
         }
       }
