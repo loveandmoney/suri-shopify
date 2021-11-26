@@ -134,8 +134,10 @@
               </div>
 
               {% if discount != 0 %}
-                <p class="mt-4 b3 text-ux-green">{{ discount }}% off:
-                  {{ block.settings.message }}</p>
+                <p class="mt-4 b3 text-ux-green">
+                  <span>{{ discount }}% off</span>
+                  <span>{{ block.settings.message }}</span>
+                </p>
               {% endif %}
             </article>
 
