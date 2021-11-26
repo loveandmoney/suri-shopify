@@ -23,7 +23,9 @@ module.exports = {
       `bg-sea-mist`,
       `text-sea-mist`,
       `bg-winter-fern`,
-      `text-winter-fern`
+      `text-winter-fern`,
+      `opacity-25`,
+      `pointer-events-none`
     ]
   },
   theme: {

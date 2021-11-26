@@ -1,0 +1,98 @@
+<script>console.log({{ cart | json }});</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-cart.name",
+  "tag": "section",
+  "blocks": [],
+  "settings": []
+}
+{% endschema %}
+
+{% assign tax_percent = 10 %}
+
+<div class="main-cart w-full relative {% if cart.item_count == 0 %}flex items-center justify-center{% else %}block{% endif %} pt-20 pb-12 bg-mono-white" data-template="Cart">
+  <section class="grid">
+    {% if cart.item_count == 0 %}
+      <div class="main-cart__empty animation-appear-slow animation-delay-4 col-span-4 col-start-5 relative flex flex-col items-center justify-center">
+        <div class="w-full relative flex items-center">
+          <svg class="w-6 relative block mr-2" viewBox="0 0 20 20" fill="black" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 16C4.9 16 4.01 16.9 4.01 18C4.01 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16ZM0 0V2H2L5.6 9.59L4.25 12.04C4.09 12.32 4 12.65 4 13C4 14.1 4.9 15 6 15H18V13H6.42C6.28 13 6.17 12.89 6.17 12.75L6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.59 16.3 9.97L19.88 3.48C19.96 3.34 20 3.17 20 3C20 2.45 19.55 2 19 2H4.21L3.27 0H0ZM16 16C14.9 16 14.01 16.9 14.01 18C14.01 19.1 14.9 20 16 20C17.1 20 18 19.1 18 18C18 16.9 17.1 16 16 16Z" fill="current"></path>
+          </svg>
+
+          <h2 class="h3">Your cart is empty</h2>
+        </div>
+
+        <p class="mt-3 mb-8 b1">Get the world's first truly sustainable electric toothbrush delivered to you.</p>
+
+        <a href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case?variant=41196774064316" class="w-full">
+          <button type="button" class="button button--green w-full h-12 relative block">
+            <span class="button-text">
+              Take a look
+            </span>
+          </button>
+        </a>
+      </div>
+    {% else %}
+      <article class="animation-appear-slow animation-delay-3 col-span-5 col-start-2 relative">
+        <header class="relative mb-12">
+          <h1 class="h3">Your Shopping Cart</h1>
+        </header>
+
+        <ul class="cart__list w-full relative mx-auto pb-8 sm:pb-32">
+          {% for line_item in cart.items %}
+            <li class="cart__list__item w-full relative mb-4">
+              {% render 'cart-item', line_index: forloop.index, line_item: line_item %}
+            </li>
+          {% endfor %}
+        </ul>
+      </article>
+
+      <article id="main-cart-summary" class="main-cart__summary col-span-4 col-start-8 sticky top-24 right-0 -mt-1">
+        <form class="animation-appear-slow animation-delay-5" action="{{ routes.cart_url }}" method="post" id="cart">
+          <header class="relative mb-12">
+            <h2 class="h3">Order summary</h2>
+          </header>
+
+          <ul>
+            <li class="w-full flex justify-between py-1">
+              <h3 class="b2">Item Subtotal</h3>
+              <p class="js-bound b2" data-binding-id="cart-subtotal">{{ cart.items_subtotal_price | money }}</p>
+            </li>
+
+            <li class="w-full flex justify-between py-1">
+              <h3 class="b2">Tax</h3>
+              <p class="b2">
+                <span class="js-bound" data-binding-id="cart-tax">{{ cart.total_price | plus: 0.0 | divided_by: tax_percent | money }}</span>
+
+                {% if cart.taxes_included %}
+                  <span>(included)</span>
+                  {% else %}
+                  <span>(excluded)</span>
+                {% endif %}
+              </p>
+            </li>
+
+            <li class="w-full flex justify-between py-1">
+              <h3 class="b2">Shipping</h3>
+              <p class="b2">Calculated at Checkout</p>
+            </li>
+
+            <li class="w-full mt-4 pt-4 pb-4 flex justify-between border-mono-75 border-t border-b">
+              <h3 class="b2">Total</h3>
+              <p class="js-bound b2" data-binding-id="cart-total">{{ cart.total_price | money }}</p>
+            </li>
+          </ul>
+
+          <div class="relative mt-8">
+            <button type="submit" name="add" class="button bg-ux-green text-mono-white w-full h-12 relative block">
+              <span class="button-text">
+                Checkout
+              </span>
+            </button>
+          </div>
+        </form>
+      </article>
+    {% endif %}
+  </section>
+</div>

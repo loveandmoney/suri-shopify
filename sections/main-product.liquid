@@ -1,4 +1,5 @@
 {% schema %}
+
 {
   "name": "t:sections.main-product.name",
   "tag": "section",
@@ -67,7 +68,7 @@
 
 {% endschema %}
 
-<div class="main-product w-full relative block pb-12 bg-mono-50" data-template="Product">
+<div class="main-product animation-appear-slow animation-delay-3 w-full relative block pb-12 bg-mono-50" data-template="Product">
   <section class="grid">
     {% assign image_count = 0 %}
 
@@ -91,10 +92,20 @@
     <div class="col-span-4 col-start-8 h-screen sticky top-0 right-0 pt-16 pb-24 overflow-y-scroll">
       {%- liquid
         assign product_form_id = 'product-form-' | append: section.id
-        assign price = product.price | default: 1999
+        assign price = product.price
+        assign compare_at_price = product.compare_at_price
         assign available = product.available | default: false
         assign buyable = product.selected_or_first_available_variant.available
         assign money_price = price | money
+
+        assign discount = 0
+
+        if price != compare_at_price
+          assign price_float = price | plus: 1.0
+          assign compare_float = compare_at_price | plus: 1.0
+          assign relative_value = price_float | divided_by: compare_float
+          assign discount = 1.0 | minus: relative_value | times: 100 | floor
+        endif
 
         if settings.currency_code_enabled
           assign money_price = price | money_with_currency
@@ -114,32 +125,40 @@
                 {%- unless product.price_varies == false and product.compare_at_price_varies %}
                   <h3 class="main-product__compare-at ml-2 h2 line-through">
                     {% if settings.currency_code_enabled %}
-                      {{ product.compare_at_price | money_with_currency }}
+                      {{ compare_at_price | money_with_currency }}
                     {% else %}
-                      {{ product.compare_at_price | money }}
+                      {{ compare_at_price | money }}
                     {% endif %}
                   </h3>
                 {%- endunless -%}
               </div>
 
-              <p class="mt-4 b3 text-ux-green">{{ block.settings.message }}</p>
+              {% if discount != 0 %}
+                <p class="mt-4 b3 text-ux-green">{{ discount }}% off:
+                  {{ block.settings.message }}</p>
+              {% endif %}
             </article>
 
           {%- when 'variant_picker' -%}
+            <script id="variant-data" type="application/json">
+              {{ product.variants | json }}
+            </script>
+
             <article class="main-product__variant-picker relative mt-4">
               {%- unless product.has_only_default_variant -%}
-                <div class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
+                <div data-section="{{ section.id }}" data-url="{{ product.url }}">
                   {%- for option in product.options_with_values -%}
                     <fieldset class="relative">
                       <legend class="b3">
-                        <span>{{ option.name }}: </span>
+                        <span>{{ option.name }}:
+                        </span>
                         <span id="variant-value-{{ option.name | downcase | replace: ' ', '-' }}"></span>
                       </legend>
 
                       <div class="relative flex">
                         {%- for value in option.values -%}
                           <div class="main-product__variant-picker w-8 h-8 relative block mt-2 mr-2 rounded-full overflow-hidden {% if option.selected_value == value %}active{% endif %}">
-                            <input class="variant-picker w-full h-full absolute top-0 right-0 bottom-0 left-0 z-10 cursor-pointer opacity-0 border" type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" name="{{ option.name }}" value="{{ value | escape }}" form="{{ product_form_id }}" {% if option.selected_value == value %} checked {% endif %} />
+                            <input class="variant-picker w-full h-full absolute top-0 right-0 bottom-0 left-0 z-10 cursor-pointer opacity-0 border" type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" name="{{ option.name }}" value="{{ value | escape }}" form="{{ product_form_id }}" {% if option.selected_value == value %} checked {% endif %}/>
 
                             <div class="main-product__variant-picker__button w-full h-full relative rounded-full overflow-hidden">
                               <div class="w-full h-full relative rounded-full overflow-hidden bg-{{ value | downcase | replace: ' ', '-' }}"></div>
@@ -155,29 +174,33 @@
 
           {%- when 'quantity_selector' -%}
             <article class="relative mt-4">
-              <label class="b3" for="Quantity-{{ section.id }}">
+              <label class="b3" for="product-quantity">
                 {{ 'products.product.quantity.label' | t }}
               </label>
 
-              <div class="relative">
-                <!-- <button name="minus" type="button">
-                  <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
-                </button> -->
+              <div class="w-32 h-12 relative flex items-center justify-between mt-2 overflow-hidden rounded-full border">
+                <button class="main-product__quantity-adjust w-12 h-12 relative block select-none" id="product-quantity-down" name="minus" type="button">
+                  <div class="w-full h-full relative flex items-center justify-center">
+                    <span class="b1">-</span>
+                  </div>
+                </button>
 
-                <input id="Quantity-{{ section.id }}" name="quantity" class="w-12 relative block mt-1 border" form="{{ product_form_id }}" min="1" value="1" type="number"/>
+                <input id="product-quantity" name="quantity" class="main-product__input--number w-8 h-full relative block bg-transparent text-center" form="{{ product_form_id }}" min="1" value="1" type="number"/>
 
-                <!-- <button name="plus" type="button">
-                  <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
-                </button> -->
+                <button class="main-product__quantity-adjust w-12 h-12 relative block select-none" id="product-quantity-up" name="plus" type="button">
+                  <div class="w-full h-full relative flex items-center justify-center">
+                    <span class="b1">+</span>
+                  </div>
+                </button>
               </div>
             </article>
 
           {%- when 'buy_buttons' -%}
             <article class="relative mt-10">
-              {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled/>
+              {%- form 'product', product, id: product_form_id, class: 'form add-to-cart-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                <input id="buy-button-identifier" type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}"/>
 
-                <button type="submit" name="add" class="button {% if buyable %}bg-ux-green text-mono-white{% else %}button--disabled bg-mono-75 text-mono-black{% endif %} w-full h-12 relative block" {% if sold_out %} disabled {% endif %}>
+                <button id="buy-button" type="submit" name="add" class="button {% if buyable %}button--green{% else %}button--disabled{% endif %} w-full h-12 relative block" {% if buyable %} {% else %} disabled {% endif %}>
                   <span class="button-text">
                     {%- if buyable -%}
                       {{ 'products.product.add_to_cart' | t }}
@@ -217,7 +240,7 @@
 
           {%- when 'product_attributes' -%}
             {% assign attributes = product.metafields.information.accordion_json.value.attributes %}
-            
+
             {% for attribute in attributes %}
               <article class="main-product__expander w-full relative py-3 border-t border-midnight-black-75">
                 <button class="w-full relative block" type="button">
@@ -226,7 +249,7 @@
                     <p class="caption">arrow</p>
                   </div>
                 </button>
-  
+
                 <div class="main-product__expander__text relative block b3">{{ attribute.content }}</div>
               </article>
             {% endfor %}

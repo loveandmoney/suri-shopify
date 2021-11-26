@@ -1,0 +1,87 @@
+.main-cart {
+  &__empty {
+    @include md {
+      height: calc(100vh - 240px);
+    }
+  }
+
+  &__input {
+    &--number {
+      -moz-appearance: textfield;
+      appearance: none;
+      background: transparent;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+
+  &__item {
+    &__remove {
+      svg {
+        transition: 0.5s $ease-out-cubic transform;
+
+        width: 24px;
+      }
+
+      @include hoverable {
+        &:hover {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+
+    &__url {
+      @include hoverable {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__quantity {
+    transition: 0.15s $ease-out-cubic opacity;
+
+    //
+
+    &.updating {
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    //
+
+    &-adjust {
+      transition: 0.15s $ease-out-cubic background, 0.15s $ease-out-cubic color;
+
+      background: transparent;
+      color: theme("colors.mono-100");
+      border: 1px solid transparent;
+
+      @include hoverable {
+        &:hover {
+          background: theme("colors.mono-100");
+          color: theme("colors.mono-white");
+        }
+      }
+    }
+  }
+
+  &__summary {
+    transition: 0.3s $ease-out-cubic opacity;
+
+    height: calc(100vh - 240px);
+    min-height: 768px;
+
+    &.updating {
+      opacity: 0.25;
+      pointer-events: none;
+    }
+  }
+}

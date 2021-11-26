@@ -1,9 +1,29 @@
 .button {
   border-radius: 100px;
 
+  &--green {
+    transition: 0.15s $ease-out-cubic background, 0.15s $ease-out-cubic color;
+
+    background: theme("colors.ux-green");
+    color: theme("colors.mono-white");
+    border: 1px solid theme("colors.ux-green");
+
+    @include hoverable {
+      &:hover {
+        background: theme("colors.mono-white");
+        color: theme("colors.ux-green");
+      }
+    }
+  }
+
+  //
+  // keep this at the bottom
+
   &--disabled {
-    opacity: 0.5;
-    pointer-events: none;
-    // background:
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+    background: theme("colors.mono-75");
+    color: theme("colors.mono-100");
+    border: 1px solid transparent;
   }
 }

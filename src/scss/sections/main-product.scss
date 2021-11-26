@@ -58,6 +58,36 @@
     }
   }
 
+  &__input {
+    &--number {
+      -moz-appearance: textfield;
+      appearance: none;
+      background: transparent;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+
+  &__quantity-adjust {
+    transition: 0.15s $ease-out-cubic background, 0.15s $ease-out-cubic color,
+      0.15s $ease-out-cubic opacity;
+
+    background: transparent;
+    color: theme("colors.mono-100");
+    border: 1px solid transparent;
+
+    @include hoverable {
+      &:hover {
+        background: theme("colors.mono-100");
+        color: theme("colors.mono-white");
+      }
+    }
+  }
+
   &__pack {
     border-radius: 10px;
 
