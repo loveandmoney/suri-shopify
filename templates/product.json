@@ -1,5 +1,12 @@
 {
   "sections": {
+    "shipping-section": {
+      "type": "shipping-section",
+      "settings": {
+        "heading": "Shipping worldwide in February 2022.",
+        "body": "<p>We are only making limited stocks for pre-launch.<\/p><p>Don't miss out.<\/p>"
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -60,17 +67,10 @@
       ],
       "settings": {
       }
-    },
-    "shipping-section": {
-      "type": "shipping-section",
-      "settings": {
-        "heading": "Shipping worldwide in February 2022.",
-        "body": "<p>We are only making limited stocks for pre-launch.<\/p><p>Don't miss out.<\/p>"
-      }
     }
   },
   "order": [
-    "main",
-    "shipping-section"
+    "shipping-section",
+    "main"
   ]
 }
