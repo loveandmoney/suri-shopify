@@ -65,9 +65,9 @@
   ],
   "settings": [
     {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading"
+      "type": "product",
+      "id": "add-on",
+      "label": "Add On"
     }
   ]
 }
@@ -234,6 +234,8 @@
             <div class="main-product__description relative mt-8 pt-6 mb-6 whitespace-pre-wrap border-t b3">{{ product.description }}</div>
 
           {%- when 'replacement_pack' -%}
+            <!-- {{ section.settings.add-on.id }} -->
+
             <article class="main-product__pack relative mt-8 p-4 bg-mono-white text-ux-green">
               <div class="w-full relative flex justify-between">
                 <figure class="w-14 h-14 relative block rounded-full overflow-hidden bg-midnight-black-75"></figure>
