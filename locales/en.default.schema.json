@@ -61,8 +61,8 @@
         }
       }
     },
-    "text": {
-      "name": "Text",
+    "simple-text": {
+      "name": "Simple Text",
       "blocks": {
         "heading": {
           "name": "Heading"

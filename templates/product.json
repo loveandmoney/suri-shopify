@@ -89,7 +89,7 @@
   "order": [
     "main",
     "image-tiles",
-    "text",
+    "simple-text",
     "attributes",
     "essentials",
     "newsletter"

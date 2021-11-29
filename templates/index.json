@@ -1,12 +1,5 @@
 {
   "sections": {
-    "simple-text": {
-      "type": "simple-text",
-      "settings": {
-        "heading": "Shipping worldwide in February 2022.",
-        "body": "<p>We are only making limited stocks for pre-launch.<\/p><p>Don't miss out.<\/p>"
-      }
-    },
     "full-image-cta": {
       "type": "full-image-cta",
       "settings": {
@@ -17,10 +10,17 @@
         "backgroundImage": "shopify:\/\/shop_images\/home-desktop-atf.jpg",
         "backgroundImageMobile": "shopify:\/\/shop_images\/home-mobile-atf.jpg"
       }
+    },
+    "simple-text": {
+      "type": "simple-text",
+      "settings": {
+        "heading": "Shipping worldwide in February 2022.",
+        "body": "<p>We are only making limited stocks for pre-launch.<\/p><p>Don't miss out.<\/p>"
+      }
     }
   },
   "order": [
-    "text",
-    "full-image-cta"
+    "full-image-cta",
+    "simple-text"
   ]
 }
