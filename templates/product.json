@@ -81,7 +81,7 @@
   "order": [
     "main",
     "image-tiles",
-    "attributes",
-    "shipping-section"
+    "shipping-section",
+    "attributes"
   ]
 }
