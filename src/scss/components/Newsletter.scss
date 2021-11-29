@@ -1,0 +1,46 @@
+.newsletter {
+  &__form {
+    &.complete {
+      .newsletter__form__input {
+        opacity: 0;
+        transform: translate3d(0, -1rem, 0);
+      }
+
+      .newsletter__form__message {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    &__input {
+      transition: 0.5s $ease-out-cubic opacity, 0.5s $ease-out-cubic transform;
+
+      background: transparent;
+      transform: translate3d(0, 0, 0);
+
+      &::-webkit-input-placeholder {
+        color: theme("colors.mono-white");
+        opacity: 0.4;
+      }
+      &::-moz-placeholder {
+        color: theme("colors.mono-white");
+        opacity: 0.4;
+      }
+      &:-ms-input-placeholder {
+        color: theme("colors.mono-white");
+        opacity: 0.4;
+      }
+      &:-moz-placeholder {
+        color: theme("colors.mono-white");
+        opacity: 0.4;
+      }
+    }
+
+    &__message {
+      transition: 0.5s $ease-out-cubic opacity, 0.5s $ease-out-cubic transform;
+
+      opacity: 0;
+      transform: translate3d(0, 1rem, 0);
+    }
+  }
+}

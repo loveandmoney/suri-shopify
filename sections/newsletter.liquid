@@ -1,0 +1,35 @@
+<section class="newsletter w-full relative pt-16 pb-16 bg-brand-75 text-mono-white" data-component="Newsletter">
+  <figure class="w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center">
+    <img src="{{ 'newsletter-background.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt="Waterfall in a forest"/>
+  </figure>
+
+  <article class="grid">
+    <div class="col-span-12 md:col-span-4 md:col-start-2 relative">
+      <h2 class="h2">A More Powerful Clean.</p>
+    </div>
+
+    <div class="col-span-12 md:col-span-5 md:col-start-7 relative">
+      <h3 class="h2">With less impact<br />on our planet.</h3>
+
+      <p class="mt-8 mb-5 b1">Join our early community.</p>
+
+      <form id="klaviyo-form" class="w-full relative block text-mono-white">
+        <div class="newsletter__form relative">
+          <div class="newsletter__form__message w-full h-full absolute top-0 right-0 bottom-0 left-0 z-10 flex items-center justify-center pointer-events-none">
+            <p class="w-full b1">Thank you!</p>
+          </div>
+          
+          <input autocomplete="off" class="newsletter__form__input text-mono-white w-full h-12 block bg-transparent p-0 border-t-0 border-r-0 border-l-0 border-b border-white b1" id="newsletter-email" name="newsletter-email" placeholder="Enter email" required="" type="email" />
+          
+          <div class="w-10 h-10 absolute top-0 right-0 bottom-0 z-10 flex items-center justify-end">
+            <input class="w-full h-full absolute top-0 right-0 bottom-0 left-0 z-10 opacity-0 cursor-pointer" type="submit" />
+            
+            <svg class="w-6 -rotate-90" fill="none" stroke="white" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.333 3.333v9.334M12 8l-4.667 4.667L2.667 8" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="current"></path>
+            </svg>
+          </div>
+        </div>
+      </form>
+    </div>
+  </article>
+</section>
