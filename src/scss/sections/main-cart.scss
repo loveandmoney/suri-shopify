@@ -1,4 +1,8 @@
 .main-cart {
+  @include md {
+    padding-top: 48px;
+  }
+
   &__empty {
     @include md {
       height: calc(100vh - 240px);
@@ -76,8 +80,10 @@
   &__summary {
     transition: 0.3s $ease-out-cubic opacity;
 
-    height: calc(100vh - 240px);
-    min-height: 768px;
+    @include md {
+      height: calc(100vh - 240px);
+      min-height: 768px;
+    }
 
     &.updating {
       opacity: 0.25;

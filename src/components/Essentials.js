@@ -1,3 +1,4 @@
+
 const Essentials = () => {
   if (typeof window === `undefined`) {
     return;
@@ -7,19 +8,19 @@ const Essentials = () => {
   // DOM
 
   const buttons = document.querySelectorAll(`.essentials__toggle`);
+  const expanderButton = document.getElementById(`essentials-expander-button`);
+  const expanderContent = document.getElementById(`essentials-expander-content`);
   const images = document.querySelectorAll(`.essentials__image`);
   
   // ---------------------------------------------------------------------------
   // variables
 
-  let activeContent = 0;
+  let expanded = false;
 
   // ---------------------------------------------------------------------------
   // methods
 
   const showContent = index => {
-    activeContent = index;
-
     images.forEach(image => {
       if (index === image.getAttribute(`data-index`)) {
         image.classList.remove(`opacity-0`);
@@ -49,6 +50,21 @@ const Essentials = () => {
         });
       });
     }
+    
+    if (expanderButton && expanderContent) {
+      expanderButton.addEventListener(`click`, e => {
+        expanded = !expanded;
+
+        
+        if (expanded) {
+          console.log("expanding");
+          expanderContent.classList.add(`expanded`);
+        } else {
+          console.log("collapsing");
+          expanderContent.classList.remove(`expanded`);
+        }
+      });
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -60,5 +76,23 @@ const Essentials = () => {
 
   main();
 };
+
+export const onSlideChanged = (swiper) => {
+  const { activeIndex } = swiper;
+
+  const switchableTextItems = document.querySelectorAll(`.essentials__active-item__switchable`);
+
+  switchableTextItems.forEach(item => {
+    item.classList.add(`opacity-0`);
+  });
+  
+  switchableTextItems.forEach(item => {
+    const index = item.getAttribute(`data-index`);
+
+    if (parseInt(index) === parseInt(activeIndex)) {
+      item.classList.remove(`opacity-0`);
+    }
+  });
+}
 
 export default Essentials;

@@ -1,4 +1,28 @@
 .essentials {
+  &__expander {
+    // &__button {
+    // }
+
+    &__content {
+      transition: 0.5s $ease-out-cubic all;
+
+      transform: translate3d(0, 0, 0);
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+
+      max-height: 0;
+      padding: 0;
+      overflow: hidden;
+      opacity: 0;
+
+      &.expanded {
+        max-height: 100vh;
+        padding: 1rem 0 0.5rem;
+        opacity: 1;
+      }
+    }
+  }
+
   &__image {
     &-container {
       padding-bottom: 80%;

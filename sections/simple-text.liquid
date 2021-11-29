@@ -21,14 +21,15 @@
 }
 {% endschema %}
 
-<section class="simple-text w-full relative block pt-12 pb-12 bg-mono-100 text-mono-white">
+<section class="simple-text w-full relative block pt-12 md:pt-12 pb-10 md:pb-12 bg-mono-100 text-mono-white">
   <article class="grid">
-    <header class="col-span-4 col-start-2">
-      <p class="h3">{{ section.settings.heading }}</p>
+    <header class="col-span-12 md:col-span-4 md:col-start-2 mb-12 md:mb-0">
+      <h2 class="hidden md:block h3">{{ section.settings.heading }}</h2>
+      <h2 class="block md:hidden h2">{{ section.settings.heading }}</h2>
     </header>
     
-    <div class="col-span-4 col-start-7">
-      <p class="b1">{{ section.settings.body }}</p>
+    <div class="col-span-12 md:col-span-4 md:col-start-7 relative b1">
+      {{ section.settings.body }}
     </div>
   </article>
 </section>

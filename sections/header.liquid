@@ -28,31 +28,30 @@
 }
 {% endschema %}
 
-<header class="header w-full fixed top-0 right-0 left-0 z-40">
-  <!-- <nav class="w-full relative flex items-center"> -->
-  <nav class="w-full h-12 relative z-10 flex items-center px-8 bg-mono-50 text-black">
-    <div class="w-1/2 relative flex items-center">
-      <a aria-current="page" href="/">
+<header id="site-header" class="header w-full fixed top-0 right-0 left-0 z-40">
+  <nav class="w-full h-12 relative z-10 grid md:flex md:items-center md:px-8 bg-mono-50 text-black">
+    <div class="col-span-6 md:w-1/2 relative flex items-center">
+      <a aria-current="page" href="/" class="header__logo">
         {{ section.settings.logo }}
       </a>
 
       <p class="header__subheading hidden md:block md:ml-8 lg:ml-24 xl:ml-32 b3">{{ section.settings.subheading }}</p>
     </div>
 
-    <div class="w-1/2 relative">
-      <a href="/cart" class="flex items-center justify-end">
-        <p class="header__cart-text mr-1 b3">{{ section.settings.cart_text }}</p>
+    <div class="col-span-6 md:w-1/2 relative">
+      <a href="/cart" class="h-full relative flex items-center justify-end">
+        <p class="header__cart-text hidden md:block mr-1 b3">{{ section.settings.cart_text }}</p>
 
         {{ section.settings.cart_svg }}
 
-        <div class="w-4 h-4 absolute -top-2 -right-2 rounded-full flex items-center justify-center bg-ux-green text-mono-white">
+        <div class="w-4 h-4 absolute top-1 md:-top-2 -right-2 md:-right-2 rounded-full flex items-center justify-center bg-ux-green text-mono-white">
           <span class="caption">{{ cart.item_count }}</span>
         </div>
       </a>
     </div>
   </nav>
 
-  <div id="add-widget" class="header__widget w-full h-20 relative flex items-center justify-center px-8 bg-ux-green text-mono-white">
+  <div id="add-widget" class="header__widget col-span-full w-full h-32 md:h-20 absolute bottom-0 right-0 left-0 hidden md:flex md:items-center md:justify-center px-8 bg-ux-green text-mono-white">
     <div class="w-1/2 relative">
       <p class="b2">Added to cart</p>
     </div>

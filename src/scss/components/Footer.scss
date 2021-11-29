@@ -1,5 +1,9 @@
 .footer {
   svg {
-    height: 14px;
+    height: 26px;
+
+    @include md {
+      height: 14px;
+    }
   }
 }

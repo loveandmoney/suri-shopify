@@ -1,6 +1,4 @@
 .header {
-  height: 48px;
-
   &__cart-text {
     margin-top: -2px;
   }
@@ -17,11 +15,18 @@
     }
   }
 
-  // &__subheading {
-  //   margin-top: -2px;
-  // }
-
+  // cart svg
   svg {
     height: 20px;
+  }
+
+  &__logo {
+    svg {
+      height: 12px !important;
+
+      @include md {
+        height: 20px !important;
+      }
+    }
   }
 }

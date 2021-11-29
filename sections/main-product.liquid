@@ -74,86 +74,40 @@
 
 {% endschema %}
 
-<div class="main-product animation-appear-slow animation-delay-3 w-full relative block pb-12 bg-mono-50" data-template="Product">
-  <section class="grid">
-    <article class="relative col-span-full block md:hidden">
-      <div class="swiper-container swiper--product-gallery relative block md:hidden" data-component="SwiperCarousel" data-swiperid="product-gallery">
-        <ul class="swiper-wrapper">
-          <li class="swiper-slide flex flex-col items-center justify-center pb-4">
-            <img id="product-variant-image-xs" class="w-full h-full relative block object-cover" src="" alt="{{ product.title }}" loading="lazy" />
-          </li>
+{%- liquid
+  assign product_form_id = 'product-form-add'
+  assign price = product.price
+  assign compare_at_price = product.compare_at_price
+  assign available = product.available | default: false
+  assign buyable = product.selected_or_first_available_variant.available
+  assign money_price = price | money
 
-          {%- for media in product.media -%}
-            {%- unless media.preview_image.alt == 'variant' or media.id == product.selected_or_first_available_variant.featured_media.id -%}
-              <li class="swiper-slide flex flex-col items-center justify-center pb-4">
-                <img class="w-full h-full relative block object-cover" srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w" src="{{ media | img_url: '1500x' }}" loading="lazy" width="576" height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}" alt="{{ media.preview_image.alt | escape }}">
-              </li>
-            {% endunless %}
-          {% endfor %}
-        </ul>
-        
-        <div class="swiper-pagination swiper-pagination--product-gallery w-max absolute bottom-0 right-0 left-0 z-10 flex sm:hidden justify-between pb-8"></div>
-      </div>
+  assign discount = 0
 
-    </article>
+  if price != compare_at_price
+    assign price_float = price | plus: 1.0
+    assign compare_float = compare_at_price | plus: 1.0
+    assign relative_value = price_float | divided_by: compare_float
+    assign discount = 1.0 | minus: relative_value | times: 100 | floor
+  endif
 
-    {% assign image_count = 1 %}
+  if settings.currency_code_enabled
+    assign money_price = price | money_with_currency
+  endif
+-%}
 
-    <ul class="col-span-5 col-start-2 relative hidden md:flex flex-wrap justify-between pt-16" role="list">
-      <li class="main-product__gallery__item main-product__gallery__item--half relative">
-        <div class="w-full relative bg-midnight-black-100">
-          <figure class="w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center overflow-hidden">
-            <img id="product-variant-image" class="w-full h-full relative block object-cover" src="" alt="{{ product.title }}" loading="lazy" />
-          </figure>
-        </div>
-      </li>
-
-      {%- for media in product.media -%}
-        {%- unless media.preview_image.alt == 'variant' or media.id == product.selected_or_first_available_variant.featured_media.id -%}
-          {% assign image_count = image_count | plus: 1 %}
-          {% assign remainder = image_count | modulo: 3 %}
-
-          <li class="main-product__gallery__item main-product__gallery__item--{% if remainder == 0 %}full{% else %}half{% endif %} relative">
-            <div class="w-full relative bg-midnight-black-100">
-              <figure class="w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center overflow-hidden">
-                <img class="w-full h-full relative block object-cover" srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w" src="{{ media | img_url: '1500x' }}" loading="lazy" width="576" height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}" alt="{{ media.preview_image.alt | escape }}">
-              </figure>
-            </div>
-          </li>
-        {%- endunless -%}
-      {%- endfor -%}
-    </ul>
-
-    <div class="col-span-12 md:col-span-4 md:col-start-8 md:h-screen md:sticky md:top-0 md:right-0 pt-16 pb-24 md:overflow-y-scroll">
-      {%- liquid
-        assign product_form_id = 'product-form-add'
-        assign price = product.price
-        assign compare_at_price = product.compare_at_price
-        assign available = product.available | default: false
-        assign buyable = product.selected_or_first_available_variant.available
-        assign money_price = price | money
-
-        assign discount = 0
-
-        if price != compare_at_price
-          assign price_float = price | plus: 1.0
-          assign compare_float = compare_at_price | plus: 1.0
-          assign relative_value = price_float | divided_by: compare_float
-          assign discount = 1.0 | minus: relative_value | times: 100 | floor
-        endif
-
-        if settings.currency_code_enabled
-          assign money_price = price | money_with_currency
-        endif
-      -%}
-
+<div class="main-product animation-appear-down-slow animation-delay-3 w-full relative md:pb-12 bg-mono-50" data-template="Product">
+  <section class="relative">
+    <article class="grid md:hidden">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'title' -%}
-            <h1 class="h2">{{ product.title | escape }}</h1>
+            <header class="col-span-10 relative pt-8 mb-3">
+              <h1 class="h2">{{ product.title | escape }}</h1>
+            </header>
 
           {%- when 'price' -%}
-            <article class="relative pb-6">
+            <div class="col-span-full relative pb-7">
               <div class="w-full relative flex">
                 <h3 class="h2">{{ money_price }}</h3>
 
@@ -169,149 +123,252 @@
               </div>
 
               {% if discount != 0 %}
-                <p class="mt-4 b3 text-ux-green">
+                <p class="mt-3 b3 text-ux-green">
                   <span>{{ discount }}% off</span>
                   <span>{{ block.settings.message }}</span>
                 </p>
               {% endif %}
-            </article>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </article>
 
-          {%- when 'variant_picker' -%}
-            <script id="variant-data" type="application/json">
-              {{ product.variants | json }}
-            </script>
+    <div class="swiper-container swiper--product-gallery md:hidden" data-component="SwiperCarousel" data-swiperid="product-gallery">
+      <ul class="swiper-wrapper relative">
+        <li class="swiper-slide w-full relative">
+          <img id="product-variant-image-xs" class="w-full h-full relative block object-cover" src="" alt="{{ product.title }}" loading="lazy" />
+        </li>
 
-            <article class="main-product__variant-picker relative mt-4">
-              {%- unless product.has_only_default_variant -%}
-                <div data-section="{{ section.id }}" data-url="{{ product.url }}">
-                  {%- for option in product.options_with_values -%}
-                    <fieldset class="relative">
-                      <legend class="b3">
-                        <span>{{ option.name }}:
-                        </span>
-                        <span id="variant-value-{{ option.name | downcase | replace: ' ', '-' }}"></span>
-                      </legend>
-
-                      <div class="relative flex">
-                        {%- for value in option.values -%}
-                          <div class="main-product__variant-picker w-8 h-8 relative block mt-2 mr-2 rounded-full overflow-hidden {% if option.selected_value == value %}active{% endif %}">
-                            <input class="variant-picker w-full h-full absolute top-0 right-0 bottom-0 left-0 z-10 cursor-pointer opacity-0 border" type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" name="{{ option.name }}" value="{{ value | escape }}" form="{{ product_form_id }}" {% if option.selected_value == value %} checked {% endif %}/>
-
-                            <div class="main-product__variant-picker__button w-full h-full relative rounded-full overflow-hidden">
-                              <div class="w-full h-full relative rounded-full overflow-hidden bg-{{ value | downcase | replace: ' ', '-' }}"></div>
-                            </div>
-                          </div>
-                        {%- endfor -%}
-                      </div>
-                    </fieldset>
-                  {%- endfor -%}
-                </div>
-              {%- endunless -%}
-            </article>
-
-          {%- when 'quantity_selector' -%}
-            <article class="relative mt-4">
-              <label class="b3" for="product-quantity">
-                {{ 'products.product.quantity.label' | t }}
-              </label>
-
-              <div class="w-32 h-12 relative flex items-center justify-between mt-2 overflow-hidden rounded-full border">
-                <button class="main-product__quantity-adjust w-12 h-12 relative block select-none" id="product-quantity-down" name="minus" type="button">
-                  <div class="w-full h-full relative flex items-center justify-center">
-                    <span class="b1">-</span>
-                  </div>
-                </button>
-
-                <input id="product-quantity" name="quantity" class="main-product__input--number w-8 h-full relative block bg-transparent text-center" form="{{ product_form_id }}" min="1" value="1" type="number"/>
-
-                <button class="main-product__quantity-adjust w-12 h-12 relative block select-none" id="product-quantity-up" name="plus" type="button">
-                  <div class="w-full h-full relative flex items-center justify-center">
-                    <span class="b1">+</span>
-                  </div>
-                </button>
-              </div>
-            </article>
-
-          {%- when 'buy_buttons' -%}
-            <article class="relative mt-10">
-              {%- form 'product', product, id: product_form_id, class: 'form add-to-cart-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-                <input id="buy-button-identifier" type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}"/>
-
-                <button id="buy-button" type="submit" name="add" class="button {% if buyable %}button--green{% else %}button--disabled{% endif %} w-full h-12 relative block" {% if buyable %} {% else %} disabled {% endif %}>
-                  <span class="button-text">
-                    {%- if buyable -%}
-                      {{ 'products.product.add_to_cart' | t }}
-                    {%- else -%}
-                      {{ 'products.product.sold_out' | t }}
-                    {%- endif -%}
-                  </span>
-                </button>
-              {%- endform -%}
-
-              <p class="mt-3 b3 text-black text-center">{{ block.settings.message }}</p>
-            </article>
-
-          {%- when 'description' -%}
-            <div class="main-product__description relative mt-8 pt-6 mb-6 whitespace-pre-wrap border-t b3">{{ product.description }}</div>
-
-          {%- when 'replacement_pack' -%}
-            {%- if section.settings.addon -%}
-              {% assign add_on_product = all_products[section.settings.addon] %}
-              
-              {%- if add_on_product -%}
-                <script id="add-on-data" type="application/json">
-                  {{ add_on_product | json }}
-                </script>
-
-                <article class="main-product__pack relative mt-8 p-4 bg-mono-white text-ux-green">
-                  <div class="w-full relative flex justify-between">
-                    <figure class="w-14 h-14 relative rounded-full overflow-hidden flex items-center justify-center bg-midnight-black-75">
-                      <img id="product-add-on-image" class="main-product__brush-head relative block" src="" alt="{{ add_on_product.title }}" loading="lazy"/>
-                    </figure>
-
-                    <div class="main-product__pack__content relative">
-                      <div class="relative mb-5">
-                        <h3 class="b1">{{ block.settings.heading }}</h3>
-                        <p class="mt-2 b3">{{ block.settings.body }}</p>
-                      </div>
-
-                      {%- form 'product', add_on_product, id: 'product-form-add-on', class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-                        <input id="add-on-button-identifier" type="hidden" name="id" value="{{ add_on_product.selected_or_first_available_variant.id }}"/>
-
-                        <button id="add-on-button" data-default-text="+ Add ({{ add_on_product.price | money }}/pack)" type="submit" name="add" class="button {% if add_on_product.available and add_on_product.selected_or_first_available_variant.available %}button--white button--white-border{% else %}button--disabled{% endif %} px-3 py-2" {% if buyable %} {% else %} disabled {% endif %}>
-                          {%- if add_on_product.available and add_on_product.selected_or_first_available_variant.available -%}
-                            <span id="add-on-button-text">+ Add ({{ add_on_product.price | money }}/pack)</span>
-                          {%- else -%}
-                            <span id="add-on-button-text">Out of stock</span>
-                          {%- endif -%}
-                        </button>
-                      {%- endform -%}
-                    </div>
-                  </div>
-                </article>
-              {%- endif -%}
-            {%- endif -%}
-
-          {%- when 'product_attributes' -%}
-            {% assign attributes = product.metafields.information.accordion_json.value.attributes %}
-
-            {% for attribute in attributes %}
-              <article class="main-product__expander w-full relative py-3 border-t border-midnight-black-75">
-                <button class="w-full relative block" type="button">
-                  <div class="w-full relative flex items-center justify-between">
-                    <p class="b3">{{ attribute.name }}</p>
-
-                    <svg class="w-6" fill="none" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                      <path clip-rule="evenodd" d="M8.86193 12.3905L8.86193 2L7.5286 2L7.52859 12.3905L3.33333 8.19526L2.39052 9.13807L8.19526 14.9428L14 9.13807L13.0572 8.19526L8.86193 12.3905Z" fill-rule="evenodd" fill="black"/>
-                    </svg>
-                  </div>
-                </button>
-
-                <div class="main-product__expander__text relative block b3">{{ attribute.content }}</div>
-              </article>
-            {% endfor %}
-        {%- endcase -%}
-      {%- endfor -%}
+        {%- for media in product.media -%}
+          {%- unless media.preview_image.alt == 'variant' or media.id == product.selected_or_first_available_variant.featured_media.id -%}
+            <li class="swiper-slide w-full h-full relative">
+              <img class="w-full h-full relative block object-cover" srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w" src="{{ media | img_url: '1500x' }}" loading="lazy" width="576" height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}" alt="{{ media.preview_image.alt | escape }}">
+            </li>
+          {% endunless %}
+        {% endfor %}
+      </ul>
+      
+      <div class="swiper-pagination swiper-pagination--product-gallery w-full absolute bottom-0 right-0 left-0 z-10 flex sm:hidden justify-center pb-5"></div>
     </div>
+    
+    <article class="grid">
+      {% assign image_count = 1 %}
+
+      <ul class="col-span-5 col-start-2 relative hidden md:flex flex-wrap justify-between pt-16" role="list">
+        <li class="main-product__gallery__item main-product__gallery__item--half relative">
+          <div class="w-full relative bg-midnight-black-100">
+            <figure class="w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center overflow-hidden">
+              <img id="product-variant-image" class="w-full h-full relative block object-cover" src="" alt="{{ product.title }}" loading="lazy" />
+            </figure>
+          </div>
+        </li>
+
+        {%- for media in product.media -%}
+          {%- unless media.preview_image.alt == 'variant' or media.id == product.selected_or_first_available_variant.featured_media.id -%}
+            {% assign image_count = image_count | plus: 1 %}
+            {% assign remainder = image_count | modulo: 3 %}
+
+            <li class="main-product__gallery__item main-product__gallery__item--{% if remainder == 0 %}full{% else %}half{% endif %} relative">
+              <div class="w-full relative bg-midnight-black-100">
+                <figure class="w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center overflow-hidden">
+                  <img class="w-full h-full relative block object-cover" srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w" src="{{ media | img_url: '1500x' }}" loading="lazy" width="576" height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}" alt="{{ media.preview_image.alt | escape }}">
+                </figure>
+              </div>
+            </li>
+          {%- endunless -%}
+        {%- endfor -%}
+      </ul>
+
+      <div class="col-span-12 md:col-span-4 md:col-start-8 md:h-screen md:sticky md:top-0 md:right-0 pt-8 md:pt-16 md:pb-24 md:overflow-y-scroll">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'title' -%}
+              <h1 class="hidden md:block h2">{{ product.title | escape }}</h1>
+
+            {%- when 'price' -%}
+              <article class="relative hidden md:block pb-6">
+                <div class="w-full relative flex">
+                  <h3 class="h2">{{ money_price }}</h3>
+
+                  {%- unless product.price_varies == false and product.compare_at_price_varies %}
+                    <h3 class="main-product__compare-at ml-2 h2 line-through">
+                      {% if settings.currency_code_enabled %}
+                        {{ compare_at_price | money_with_currency }}
+                      {% else %}
+                        {{ compare_at_price | money }}
+                      {% endif %}
+                    </h3>
+                  {%- endunless -%}
+                </div>
+
+                {% if discount != 0 %}
+                  <p class="mt-2 md:mt-4 b3 text-ux-green">
+                    <span>{{ discount }}% off</span>
+                    <span>{{ block.settings.message }}</span>
+                  </p>
+                {% endif %}
+              </article>
+
+            {%- when 'variant_picker' -%}
+              <script id="variant-data" type="application/json">
+                {{ product.variants | json }}
+              </script>
+
+              <article class="main-product__variant-picker relative mt-4">
+                {%- unless product.has_only_default_variant -%}
+                  <div data-section="{{ section.id }}" data-url="{{ product.url }}">
+                    {%- for option in product.options_with_values -%}
+                      <fieldset class="relative">
+                        <legend class="b3">
+                          <span>{{ option.name }}:
+                          </span>
+                          <span id="variant-value-{{ option.name | downcase | replace: ' ', '-' }}"></span>
+                        </legend>
+
+                        <div class="relative flex">
+                          {%- for value in option.values -%}
+                            <div class="main-product__variant-picker w-8 h-8 relative block mt-2 mr-2 rounded-full overflow-hidden {% if option.selected_value == value %}active{% endif %}">
+                              <input class="variant-picker w-full h-full absolute top-0 right-0 bottom-0 left-0 z-10 cursor-pointer opacity-0 border" type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" name="{{ option.name }}" value="{{ value | escape }}" form="{{ product_form_id }}" {% if option.selected_value == value %} checked {% endif %}/>
+
+                              <div class="main-product__variant-picker__button w-full h-full relative rounded-full overflow-hidden">
+                                <div class="w-full h-full relative rounded-full overflow-hidden bg-{{ value | downcase | replace: ' ', '-' }}"></div>
+                              </div>
+                            </div>
+                          {%- endfor -%}
+                        </div>
+                      </fieldset>
+                    {%- endfor -%}
+                  </div>
+                {%- endunless -%}
+              </article>
+
+            {%- when 'quantity_selector' -%}
+              <article class="relative mt-6 md:mt-4">
+                <label class="b3" for="product-quantity">
+                  {{ 'products.product.quantity.label' | t }}
+                </label>
+
+                <div class="w-32 h-12 relative flex items-center justify-between mt-2 overflow-hidden rounded-full border">
+                  <button class="main-product__quantity-adjust w-12 h-12 relative block select-none" id="product-quantity-down" name="minus" type="button">
+                    <div class="w-full h-full relative flex items-center justify-center">
+                      <span class="b1">-</span>
+                    </div>
+                  </button>
+
+                  <input id="product-quantity" name="quantity" class="main-product__input--number w-8 h-full relative block bg-transparent text-center" form="{{ product_form_id }}" min="1" value="1" type="number"/>
+
+                  <button class="main-product__quantity-adjust w-12 h-12 relative block select-none" id="product-quantity-up" name="plus" type="button">
+                    <div class="w-full h-full relative flex items-center justify-center">
+                      <span class="b1">+</span>
+                    </div>
+                  </button>
+                </div>
+              </article>
+
+            {%- when 'buy_buttons' -%}
+              <article class="relative mt-10">
+                <div class="relative md:hidden pb-6">
+                  <div class="w-full relative flex">
+                    <h3 class="h2">{{ money_price }}</h3>
+  
+                    {%- unless product.price_varies == false and product.compare_at_price_varies %}
+                      <h3 class="main-product__compare-at ml-2 h2 line-through">
+                        {% if settings.currency_code_enabled %}
+                          {{ compare_at_price | money_with_currency }}
+                        {% else %}
+                          {{ compare_at_price | money }}
+                        {% endif %}
+                      </h3>
+                    {%- endunless -%}
+                  </div>
+  
+                  {% if discount != 0 %}
+                    <p class="mt-2 md:mt-4 b3 text-ux-green">
+                      <span>{{ discount }}% off</span>
+                      <span>{{ block.settings.message }}</span>
+                    </p>
+                  {% endif %}
+                </div>
+
+                {%- form 'product', product, id: product_form_id, class: 'form add-to-cart-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                  <input id="buy-button-identifier" type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}"/>
+
+                  <button id="buy-button" type="submit" name="add" class="button {% if buyable %}button--green{% else %}button--disabled{% endif %} w-full h-12 relative block" {% if buyable %} {% else %} disabled {% endif %}>
+                    <span class="button-text">
+                      {%- if buyable -%}
+                        {{ 'products.product.add_to_cart' | t }}
+                      {%- else -%}
+                        {{ 'products.product.sold_out' | t }}
+                      {%- endif -%}
+                    </span>
+                  </button>
+                {%- endform -%}
+
+                <p class="mt-3 b3 text-black text-center">{{ block.settings.message }}</p>
+              </article>
+
+            {%- when 'description' -%}
+              <div class="main-product__description relative mt-12 md:mt-8 pt-6 mb-8 md:mb-6 whitespace-pre-wrap border-t b3">{{ product.description }}</div>
+
+            {%- when 'replacement_pack' -%}
+              {%- if section.settings.addon -%}
+                {% assign add_on_product = all_products[section.settings.addon] %}
+                
+                {%- if add_on_product -%}
+                  <script id="add-on-data" type="application/json">
+                    {{ add_on_product | json }}
+                  </script>
+
+                  <article class="main-product__pack relative mt-10 md:mt-8 p-4 bg-mono-white text-ux-green">
+                    <div class="w-full relative flex justify-between">
+                      <figure class="w-14 h-14 relative rounded-full overflow-hidden flex items-center justify-center bg-midnight-black-75">
+                        <img id="product-add-on-image" class="main-product__brush-head relative block" src="" alt="{{ add_on_product.title }}" loading="lazy"/>
+                      </figure>
+
+                      <div class="main-product__pack__content relative">
+                        <div class="relative mb-5">
+                          <h3 class="b1">{{ block.settings.heading }}</h3>
+                          <p class="mt-2 b3">{{ block.settings.body }}</p>
+                        </div>
+
+                        {%- form 'product', add_on_product, id: 'product-form-add-on', class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                          <input id="add-on-button-identifier" type="hidden" name="id" value="{{ add_on_product.selected_or_first_available_variant.id }}"/>
+
+                          <button id="add-on-button" data-default-text="+ Add ({{ add_on_product.price | money }}/pack)" type="submit" name="add" class="button {% if add_on_product.available and add_on_product.selected_or_first_available_variant.available %}button--white button--white-border{% else %}button--disabled{% endif %} px-3 py-2" {% if buyable %} {% else %} disabled {% endif %}>
+                            {%- if add_on_product.available and add_on_product.selected_or_first_available_variant.available -%}
+                              <span id="add-on-button-text">+ Add ({{ add_on_product.price | money }}/pack)</span>
+                            {%- else -%}
+                              <span id="add-on-button-text">Out of stock</span>
+                            {%- endif -%}
+                          </button>
+                        {%- endform -%}
+                      </div>
+                    </div>
+                  </article>
+                {%- endif -%}
+              {%- endif -%}
+
+            {%- when 'product_attributes' -%}
+              {% assign attributes = product.metafields.information.accordion_json.value.attributes %}
+
+              {% for attribute in attributes %}
+                <article class="main-product__expander w-full relative border-t border-midnight-black-75">
+                  <button class="w-full relative block py-4 md:py-3" type="button">
+                    <div class="w-full relative flex items-center justify-between">
+                      <p class="b3">{{ attribute.name }}</p>
+
+                      <svg class="w-4 md:w-6" fill="none" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M8.86193 12.3905L8.86193 2L7.5286 2L7.52859 12.3905L3.33333 8.19526L2.39052 9.13807L8.19526 14.9428L14 9.13807L13.0572 8.19526L8.86193 12.3905Z" fill-rule="evenodd" fill="black"/>
+                      </svg>
+                    </div>
+                  </button>
+
+                  <div class="main-product__expander__text relative block b3">{{ attribute.content }}</div>
+                </article>
+              {% endfor %}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </article>
   </section>
 </div>

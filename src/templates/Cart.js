@@ -65,9 +65,6 @@ const Cart = () => {
   }
 
   const updateQuantity = (line, quantity) => {
-    console.log(`line: `, line);
-    console.log(`quantity: `, quantity);
-
     const body = JSON.stringify({
       line,
       quantity,
@@ -111,8 +108,6 @@ const Cart = () => {
         [variantId]: cartItemInput
       };
     });
-
-    console.log(inputsById);
   }
 
   const addListeners = () => {
@@ -151,8 +146,6 @@ const Cart = () => {
     if (cartItemInputs?.[0]) {
       cartItemInputs.forEach((cartItemInput) => {
         cartItemInput.addEventListener(`change`, e => {
-          console.log(`onChange`);
-
           const line = e.currentTarget.getAttribute(`data-index`);
           const quantity = parseInt(e.currentTarget.value);
 
