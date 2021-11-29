@@ -4,8 +4,11 @@
   }
 
   &__empty {
+    min-height: calc(100vh - 320px);
+
     @include md {
       height: calc(100vh - 240px);
+      min-height: 0;
     }
   }
 

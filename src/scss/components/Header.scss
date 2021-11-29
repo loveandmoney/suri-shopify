@@ -7,10 +7,12 @@
     transition: 0.3s opacity $ease-out-cubic, 0.3s transform $ease-out-cubic;
 
     opacity: 0;
+    pointer-events: none;
     transform: translate3d(0, -2rem, 0);
 
     &.active {
       opacity: 1;
+      pointer-events: auto;
       transform: translate3d(0, 0, 0);
     }
   }

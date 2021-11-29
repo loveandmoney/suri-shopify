@@ -29,6 +29,7 @@ const Product = () => {
   const buyButton = document.getElementById(`buy-button`);
   const buyButtonText = buyButton.querySelector(`.button-text`);
   const expanders = document.querySelectorAll(`.main-product__expander`);
+  const headerCartQuantity = document.getElementById(`cart-quantity`);
   const quantityInput = document.getElementById(`product-quantity`);
   const quantityUp = document.getElementById(`product-quantity-up`);
   const quantityDown = document.getElementById(`product-quantity-down`);
@@ -169,6 +170,7 @@ const Product = () => {
       }
     }
 
+    //
     // 'state' update
 
     activeVariant = matchedVariant;
@@ -283,6 +285,21 @@ const Product = () => {
             }
 
             const { title, quantity } = response;
+
+            if (headerCartQuantity) {
+              fetch(`${routes.cart_url}`, {
+                ...fetchConfig()
+              }).then((response) => {
+                return response.text()
+              }).then(state => {
+                const parsedState = JSON.parse(state);
+
+                const itemCount = parseInt(parsedState?.item_count);
+
+                headerCartQuantity.innerHTML = itemCount === 0 ? `` : itemCount;
+              });
+
+            }
 
             if (addWidget && addWidgetItem && addWidgetQuantity) {
               addWidgetItem.innerHTML = title;
