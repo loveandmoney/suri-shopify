@@ -66,7 +66,7 @@
   "settings": [
     {
       "type": "product",
-      "id": "add-on",
+      "id": "addon",
       "label": "Add On"
     }
   ]
@@ -234,7 +234,8 @@
             <div class="main-product__description relative mt-8 pt-6 mb-6 whitespace-pre-wrap border-t b3">{{ product.description }}</div>
 
           {%- when 'replacement_pack' -%}
-            <!-- {{ section.settings.add-on.id }} -->
+            <script>console.log({{ section.settings.addon | json }});</script>
+
 
             <article class="main-product__pack relative mt-8 p-4 bg-mono-white text-ux-green">
               <div class="w-full relative flex justify-between">
