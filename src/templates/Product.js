@@ -10,12 +10,19 @@ const Product = () => {
   
   const allVariantData = JSON.parse(document.getElementById(`variant-data`).textContent);
   const activeVariantInput = document.getElementById(`buy-button-identifier`);
+  const addOnData = JSON.parse(document.getElementById(`add-on-data`).textContent);
+  const activeAddOnInput = document.getElementById(`add-on-button-identifier`);
   
   let activeVariant = allVariantData?.[0];
+  let activeAddOn = addOnData?.variants?.[0];
 
   //
 
   const addToCartForm = document.getElementById(`product-form-add`);
+  const addOnToCartForm = document.getElementById(`product-form-add-on`);
+  const addOnButton = document.getElementById(`add-on-button`);
+  const addOnButtonText = document.getElementById(`add-on-button-text`);
+  const addOnImage = document.getElementById(`product-add-on-image`);
   const addWidget = document.getElementById(`add-widget`);
   const addWidgetItem = document.getElementById(`add-widget-item`);
   const addWidgetQuantity = document.getElementById(`add-widget-quantity`);
@@ -124,17 +131,51 @@ const Product = () => {
       buyButton.classList.add(`button--disabled`);
       buyButtonText.innerHTML = `Sold Out`;
     }
-    
-    activeVariant = matchedVariant;
 
-    if (variantImage && matchedVariant?.featured_image?.src) {
-      variantImage.src = matchedVariant.featured_image.src;
+    // add on updates
+    let matchedAddOn;
+
+    addOnData.variants.forEach(addOnVariant => {
+      if (matchedAddOn) {
+        return;
+      }
+
+      if (matchedVariant?.options?.[0]?.toLowerCase().trim() === addOnVariant?.options?.[0]?.toLowerCase().trim()) {
+        matchedAddOn = addOnVariant;
+      }
+    });
+
+    if (matchedAddOn?.available) {
+      addOnButton.disabled = false;
+      addOnButton.classList.remove(`button--disabled`);
+      addOnButtonText.innerHTML = addOnButton.getAttribute(`data-default-text`);
+    } else {
+      addOnButton.disabled = true;
+      addOnButton.classList.add(`button--disabled`);
+      addOnButtonText.innerHTML = `Sold Out`;
+    }
+   
+    if (matchedVariant?.featured_image?.src) {
+      if (variantImage) {
+        variantImage.src = matchedVariant.featured_image.src;
+      }
+      
+      if (addOnImage) {
+        addOnImage.src = matchedVariant.featured_image.src;
+      }
     }
 
+    // 'state' update
+
+    activeVariant = matchedVariant;
     activeVariantInput.value = matchedVariant.id;
+    activeAddOn = matchedAddOn;
+    activeAddOnInput.value = matchedAddOn.id;
   }
 
   const resetWidgetTimeouts = () => {
+    addWidget.classList.remove(`active`);
+
     if (widgetShowTimeout) {
       clearTimeout(widgetShowTimeout);
     }
@@ -192,15 +233,19 @@ const Product = () => {
       }
     });
 
-    if (variantImage && activeVariant?.featured_image?.src) {
-      variantImage.src = activeVariant.featured_image.src;
+    if (activeVariant?.featured_image?.src) {
+      if (variantImage) {
+        variantImage.src = activeVariant.featured_image.src;
+      }
+      
+      if (addOnImage) {
+        addOnImage.src = activeVariant.featured_image.src;
+      }
     }
   }
 
   const addListeners = () => {
     if (addToCartForm) {
-      console.log("here: ", addToCartForm);
-
       addToCartForm.addEventListener(`submit`, e => {
         e.preventDefault();
 
@@ -222,7 +267,68 @@ const Product = () => {
         const formData = new FormData(addToCartForm);
         config.body = formData;
 
-        console.log(config);
+        fetch(`${routes.cart_add_url}`, config)
+          .then((response) => response.json())
+          .then((response) => {
+            if (response.status) {
+              console.log(`error: `, response.description);
+              return;
+            }
+
+            const { title, quantity } = response;
+
+            if (addWidget && addWidgetItem && addWidgetQuantity) {
+              addWidgetItem.innerHTML = title;
+              addWidgetQuantity.innerHTML = quantity;
+
+              widgetShowTimeout = setTimeout(() => {
+                addWidget.classList.add(`active`);
+              }, 100);
+
+              widgetHideTimeout = setTimeout(() => {
+                addWidget.classList.remove(`active`);
+              }, 4000);
+
+              widgetResetTimeout = setTimeout(() => {
+                addWidgetItem.innerHTML = ``;
+                addWidgetQuantity.innerHTML = ``;
+              }, 4500);
+            }
+          })
+          .catch((e) => {
+            console.error(e);
+          })
+          .finally(() => {
+            buyButton.classList.remove(`button--disabled`);
+            buyButton.setAttribute(`aria-disabled`, false);
+          });
+        
+        return true;
+      });
+    }
+
+    // todo : DRY
+    if (addOnToCartForm) {
+      addOnToCartForm.addEventListener(`submit`, e => {
+        e.preventDefault();
+
+        if (addOnButton?.classList?.contains(`button--disabled`)) {
+          return false;
+        }
+
+        if (addOnButton) {
+          addOnButton.classList.add(`button--disabled`);
+          addOnButton.setAttribute(`aria-disabled`, true);
+        }
+
+        resetWidgetTimeouts();
+
+        const config = fetchConfig(`javascript`);
+        config.headers[`X-Requested-With`] = `XMLHttpRequest`;
+        delete config.headers[`Content-Type`];
+
+        const formData = new FormData(addOnToCartForm);
+        config.body = formData;
 
         fetch(`${routes.cart_add_url}`, config)
           .then((response) => response.json())
@@ -258,8 +364,8 @@ const Product = () => {
             console.error(e);
           })
           .finally(() => {
-            buyButton.classList.remove(`button--disabled`);
-            buyButton.setAttribute(`aria-disabled`, false);
+            addOnButton.classList.remove(`button--disabled`);
+            addOnButton.setAttribute(`aria-disabled`, false);
           });
         
         return true;

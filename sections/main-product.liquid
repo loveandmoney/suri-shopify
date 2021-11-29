@@ -234,28 +234,42 @@
             <div class="main-product__description relative mt-8 pt-6 mb-6 whitespace-pre-wrap border-t b3">{{ product.description }}</div>
 
           {%- when 'replacement_pack' -%}
-            <script>console.log({{ section.settings.addon | json }});</script>
+            {%- if section.settings.addon -%}
+              {% assign add_on_product = all_products[section.settings.addon] %}
+              
+              {%- if add_on_product -%}
+                <script id="add-on-data" type="application/json">
+                  {{ add_on_product | json }}
+                </script>
 
+                <article class="main-product__pack relative mt-8 p-4 bg-mono-white text-ux-green">
+                  <div class="w-full relative flex justify-between">
+                    <figure class="w-14 h-14 relative rounded-full overflow-hidden flex items-center justify-center bg-midnight-black-75">
+                      <img id="product-add-on-image" style="width:300%; max-width:none; margin-top:280%; margin-right:70%;" class="relative block" src="" alt="{{ add_on_product.title }}" loading="lazy"/>
+                    </figure>
 
-            <article class="main-product__pack relative mt-8 p-4 bg-mono-white text-ux-green">
-              <div class="w-full relative flex justify-between">
-                <figure class="w-14 h-14 relative block rounded-full overflow-hidden bg-midnight-black-75"></figure>
+                    <div class="main-product__pack__content relative">
+                      <div class="relative mb-5">
+                        <h3 class="b1">{{ block.settings.heading }}</h3>
+                        <p class="mt-2 b3">{{ block.settings.body }}</p>
+                      </div>
 
-                <div class="main-product__pack__content relative">
-                  <div class="relative mb-5">
-                    <h3 class="b1">{{ block.settings.heading }}</h3>
-                    <p class="mt-2 b3">{{ block.settings.body }}</p>
+                      {%- form 'product', add_on_product, id: 'product-form-add-on', class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                        <input id="add-on-button-identifier" type="hidden" name="id" value="{{ add_on_product.selected_or_first_available_variant.id }}"/>
+
+                        <button id="add-on-button" data-default-text="+ Add ({{ add_on_product.price | money }}/pack)" type="submit" name="add" class="button {% if add_on_product.available and add_on_product.selected_or_first_available_variant.available %}button--white button--white-border{% else %}button--disabled{% endif %} px-3 py-2" {% if buyable %} {% else %} disabled {% endif %}>
+                          {%- if add_on_product.available and add_on_product.selected_or_first_available_variant.available -%}
+                            <span id="add-on-button-text">+ Add ({{ add_on_product.price | money }}/pack)</span>
+                          {%- else -%}
+                            <span id="add-on-button-text">Out of stock</span>
+                          {%- endif -%}
+                        </button>
+                      {%- endform -%}
+                    </div>
                   </div>
-
-                  <div class="w-full relative block">
-                    <button class="button relative block px-3 py-2 bg-white text-ux-green border border-ux-green">
-                      <span>+</span>
-                      <span>Add (£25.00/pack)</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </article>
+                </article>
+              {%- endif -%}
+            {%- endif -%}
 
           {%- when 'product_attributes' -%}
             {% assign attributes = product.metafields.information.accordion_json.value.attributes %}
@@ -266,8 +280,7 @@
                   <div class="w-full relative flex items-center justify-between">
                     <p class="b3">{{ attribute.name }}</p>
 
-                    <!-- {{ 'arrow-down.svg' | asset_url }} -->
-                    <svg fill="none" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-6" fill="none" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                       <path clip-rule="evenodd" d="M8.86193 12.3905L8.86193 2L7.5286 2L7.52859 12.3905L3.33333 8.19526L2.39052 9.13807L8.19526 14.9428L14 9.13807L13.0572 8.19526L8.86193 12.3905Z" fill-rule="evenodd" fill="black"/>
                     </svg>
                   </div>

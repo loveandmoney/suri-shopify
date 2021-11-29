@@ -44,6 +44,10 @@
         <p class="header__cart-text mr-1 b3">{{ section.settings.cart_text }}</p>
 
         {{ section.settings.cart_svg }}
+
+        <div class="w-4 h-4 absolute -top-2 -right-2 rounded-full flex items-center justify-center bg-ux-green text-mono-white">
+          <span class="caption">{{ cart.item_count }}</span>
+        </div>
       </a>
     </div>
   </nav>
@@ -58,7 +62,7 @@
         <span id="add-widget-item"></span>
       </p>
       
-      <p class="mr-12 b3">
+      <p class="w-24 b3">
         <span>Qty: </span>
         <span id="add-widget-quantity"></span>
       </p>

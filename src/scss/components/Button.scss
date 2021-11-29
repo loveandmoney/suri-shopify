@@ -27,6 +27,10 @@
     color: theme("colors.ux-green");
     border: 1px solid theme("colors.mono-white");
 
+    &-border {
+      border: 1px solid theme("colors.ux-green");
+    }
+
     @include hoverable {
       &:hover {
         background: theme("colors.ux-green");
