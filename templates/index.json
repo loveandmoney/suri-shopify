@@ -10,9 +10,10 @@
     "full-image-cta": {
       "type": "full-image-cta",
       "settings": {
-        "heading": "Shipping worldwide in February 2022.",
-        "body": "<p>We are only making limited stocks for pre-launch.<\/p><p>Don't miss out.<\/p>",
-        "buttonText": "",
+        "heading": "A world class clean that doesn’t cost our planet.",
+        "headingPosition": "bottom",
+        "body": "We are only making limited stocks for pre-launch. Don't miss out.",
+        "buttonText": "Pre-Order Now & Save 40%",
         "backgroundImage": "shopify:\/\/shop_images\/home-desktop-atf.jpg",
         "backgroundImageMobile": "shopify:\/\/shop_images\/home-mobile-atf.jpg"
       }
