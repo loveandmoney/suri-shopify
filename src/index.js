@@ -14,7 +14,7 @@ const main = () => {
       const componentId = element.getAttribute(`data-component`);
 
       if (typeof Components?.[componentId] === `function`) {
-        Components[componentId]();
+        Components[componentId](element);
       }
     });
 
@@ -22,7 +22,7 @@ const main = () => {
       const templateId = element.getAttribute(`data-template`);
 
       if (typeof Templates?.[templateId] === `function`) {
-        Templates[templateId]();
+        Templates[templateId](element);
       }
     });
   });

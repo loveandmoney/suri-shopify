@@ -33,6 +33,7 @@ const Product = () => {
   const quantityUp = document.getElementById(`product-quantity-up`);
   const quantityDown = document.getElementById(`product-quantity-down`);
   const variantImage = document.getElementById(`product-variant-image`);
+  const variantImageXS = document.getElementById(`product-variant-image-xs`);
   const variantPickers = document.querySelectorAll(`.variant-picker`);
 
   // ---------------------------------------------------------------------------
@@ -159,6 +160,9 @@ const Product = () => {
       if (variantImage) {
         variantImage.src = matchedVariant.featured_image.src;
       }
+      if (variantImageXS) {
+        variantImageXS.src = matchedVariant.featured_image.src;
+      }
       
       if (addOnImage) {
         addOnImage.src = matchedVariant.featured_image.src;
@@ -237,7 +241,10 @@ const Product = () => {
       if (variantImage) {
         variantImage.src = activeVariant.featured_image.src;
       }
-      
+      if (variantImageXS) {
+        variantImageXS.src = activeVariant.featured_image.src;
+      }
+
       if (addOnImage) {
         addOnImage.src = activeVariant.featured_image.src;
       }

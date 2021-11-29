@@ -76,13 +76,34 @@
 
 <div class="main-product animation-appear-slow animation-delay-3 w-full relative block pb-12 bg-mono-50" data-template="Product">
   <section class="grid">
+    <article class="relative col-span-full block md:hidden">
+      <div class="swiper-container swiper--product-gallery relative block md:hidden" data-component="SwiperCarousel" data-swiperid="product-gallery">
+        <ul class="swiper-wrapper">
+          <li class="swiper-slide flex flex-col items-center justify-center pb-4">
+            <img id="product-variant-image-xs" class="w-full h-full relative block object-cover" src="" alt="{{ product.title }}" loading="lazy" />
+          </li>
+
+          {%- for media in product.media -%}
+            {%- unless media.preview_image.alt == 'variant' or media.id == product.selected_or_first_available_variant.featured_media.id -%}
+              <li class="swiper-slide flex flex-col items-center justify-center pb-4">
+                <img class="w-full h-full relative block object-cover" srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w" src="{{ media | img_url: '1500x' }}" loading="lazy" width="576" height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}" alt="{{ media.preview_image.alt | escape }}">
+              </li>
+            {% endunless %}
+          {% endfor %}
+        </ul>
+        
+        <div class="swiper-pagination swiper-pagination--product-gallery w-max absolute bottom-0 right-0 left-0 z-10 flex sm:hidden justify-between pb-8"></div>
+      </div>
+
+    </article>
+
     {% assign image_count = 1 %}
 
-    <ul class="col-span-12 md:col-span-5 md:col-start-2 relative flex flex-wrap justify-between pt-16" role="list">
+    <ul class="col-span-5 col-start-2 relative hidden md:flex flex-wrap justify-between pt-16" role="list">
       <li class="main-product__gallery__item main-product__gallery__item--half relative">
         <div class="w-full relative bg-midnight-black-100">
           <figure class="w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center overflow-hidden">
-            <img id="product-variant-image" class="w-full h-full relative block object-cover" src="" alt="{{ product.title }}" loading="lazy"/>
+            <img id="product-variant-image" class="w-full h-full relative block object-cover" src="" alt="{{ product.title }}" loading="lazy" />
           </figure>
         </div>
       </li>
