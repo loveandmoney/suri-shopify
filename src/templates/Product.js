@@ -9,7 +9,7 @@ const Product = () => {
   const allVariantData = JSON.parse(document.getElementById(`variant-data`).textContent);
   const activeVariant = document.getElementById(`buy-button-identifier`);
 
-  const buyButton = document.getElementById(`buy-button`);;
+  const buyButton = document.getElementById(`buy-button`);
   const buyButtonText = buyButton.querySelector(`.button-text`);
   const expanders = document.querySelectorAll(`.main-product__expander`);
   const quantityInput = document.getElementById(`product-quantity`);
