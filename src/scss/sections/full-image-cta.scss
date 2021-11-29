@@ -1,0 +1,15 @@
+.full-image-cta {
+  /* slightly transparent fallback */
+  .backdrop-filter-blur {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* if backdrop support: very transparent and blurred */
+  @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    .backdrop-filter-blur {
+      background-color: transparent;
+      -webkit-backdrop-filter: blur(2.5rem);
+      backdrop-filter: blur(2.5rem);
+    }
+  }
+}

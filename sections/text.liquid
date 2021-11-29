@@ -1,6 +1,6 @@
 {% schema %}
 {
-  "name": "Shipping",
+  "name": "Text Section",
   "tag": "section",
   "settings": [
     {
@@ -12,11 +12,15 @@
       "id": "body",
       "label": "Body"
     }
+  ],
+  "templates": [
+    "index",
+    "page"
   ]
 }
 {% endschema %}
 
-<section class="shipping-section w-full relative block pt-12 pb-12 bg-mono-100 text-mono-white">
+<section class="text-section w-full relative block pt-12 pb-12 bg-mono-100 text-mono-white">
   <article class="grid">
     <header class="col-span-4 col-start-2">
       <p class="h3">{{ section.settings.heading }}</p>

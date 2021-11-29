@@ -61,8 +61,8 @@
         }
       }
     },
-    "shipping-section": {
-      "name": "Shipping",
+    "text": {
+      "name": "Text",
       "blocks": {
         "heading": {
           "name": "Heading"
