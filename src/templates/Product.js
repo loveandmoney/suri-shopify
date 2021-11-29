@@ -1,3 +1,5 @@
+import { fetchConfig } from "../utils/helpers";
+
 const Product = () => {
   if (typeof window === `undefined`) {
     return;
@@ -7,14 +9,23 @@ const Product = () => {
   // DOM
   
   const allVariantData = JSON.parse(document.getElementById(`variant-data`).textContent);
-  const activeVariant = document.getElementById(`buy-button-identifier`);
+  const activeVariantInput = document.getElementById(`buy-button-identifier`);
+  
+  let activeVariant = allVariantData?.[0];
 
+  //
+
+  const addToCartForm = document.getElementById(`product-form-add`);
+  const addWidget = document.getElementById(`add-widget`);
+  const addWidgetItem = document.getElementById(`add-widget-item`);
+  const addWidgetQuantity = document.getElementById(`add-widget-quantity`);
   const buyButton = document.getElementById(`buy-button`);
   const buyButtonText = buyButton.querySelector(`.button-text`);
   const expanders = document.querySelectorAll(`.main-product__expander`);
   const quantityInput = document.getElementById(`product-quantity`);
   const quantityUp = document.getElementById(`product-quantity-up`);
   const quantityDown = document.getElementById(`product-quantity-down`);
+  const variantImage = document.getElementById(`product-variant-image`);
   const variantPickers = document.querySelectorAll(`.variant-picker`);
 
   // ---------------------------------------------------------------------------
@@ -24,6 +35,9 @@ const Product = () => {
   const selectedOptions = [];
   
   let activeExpander = null;
+  let widgetShowTimeout;
+  let widgetHideTimeout;
+  let widgetResetTimeout;
 
   // ---------------------------------------------------------------------------
   // methods
@@ -75,7 +89,7 @@ const Product = () => {
   }
 
   const matchOptionsToVariant = () => {
-    if (!activeVariant) {
+    if (!activeVariantInput) {
       return;
     }
 
@@ -110,8 +124,28 @@ const Product = () => {
       buyButton.classList.add(`button--disabled`);
       buyButtonText.innerHTML = `Sold Out`;
     }
+    
+    activeVariant = matchedVariant;
 
-    activeVariant.value = matchedVariant.id;
+    if (variantImage && matchedVariant?.featured_image?.src) {
+      variantImage.src = matchedVariant.featured_image.src;
+    }
+
+    activeVariantInput.value = matchedVariant.id;
+  }
+
+  const resetWidgetTimeouts = () => {
+    if (widgetShowTimeout) {
+      clearTimeout(widgetShowTimeout);
+    }
+    
+    if (widgetHideTimeout) {
+      clearTimeout(widgetHideTimeout);
+    }
+    
+    if (widgetResetTimeout) {
+      clearTimeout(widgetResetTimeout);
+    }
   }
 
   const selectOption = ({ name, value }) => {
@@ -157,9 +191,81 @@ const Product = () => {
         });
       }
     });
+
+    if (variantImage && activeVariant?.featured_image?.src) {
+      variantImage.src = activeVariant.featured_image.src;
+    }
   }
 
   const addListeners = () => {
+    if (addToCartForm) {
+      console.log("here: ", addToCartForm);
+
+      addToCartForm.addEventListener(`submit`, e => {
+        e.preventDefault();
+
+        if (buyButton?.classList?.contains(`button--disabled`)) {
+          return false;
+        }
+
+        if (buyButton) {
+          buyButton.classList.add(`button--disabled`);
+          buyButton.setAttribute(`aria-disabled`, true);
+        }
+
+        resetWidgetTimeouts();
+
+        const config = fetchConfig(`javascript`);
+        config.headers[`X-Requested-With`] = `XMLHttpRequest`;
+        delete config.headers[`Content-Type`];
+
+        const formData = new FormData(addToCartForm);
+        config.body = formData;
+
+        console.log(config);
+
+        fetch(`${routes.cart_add_url}`, config)
+          .then((response) => response.json())
+          .then((response) => {
+            if (response.status) {
+              console.log(`error: `, response.description);
+              return;
+            }
+
+            console.log(`res: `, response);
+
+            const { title, quantity } = response;
+
+            if (addWidget && addWidgetItem && addWidgetQuantity) {
+              addWidgetItem.innerHTML = title;
+              addWidgetQuantity.innerHTML = quantity;
+
+              widgetShowTimeout = setTimeout(() => {
+                addWidget.classList.add(`active`);
+              }, 100);
+
+              widgetHideTimeout = setTimeout(() => {
+                addWidget.classList.remove(`active`);
+              }, 4000);
+
+              widgetResetTimeout = setTimeout(() => {
+                addWidgetItem.innerHTML = ``;
+                addWidgetQuantity.innerHTML = ``;
+              }, 4500);
+            }
+          })
+          .catch((e) => {
+            console.error(e);
+          })
+          .finally(() => {
+            buyButton.classList.remove(`button--disabled`);
+            buyButton.setAttribute(`aria-disabled`, false);
+          });
+        
+        return true;
+      });
+    }
+
     if (expanders?.[0]) {
       expanders.forEach((expander, expanderIndex) => {
         expander.addEventListener(`click`, e => {

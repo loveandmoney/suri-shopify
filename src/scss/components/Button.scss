@@ -8,10 +8,29 @@
     color: theme("colors.mono-white");
     border: 1px solid theme("colors.ux-green");
 
+    &-border {
+      border: 1px solid theme("colors.mono-white");
+    }
+
     @include hoverable {
       &:hover {
         background: theme("colors.mono-white");
         color: theme("colors.ux-green");
+      }
+    }
+  }
+
+  &--white {
+    transition: 0.15s $ease-out-cubic background, 0.15s $ease-out-cubic color;
+
+    background: theme("colors.mono-white");
+    color: theme("colors.ux-green");
+    border: 1px solid theme("colors.mono-white");
+
+    @include hoverable {
+      &:hover {
+        background: theme("colors.ux-green");
+        color: theme("colors.mono-white");
       }
     }
   }

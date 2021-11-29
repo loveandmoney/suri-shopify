@@ -1,3 +1,5 @@
+import { fetchConfig } from "../utils/helpers";
+
 const Cart = () => {
   if (typeof window === `undefined`) {
     return;
@@ -13,19 +15,6 @@ const Cart = () => {
   let updateTimeout;
 
   let inputsById = {};
-
-  //
-  // todo : as helper
-
-  const fetchConfig = (type = `json`) => {
-    return {
-      method: `POST`,
-      headers: { 
-        "Content-Type": `application/json`,
-        Accept: `application/${type}`
-      }
-    };
-  }
 
   const updateLiveElements = ({
     items_subtotal_price,

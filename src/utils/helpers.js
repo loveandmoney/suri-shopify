@@ -14,3 +14,13 @@ export function injectStyleWithVendor (element, property, value) {
   injectStyle(element, `O${property.charAt(0).toUpperCase()}${property.substr(1)}`, value);
   injectStyle(element, `${property.charAt(0).toLowerCase()}${property.substr(1)}`, value);
 }
+
+export function fetchConfig(type = `json`) {
+  return {
+    method: `POST`,
+    headers: { 
+      "Content-Type": `application/json`,
+      Accept: `application/${type}`
+    }
+  };
+}

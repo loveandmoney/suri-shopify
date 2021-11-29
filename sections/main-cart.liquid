@@ -85,11 +85,13 @@
           </ul>
 
           <div class="relative mt-8">
-            <button type="submit" name="add" class="button bg-ux-green text-mono-white w-full h-12 relative block">
-              <span class="button-text">
-                Checkout
-              </span>
-            </button>
+            <form action="{{ routes.cart_url }}" method="post">
+              <button type="submit" name="checkout" class="button bg-ux-green text-mono-white w-full h-12 relative block">
+                <span class="button-text">
+                  Checkout
+                </span>
+              </button>
+            </form>
           </div>
         </form>
       </article>

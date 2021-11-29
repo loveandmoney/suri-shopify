@@ -63,18 +63,32 @@
       "name": "t:sections.main-product.blocks.product_attributes.name"
     }
   ],
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ]
 }
 
 {% endschema %}
 
 <div class="main-product animation-appear-slow animation-delay-3 w-full relative block pb-12 bg-mono-50" data-template="Product">
   <section class="grid">
-    {% assign image_count = 0 %}
+    {% assign image_count = 1 %}
 
     <ul class="col-span-5 col-start-2 relative flex flex-wrap justify-between pt-16" role="list">
+      <li class="main-product__gallery__item main-product__gallery__item--half relative">
+        <div class="w-full relative bg-midnight-black-100">
+          <figure class="w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center overflow-hidden">
+            <img id="product-variant-image" class="w-full h-full relative block object-cover" src="" alt="{{ product.title }}" loading="lazy"/>
+          </figure>
+        </div>
+      </li>
+
       {%- for media in product.media -%}
-        {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+        {%- unless media.preview_image.alt == 'variant' or media.id == product.selected_or_first_available_variant.featured_media.id -%}
           {% assign image_count = image_count | plus: 1 %}
           {% assign remainder = image_count | modulo: 3 %}
 
@@ -91,7 +105,7 @@
 
     <div class="col-span-4 col-start-8 h-screen sticky top-0 right-0 pt-16 pb-24 overflow-y-scroll">
       {%- liquid
-        assign product_form_id = 'product-form-' | append: section.id
+        assign product_form_id = 'product-form-add'
         assign price = product.price
         assign compare_at_price = product.compare_at_price
         assign available = product.available | default: false
@@ -248,7 +262,11 @@
                 <button class="w-full relative block" type="button">
                   <div class="w-full relative flex items-center justify-between">
                     <p class="b3">{{ attribute.name }}</p>
-                    <p class="caption">arrow</p>
+
+                    <!-- {{ 'arrow-down.svg' | asset_url }} -->
+                    <svg fill="none" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                      <path clip-rule="evenodd" d="M8.86193 12.3905L8.86193 2L7.5286 2L7.52859 12.3905L3.33333 8.19526L2.39052 9.13807L8.19526 14.9428L14 9.13807L13.0572 8.19526L8.86193 12.3905Z" fill-rule="evenodd" fill="black"/>
+                    </svg>
                   </div>
                 </button>
 
