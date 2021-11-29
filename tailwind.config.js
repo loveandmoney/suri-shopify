@@ -30,26 +30,27 @@ module.exports = {
   },
   theme: {
     colors: {
-      "ux-green": "#097c07",
-      "midnight-black": "#494949",
-      "midnight-black-50": "#9e9e9e",
-      "midnight-black-75": "#494949",
-      "midnight-black-100": "#302f2f",
-      "sea-mist": "#a8a8a8",
-      "sea-mist-50": "#d4d4d4",
-      "sea-mist-75": "#a8a8a8",
-      "sea-mist-100": "#494949",
-      "winter-fern": "#7a9a72",
-      "winter-fern-50": "#b5bdb4",
-      "winter-fern-75": "#7a9a72",
-      "winter-fern-100": "#5e684f",
-      "mono-white": "#ffffff",
-      "mono-50": "#f2f2f2",
-      "mono-75": "#a4a4a4",
-      "mono-100": "#000000",
-      "brand-50": "#6e848d",
-      "brand-75": "#4f6068",
-      "brand-100": "#455055"
+      'ux-lime': '#50CE34',
+      'ux-green': '#097c07',
+      'midnight-black': '#494949',
+      'midnight-black-50': '#9e9e9e',
+      'midnight-black-75': '#494949',
+      'midnight-black-100': '#302f2f',
+      'sea-mist': '#a8a8a8',
+      'sea-mist-50': '#d4d4d4',
+      'sea-mist-75': '#a8a8a8',
+      'sea-mist-100': '#494949',
+      'winter-fern': '#7a9a72',
+      'winter-fern-50': '#b5bdb4',
+      'winter-fern-75': '#7a9a72',
+      'winter-fern-100': '#5e684f',
+      'mono-white': '#ffffff',
+      'mono-50': '#f2f2f2',
+      'mono-75': '#a4a4a4',
+      'mono-100': '#000000',
+      'brand-50': '#6e848d',
+      'brand-75': '#4f6068',
+      'brand-100': '#455055'
     },
     screens: {
       xs: {
@@ -77,21 +78,21 @@ module.exports = {
     fontSize: {
       //
       // h1
-      "md-h1": [
+      'md-h1': [
         `160px`,
         {
           lineHeight: `141px`,
           letterSpacing: `0`
         }
       ],
-      "md-h1b": [
+      'md-h1b': [
         `52px`,
         {
           lineHeight: `52px`,
           letterSpacing: `0`
         }
       ],
-      "sm-h1": [
+      'sm-h1': [
         `100px`,
         {
           lineHeight: `100px`,
@@ -107,14 +108,14 @@ module.exports = {
       ],
       //
       // h2
-      "md-h2": [
+      'md-h2': [
         `125px`,
         {
           lineHeight: `110px`,
           letterSpacing: `0`
         }
       ],
-      "sm-h2": [
+      'sm-h2': [
         `82px`,
         {
           lineHeight: `96px`,
@@ -130,14 +131,14 @@ module.exports = {
       ],
       //
       // h3
-      "md-h3": [
+      'md-h3': [
         `90px`,
         {
           lineHeight: `86px`,
           letterSpacing: `0`
         }
       ],
-      "sm-h3": [
+      'sm-h3': [
         `60px`,
         {
           lineHeight: `60px`,
@@ -153,14 +154,14 @@ module.exports = {
       ],
       //
       // h4
-      "md-h4": [
+      'md-h4': [
         `24px`,
         {
           lineHeight: `28px`,
           letterSpacing: `0`
         }
       ],
-      "sm-h4": [
+      'sm-h4': [
         `24px`,
         {
           lineHeight: `24px`,
@@ -176,14 +177,14 @@ module.exports = {
       ],
       //
       // h5
-      "md-h5": [
+      'md-h5': [
         `22px`,
         {
           lineHeight: `24px`,
           letterSpacing: `0`
         }
       ],
-      "sm-h5": [
+      'sm-h5': [
         `22px`,
         {
           lineHeight: `22px`,
@@ -199,14 +200,14 @@ module.exports = {
       ],
       //
       // b1
-      "md-b1": [
+      'md-b1': [
         `20px`,
         {
           lineHeight: `23px`,
           letterSpacing: `0`
         }
       ],
-      "sm-b1": [
+      'sm-b1': [
         `18px`,
         {
           lineHeight: `22px`,
@@ -222,14 +223,14 @@ module.exports = {
       ],
       //
       // b2
-      "md-b2": [
+      'md-b2': [
         `16px`,
         {
           lineHeight: `20px`,
           letterSpacing: `0.01em`
         }
       ],
-      "sm-b2": [
+      'sm-b2': [
         `16px`,
         {
           lineHeight: `22px`,
@@ -245,14 +246,14 @@ module.exports = {
       ],
       //
       // b3
-      "md-b3": [
+      'md-b3': [
         `16px`,
         {
           lineHeight: `20px`,
           letterSpacing: `0`
         }
       ],
-      "sm-b3": [
+      'sm-b3': [
         `16px`,
         {
           lineHeight: `20px`,
@@ -277,14 +278,14 @@ module.exports = {
       ],
       //
       // button
-      "md-button": [
+      'md-button': [
         `16px`,
         {
           lineHeight: `18px`,
           letterSpacing: `0.02em`
         }
       ],
-      "sm-button": [
+      'sm-button': [
         `16px`,
         {
           lineHeight: `18px`,

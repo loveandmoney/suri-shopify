@@ -1,7 +1,6 @@
 @layer utilities {
   .grid {
     width: 100%;
-    // grid-gap: 0 1rem;
 
     @include ms-all {
       display: flex;
@@ -10,11 +9,12 @@
     }
 
     //
-
-    position: relative;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    // grid-gap: 0 1rem;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+
+    @include md {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
   }
 }

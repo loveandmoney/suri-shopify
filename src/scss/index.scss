@@ -1,26 +1,27 @@
 @charset 'UTF-8';
 
-@import "./fonts/fonts.scss";
-@import "./swiper.scss"; //
-@import "tailwindcss/base";
+@import './fonts/fonts.scss';
+@import './swiper.scss'; //
+@import 'tailwindcss/base';
 
-@import "screen.scss";
-@import "base.scss";
-@import "transitions.scss";
+@import 'screen.scss';
+@import 'base.scss';
+@import 'transitions.scss';
 
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@import "grid.scss";
+@import 'grid.scss';
 
-@import "components/Banner.scss";
-@import "components/Button.scss";
-@import "components/Footer.scss";
-@import "components/Header.scss";
-@import "components/Page.scss";
+@import 'components/Banner.scss';
+@import 'components/Button.scss';
+@import 'components/Footer.scss';
+@import 'components/Header.scss';
+@import 'components/Page.scss';
 
-@import "sections/main-cart.scss";
-@import "sections/main-product.scss";
+@import 'sections/main-cart.scss';
+@import 'sections/main-product.scss';
+@import 'sections/full-image-cta.scss';
 
-@import "templates/index.scss";
-@import "templates/product.scss";
+@import 'templates/index.scss';
+@import 'templates/product.scss';
