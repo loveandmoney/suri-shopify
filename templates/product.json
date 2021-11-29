@@ -66,8 +66,8 @@
       "type": "image-tiles",
       "settings": {}
     },
-    "text": {
-      "type": "text",
+    "simple-text": {
+      "type": "simple-text",
       "settings": {
         "heading": "Shipping worldwide in February 2022.",
         "body": "<p>We are only making limited stocks for pre-launch.<\/p><p>Don't miss out.<\/p>"
