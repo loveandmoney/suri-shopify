@@ -1,0 +1,57 @@
+<section class="gallery w-full relative bg-mono-50" data-component="Gallery">
+  <article class="grid">
+    <div class="col-span-12 relative rounded-xl overflow-hidden bg-brand-50">
+      <div 
+        class="swiper-container swiper--gallery w-full h-full relative block md:hidden"
+        data-component="SwiperCarousel"
+        data-swiperid="gallery"
+      >
+        <ul class="swiper-wrapper relative" id="gallery-swiper">
+          <li class="swiper-slide w-full relative">
+            <figure class="w-full h-full relative flex items-center justify-center">
+              <img src="{{ 'home-desktop-carousel-01.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt=""/>
+            </figure>
+          </li>
+
+          <li class="swiper-slide w-full relative">
+            <figure class="w-full h-full relative flex items-center justify-center">
+              <img src="{{ 'home-desktop-carousel-02.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt=""/>
+            </figure>
+          </li>
+
+          <li class="swiper-slide w-full relative">
+            <figure class="w-full h-full relative flex items-center justify-center">
+              <img src="{{ 'home-desktop-carousel-03.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt=""/>
+            </figure>
+          </li>
+
+          <li class="swiper-slide w-full relative">
+            <figure class="w-full h-full relative flex items-center justify-center">
+              <img src="{{ 'home-desktop-carousel-04.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt=""/>
+            </figure>
+          </li>
+        </ul>
+
+        <div class="swiper-pagination swiper-pagination--gallery w-full absolute bottom-0 right-0 left-0 z-10 flex sm:hidden justify-center pb-5"></div>
+      </div>
+    </div>
+    
+    <div class="col-span-12 relative hidden md:flex items-center justify-center">
+      <figure class="w-1/4 relative">
+        <img src="{{ 'home-desktop-carousel-01.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt=""/>
+      </figure>
+
+      <figure class="w-1/4 relative">
+        <img src="{{ 'home-desktop-carousel-02.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt=""/>
+      </figure>
+
+      <figure class="w-1/4 relative">
+        <img src="{{ 'home-desktop-carousel-03.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt=""/>
+      </figure>
+
+      <figure class="w-1/4 relative">
+        <img src="{{ 'home-desktop-carousel-04.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt=""/>
+      </figure>
+    </div>
+  </article>
+</section>

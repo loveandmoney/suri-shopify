@@ -293,12 +293,10 @@ const Product = () => {
                 return response.text()
               }).then(state => {
                 const parsedState = JSON.parse(state);
-
                 const itemCount = parseInt(parsedState?.item_count);
 
                 headerCartQuantity.innerHTML = itemCount === 0 ? `` : itemCount;
               });
-
             }
 
             if (addWidget && addWidgetItem && addWidgetQuantity) {

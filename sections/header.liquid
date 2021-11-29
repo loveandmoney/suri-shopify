@@ -44,11 +44,9 @@
 
         {{ section.settings.cart_svg }}
 
-        {%- if cart.item_count > 0 -%}
-          <div class="w-4 h-4 absolute top-1 md:-top-2 -right-2 md:-right-2 rounded-full flex items-center justify-center bg-ux-green text-mono-white">
-            <span id="cart-quantity" class="caption">{{ cart.item_count }}</span>
-          </div>
-        {%- endif -%}
+        <div class="{% if cart.item_count == 0 %}opacity-0{% endif %} w-4 h-4 absolute top-1 md:-top-2 -right-2 md:-right-2 rounded-full flex items-center justify-center bg-ux-green text-mono-white">
+          <span id="cart-quantity" class="caption">{{ cart.item_count }}</span>
+        </div>
       </a>
     </div>
   </nav>
