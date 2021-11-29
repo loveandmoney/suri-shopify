@@ -1,10 +1,14 @@
 {
   "sections": {
-    "main": {
-      "type": "banner"
+    "shipping-section": {
+      "type": "shipping-section",
+      "settings": {
+        "heading": "Shipping worldwide in February 2022.",
+        "body": "<p>We are only making limited stocks for pre-launch.<\/p><p>Don't miss out.<\/p>"
+      }
     }
   },
   "order": [
-    "main"
+    "shipping-section"
   ]
 }
