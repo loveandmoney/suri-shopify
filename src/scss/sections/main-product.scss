@@ -1,4 +1,11 @@
 .main-product {
+  &__brush-head {
+    width: 300%;
+    max-width: none;
+    margin-top: 250%;
+    margin-right: 70%;
+  }
+
   &__compare-at {
     opacity: 0.3;
   }

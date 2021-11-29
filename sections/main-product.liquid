@@ -78,7 +78,7 @@
   <section class="grid">
     {% assign image_count = 1 %}
 
-    <ul class="col-span-5 col-start-2 relative flex flex-wrap justify-between pt-16" role="list">
+    <ul class="col-span-12 md:col-span-5 md:col-start-2 relative flex flex-wrap justify-between pt-16" role="list">
       <li class="main-product__gallery__item main-product__gallery__item--half relative">
         <div class="w-full relative bg-midnight-black-100">
           <figure class="w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center overflow-hidden">
@@ -103,7 +103,7 @@
       {%- endfor -%}
     </ul>
 
-    <div class="col-span-4 col-start-8 h-screen sticky top-0 right-0 pt-16 pb-24 overflow-y-scroll">
+    <div class="col-span-12 md:col-span-4 md:col-start-8 md:h-screen md:sticky md:top-0 md:right-0 pt-16 pb-24 md:overflow-y-scroll">
       {%- liquid
         assign product_form_id = 'product-form-add'
         assign price = product.price
@@ -245,7 +245,7 @@
                 <article class="main-product__pack relative mt-8 p-4 bg-mono-white text-ux-green">
                   <div class="w-full relative flex justify-between">
                     <figure class="w-14 h-14 relative rounded-full overflow-hidden flex items-center justify-center bg-midnight-black-75">
-                      <img id="product-add-on-image" style="width:300%; max-width:none; margin-top:280%; margin-right:70%;" class="relative block" src="" alt="{{ add_on_product.title }}" loading="lazy"/>
+                      <img id="product-add-on-image" class="main-product__brush-head relative block" src="" alt="{{ add_on_product.title }}" loading="lazy"/>
                     </figure>
 
                     <div class="main-product__pack__content relative">
