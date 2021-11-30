@@ -28,7 +28,7 @@
 }
 {% endschema %}
 
-<header id="site-header" class="header w-full fixed top-0 right-0 left-0 z-40">
+<header id="site-header" class="header w-full fixed top-0 right-0 left-0 z-40" data-component="Header">
   <nav class="w-full h-12 relative z-10 grid md:flex md:items-center md:px-8 bg-mono-50 text-black">
     <div class="col-span-6 md:w-1/2 relative flex items-center">
       <a aria-current="page" href="/" class="header__logo">
@@ -74,14 +74,16 @@
             </span>
           </button>
         </a>
-        
-        <form action="{{ routes.cart_url }}" method="post" class="w-full md:w-24 relative block ml-1 md:ml-0">
-          <button type="button" class="button button--white w-full h-10 relative block">
-            <span class="b3">
-              Checkout
-            </span>
-          </button>
-        </form>
+
+        <div class="w-full md:w-24 relative block ml-1 md:ml-0">
+          <a href="/checkout">
+            <button type="button" id="header-checkout-button" class="button button--white w-full h-10 relative block">
+              <span class="b3">
+                Checkout
+              </span>
+            </button>
+          </a>
+        </div>
       </div>
     </div>
   </div>

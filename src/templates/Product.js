@@ -369,8 +369,6 @@ const Product = () => {
               return;
             }
 
-            console.log(`res: `, response);
-
             const { title, quantity } = response;
 
             if (addWidget && addWidgetItem && addWidgetQuantity) {
