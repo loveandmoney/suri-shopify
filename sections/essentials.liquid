@@ -1,199 +1,216 @@
+{% capture mobile_carousel %}
+  <div class="essentials__carousel col-span-12 relative rounded-xl overflow-hidden bg-brand-50">
+    <div class="w-full absolute top-0 right-0 left-0 z-10 pointer-events-none p-4">
+      <button class="button button--black w-24 h-10 relative block" type="button">
+        <span class="text-button">
+          included
+        </span>
+      </button>
+    </div>
+
+    <div 
+      class="swiper-container swiper--essentials w-full h-full relative block md:hidden"
+      data-component="SwiperCarousel"
+      data-swiperid="essentials"
+      data-onchange="Essentials.onSlideChanged"
+    >
+      <ul class="swiper-wrapper relative" id="essentials-swiper">
+        <li class="swiper-slide w-full relative">
+          <figure class="w-full h-full relative flex items-center justify-center">
+            <img src="{{ 'pdp-mobile-image-card-01.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="UV-C Light Self Cleaning & Travel Charge Case"/>
+          </figure>
+        </li>
+
+        <li class="swiper-slide w-full relative">
+          <figure class="w-full h-full relative flex items-center justify-center">
+            <img src="{{ 'pdp-mobile-image-card-02.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="Plant Based Head"/>
+          </figure>
+        </li>
+
+        <li class="swiper-slide w-full relative">
+          <figure class="w-full h-full relative flex items-center justify-center">
+            <img src="{{ 'pdp-mobile-image-card-03.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="Charging Stand"/>
+          </figure>
+        </li>
+
+        <li class="swiper-slide w-full relative">
+          <figure class="w-full h-full relative flex items-center justify-center">
+            <img src="{{ 'pdp-mobile-image-card-04.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="USB-C Cable"/>
+          </figure>
+        </li>
+      </ul>
+
+      <div class="swiper-pagination swiper-pagination--essentials w-full absolute bottom-0 right-0 left-0 z-10 flex sm:hidden justify-center pb-5"></div>
+    </div>
+  </div>
+{% endcapture %}
+
+{% capture mobile_switcher %}
+  <ul class="essentials__active-item col-span-12 h-20 relative md:hidden mt-6">
+    <li class="essentials__active-item__switchable transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0" data-index="0">
+      <h3 class="b1">1x UV-C Light Self Cleaning &<br />Travel Charge Case</h3>
+    </li>
+
+    <li class="essentials__active-item__switchable transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 opacity-0" data-index="1">
+      <h3 class="b1">1x SURI Sustainable Sonic Toothbrush + Plant Based Head</h3>
+    </li>
+
+    <li class="essentials__active-item__switchable transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 opacity-0" data-index="2">
+      <h3 class="b1">1x Charging Stand<br />(doubles as a Wall-Mount)</h3>
+    </li>
+
+    <li class="essentials__active-item__switchable transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 opacity-0" data-index="3">
+      <h3 class="b1">1x USB-C Cable*</h3>
+      <p class="w-full mt-1 caption">*note works with any USB 2.0 charger. Charger not included.</p>
+    </li>
+  </ul>
+{% endcapture %}
+
+{% capture mobile_expander %}
+  <article class="essentials__expander col-span-12 relative md:hidden border-t border-midnight-black-75">
+    <button id="essentials-expander-button" class="essentials__expander__button w-full relative block py-4" type="button">
+      <div class="w-full h-full relative flex items-center justify-between">
+        <p class="b3">A list of what’s included</p>
+
+        <svg class="w-4 md:w-6" fill="none" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+          <path clip-rule="evenodd" d="M8.86193 12.3905L8.86193 2L7.5286 2L7.52859 12.3905L3.33333 8.19526L2.39052 9.13807L8.19526 14.9428L14 9.13807L13.0572 8.19526L8.86193 12.3905Z" fill-rule="evenodd" fill="black"/>
+        </svg>
+      </div>
+    </button>
+
+    <div id="essentials-expander-content" class="essentials__expander__content relative block border-t border-midnight-black-75">
+      <ul>
+        <li class="relative flex mb-4">
+          <p class="w-5 b3">1x</p>
+          <p class="w-full b3">SURI UV-C Light Self Cleaning & Travel Charge Case</p>
+        </li>
+
+        <li class="relative flex mb-4">
+          <p class="w-5 b3">1x</p>
+          <p class="w-full b3">SURI Sustainable Sonic Toothbrush + Plant Based Head</p>
+        </li>
+
+        <li class="relative flex mb-4">
+          <p class="w-5 b3">1x</p>
+          <p class="w-full b3">Charging Stand (doubles as a Wall-Mount)</p>
+        </li>
+
+        <li class="relative mb-4">
+          <div class="flex">
+            <p class="w-5 b3">1x</p>
+            <p class="w-full b3">USB-C Cable*</p>
+          </div>
+          
+          <p class="w-full mt-1 caption">*note works with any USB 2.0 charger. Charger not included.</p>
+        </li>
+      </ul>
+    </div>
+  </article>
+{% endcapture %}
+
+{% capture desktop_selector %}
+  <div class="col-span-4 col-start-2 relative hidden md:block">
+    <ul class="w-full relative block overflow-hidden">
+      <li class="relative block border-t border-mono-75">
+        <button class="essentials__toggle selected w-full h-16 relative block text-left" data-index="0" type="button">
+          <div class="w-full relative flex items-center justify-center">
+            <div class="w-4 h-full absolute top-0 bottom-0 left-0 flex items-center justify-center">
+              <svg class="w-4" viewbox="0 0 19 18" width="19" xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" d="M14.5858 10.0001H0V8.00008H14.5858L8.29289 1.70718L9.70711 0.292969L18.4142 9.00008L9.70711 17.7072L8.29289 16.293L14.5858 10.0001Z" fill-rule="evenodd" fill="black"/>
+              </svg>
+            </div>
+
+            <p class="w-full b1 text-left">1x UV-C Light Self Cleaning & Travel Charge Case</p>
+          </div>
+        </button>
+      </li>
+
+      <li class="relative block border-t border-mono-75">
+        <button class="essentials__toggle w-full h-16 relative block text-left" data-index="1" type="button">
+          <div class="w-full relative flex items-center justify-center">
+            <div class="w-4 h-full absolute top-0 bottom-0 left-0 flex items-center justify-center">
+              <svg class="w-4" viewbox="0 0 19 18" width="19" xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" d="M14.5858 10.0001H0V8.00008H14.5858L8.29289 1.70718L9.70711 0.292969L18.4142 9.00008L9.70711 17.7072L8.29289 16.293L14.5858 10.0001Z" fill-rule="evenodd" fill="black"/>
+              </svg>
+            </div>
+
+            <p class="w-full b1 text-left">1x Plant Based Head</p>
+          </div>
+        </button>
+      </li>
+
+      <li class="relative block border-t border-mono-75">
+        <button class="essentials__toggle w-full h-16 relative block text-left" data-index="2" type="button">
+          <div class="w-full relative flex items-center justify-center">
+            <div class="w-4 h-full absolute top-0 bottom-0 left-0 flex items-center justify-center">
+              <svg class="w-4" viewbox="0 0 19 18" width="19" xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" d="M14.5858 10.0001H0V8.00008H14.5858L8.29289 1.70718L9.70711 0.292969L18.4142 9.00008L9.70711 17.7072L8.29289 16.293L14.5858 10.0001Z" fill-rule="evenodd" fill="black"/>
+              </svg>
+            </div>
+
+            <p class="w-full b1 text-left">1x Charging Stand</p>
+          </div>
+        </button>
+      </li>
+
+      <li class="relative block border-t border-b border-mono-75">
+        <button class="essentials__toggle w-full h-16 relative block text-left" data-index="3" type="button">
+          <div class="w-full relative flex items-center justify-center">
+            <div class="w-4 h-full absolute top-0 bottom-0 left-0 flex items-center justify-center">
+              <svg class="w-4" viewbox="0 0 19 18" width="19" xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" d="M14.5858 10.0001H0V8.00008H14.5858L8.29289 1.70718L9.70711 0.292969L18.4142 9.00008L9.70711 17.7072L8.29289 16.293L14.5858 10.0001Z" fill-rule="evenodd" fill="black"/>
+              </svg>
+            </div>
+
+            <p class="w-full b1 text-left">1x USB-C Cable*</p>
+          </div>
+        </button>
+      </li>
+    </ul>
+  </div>
+{% endcapture %}
+
+{% capture desktop_gallery %}
+  <div class="col-span-12 md:col-span-5 md:col-start-7 relative hidden md:flex items-center justify-center">
+    <div class="w-full absolute top-0 right-0 left-0 z-10 pointer-events-none p-4">
+      <button class="button button--black w-24 h-10 relative block" type="button">
+        <span class="text-button">
+          included
+        </span>
+      </button>
+    </div>
+
+    <div class="essentials__image-container w-full h-full relative rounded-lg overflow-hidden bg-brand-50">
+      <figure class="essentials__image transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center" data-index="0">
+        <img src="{{ 'pdp-desktop-image-card-01.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="UV-C Light Self Cleaning & Travel Charge Case"/>
+      </figure>
+
+      <figure class="essentials__image transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center opacity-0" data-index="1">
+        <img src="{{ 'pdp-desktop-image-card-02.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="Plant Based Head"/>
+      </figure>
+
+      <figure class="essentials__image transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center opacity-0" data-index="2">
+        <img src="{{ 'pdp-desktop-image-card-03.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="Charging Stand"/>
+      </figure>
+
+      <figure class="essentials__image transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center opacity-0" data-index="3">
+        <img src="{{ 'pdp-desktop-image-card-04.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="USB-C Cable"/>
+      </figure>
+    </div>
+  </div>
+{% endcapture %}
+
 <section class="essentials w-full relative pt-10 md:pt-16 md:pb-12 bg-mono-50" data-component="Essentials">
   <article class="grid">
     <header class="col-span-12 md:col-span-11 md:col-start-2 relative mb-6 md:mb-12">
       <h2 class="h3">Essentials included with<br class="md:hidden" /> every<br class="hidden md:block" /> SURI Toothbrush:</h2>
     </header>
 
-    <div class="col-span-12 relative rounded-xl overflow-hidden bg-brand-50">
-      <div class="w-full absolute top-0 right-0 left-0 z-10 pointer-events-none p-4">
-        <button class="button button--black w-24 h-10 relative block" type="button">
-          <span class="text-button">
-            included
-          </span>
-        </button>
-      </div>
+    {{ mobile_carousel }}
+    {{ mobile_switcher }}
+    {{ mobile_expander }}
 
-      <div 
-        class="swiper-container swiper--essentials w-full h-full relative block md:hidden"
-        data-component="SwiperCarousel"
-        data-swiperid="essentials"
-        data-onchange="Essentials.onSlideChanged"
-      >
-        <ul class="swiper-wrapper relative" id="essentials-swiper">
-          <li class="swiper-slide w-full relative">
-            <figure class="w-full h-full relative flex items-center justify-center">
-              <img src="{{ 'pdp-mobile-image-card-01.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="UV-C Light Self Cleaning & Travel Charge Case"/>
-            </figure>
-          </li>
-
-          <li class="swiper-slide w-full relative">
-            <figure class="w-full h-full relative flex items-center justify-center">
-              <img src="{{ 'pdp-mobile-image-card-02.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="Plant Based Head"/>
-            </figure>
-          </li>
-
-          <li class="swiper-slide w-full relative">
-            <figure class="w-full h-full relative flex items-center justify-center">
-              <img src="{{ 'pdp-mobile-image-card-03.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="Charging Stand"/>
-            </figure>
-          </li>
-
-          <li class="swiper-slide w-full relative">
-            <figure class="w-full h-full relative flex items-center justify-center">
-              <img src="{{ 'pdp-mobile-image-card-04.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="USB-C Cable"/>
-            </figure>
-          </li>
-        </ul>
-
-        <div class="swiper-pagination swiper-pagination--essentials w-full absolute bottom-0 right-0 left-0 z-10 flex sm:hidden justify-center pb-5"></div>
-      </div>
-    </div>
-
-    <ul class="essentials__active-item col-span-12 h-20 relative md:hidden mt-6">
-      <li class="essentials__active-item__switchable transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0" data-index="0">
-        <h3 class="b1">1x UV-C Light Self Cleaning &<br />Travel Charge Case</h3>
-      </li>
-
-      <li class="essentials__active-item__switchable transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 opacity-0" data-index="1">
-        <h3 class="b1">1x SURI Sustainable Sonic Toothbrush + Plant Based Head</h3>
-      </li>
-
-      <li class="essentials__active-item__switchable transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 opacity-0" data-index="2">
-        <h3 class="b1">1x Charging Stand<br />(doubles as a Wall-Mount)</h3>
-      </li>
-
-      <li class="essentials__active-item__switchable transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 opacity-0" data-index="3">
-        <h3 class="b1">1x USB-C Cable*</h3>
-        <p class="w-full mt-1 caption">*note works with any USB 2.0 charger. Charger not included.</p>
-      </li>
-    </ul>
-
-    <article class="essentials__expander col-span-12 relative md:hidden border-t border-midnight-black-75">
-      <button id="essentials-expander-button" class="essentials__expander__button w-full relative block py-4" type="button">
-        <div class="w-full h-full relative flex items-center justify-between">
-          <p class="b3">A list of what’s included</p>
-
-          <svg class="w-4 md:w-6" fill="none" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-            <path clip-rule="evenodd" d="M8.86193 12.3905L8.86193 2L7.5286 2L7.52859 12.3905L3.33333 8.19526L2.39052 9.13807L8.19526 14.9428L14 9.13807L13.0572 8.19526L8.86193 12.3905Z" fill-rule="evenodd" fill="black"/>
-          </svg>
-        </div>
-      </button>
-
-      <div id="essentials-expander-content" class="essentials__expander__content relative block border-t border-midnight-black-75">
-        <ul>
-          <li class="relative flex mb-4">
-            <p class="w-5 b3">1x</p>
-            <p class="w-full b3">SURI UV-C Light Self Cleaning & Travel Charge Case</p>
-          </li>
-
-          <li class="relative flex mb-4">
-            <p class="w-5 b3">1x</p>
-            <p class="w-full b3">SURI Sustainable Sonic Toothbrush + Plant Based Head</p>
-          </li>
-
-          <li class="relative flex mb-4">
-            <p class="w-5 b3">1x</p>
-            <p class="w-full b3">Charging Stand (doubles as a Wall-Mount)</p>
-          </li>
-
-          <li class="relative mb-4">
-            <div class="flex">
-              <p class="w-5 b3">1x</p>
-              <p class="w-full b3">USB-C Cable*</p>
-            </div>
-            
-            <p class="w-full mt-1 caption">*note works with any USB 2.0 charger. Charger not included.</p>
-          </li>
-        </ul>
-      </div>
-    </article>
-
-    <div class="col-span-4 col-start-2 relative hidden md:block">
-      <ul class="w-full relative block overflow-hidden">
-        <li class="relative block border-t border-mono-75">
-          <button class="essentials__toggle selected w-full h-16 relative block text-left" data-index="0" type="button">
-            <div class="w-full relative flex items-center justify-center">
-              <div class="w-4 h-full absolute top-0 bottom-0 left-0 flex items-center justify-center">
-                <svg class="w-4" viewbox="0 0 19 18" width="19" xmlns="http://www.w3.org/2000/svg">
-                  <path clip-rule="evenodd" d="M14.5858 10.0001H0V8.00008H14.5858L8.29289 1.70718L9.70711 0.292969L18.4142 9.00008L9.70711 17.7072L8.29289 16.293L14.5858 10.0001Z" fill-rule="evenodd" fill="black"/>
-                </svg>
-              </div>
-
-              <p class="w-full b1 text-left">1x UV-C Light Self Cleaning & Travel Charge Case</p>
-            </div>
-          </button>
-        </li>
-
-        <li class="relative block border-t border-mono-75">
-          <button class="essentials__toggle w-full h-16 relative block text-left" data-index="1" type="button">
-            <div class="w-full relative flex items-center justify-center">
-              <div class="w-4 h-full absolute top-0 bottom-0 left-0 flex items-center justify-center">
-                <svg class="w-4" viewbox="0 0 19 18" width="19" xmlns="http://www.w3.org/2000/svg">
-                  <path clip-rule="evenodd" d="M14.5858 10.0001H0V8.00008H14.5858L8.29289 1.70718L9.70711 0.292969L18.4142 9.00008L9.70711 17.7072L8.29289 16.293L14.5858 10.0001Z" fill-rule="evenodd" fill="black"/>
-                </svg>
-              </div>
-
-              <p class="w-full b1 text-left">1x Plant Based Head</p>
-            </div>
-          </button>
-        </li>
-
-        <li class="relative block border-t border-mono-75">
-          <button class="essentials__toggle w-full h-16 relative block text-left" data-index="2" type="button">
-            <div class="w-full relative flex items-center justify-center">
-              <div class="w-4 h-full absolute top-0 bottom-0 left-0 flex items-center justify-center">
-                <svg class="w-4" viewbox="0 0 19 18" width="19" xmlns="http://www.w3.org/2000/svg">
-                  <path clip-rule="evenodd" d="M14.5858 10.0001H0V8.00008H14.5858L8.29289 1.70718L9.70711 0.292969L18.4142 9.00008L9.70711 17.7072L8.29289 16.293L14.5858 10.0001Z" fill-rule="evenodd" fill="black"/>
-                </svg>
-              </div>
-
-              <p class="w-full b1 text-left">1x Charging Stand</p>
-            </div>
-          </button>
-        </li>
-
-        <li class="relative block border-t border-b border-mono-75">
-          <button class="essentials__toggle w-full h-16 relative block text-left" data-index="3" type="button">
-            <div class="w-full relative flex items-center justify-center">
-              <div class="w-4 h-full absolute top-0 bottom-0 left-0 flex items-center justify-center">
-                <svg class="w-4" viewbox="0 0 19 18" width="19" xmlns="http://www.w3.org/2000/svg">
-                  <path clip-rule="evenodd" d="M14.5858 10.0001H0V8.00008H14.5858L8.29289 1.70718L9.70711 0.292969L18.4142 9.00008L9.70711 17.7072L8.29289 16.293L14.5858 10.0001Z" fill-rule="evenodd" fill="black"/>
-                </svg>
-              </div>
-
-              <p class="w-full b1 text-left">1x USB-C Cable*</p>
-            </div>
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    <div class="col-span-5 col-start-7 relative hidden md:flex items-center justify-center">
-      <div class="w-full absolute top-0 right-0 left-0 z-10 pointer-events-none p-4">
-        <button class="button button--black w-24 h-10 relative block" type="button">
-          <span class="text-button">
-            included
-          </span>
-        </button>
-      </div>
-
-      <div class="essentials__image-container w-full h-full relative rounded-lg overflow-hidden bg-brand-50">
-        <figure class="essentials__image transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center" data-index="0">
-          <img src="{{ 'pdp-desktop-image-card-01.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="UV-C Light Self Cleaning & Travel Charge Case"/>
-        </figure>
-
-        <figure class="essentials__image transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center opacity-0" data-index="1">
-          <img src="{{ 'pdp-desktop-image-card-02.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="Plant Based Head"/>
-        </figure>
-
-        <figure class="essentials__image transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center opacity-0" data-index="2">
-          <img src="{{ 'pdp-desktop-image-card-03.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="Charging Stand"/>
-        </figure>
-
-        <figure class="essentials__image transition-opacity-slow w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center opacity-0" data-index="3">
-          <img src="{{ 'pdp-desktop-image-card-04.png' | asset_url }}" class="w-full h-full relative block object-cover" alt="USB-C Cable"/>
-        </figure>
-      </div>
-    </div>
+    {{ desktop_selector }}
+    {{ desktop_gallery }}
   </article>
 </section>
