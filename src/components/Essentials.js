@@ -9,6 +9,7 @@ const Essentials = () => {
 
   const buttons = document.querySelectorAll(`.essentials__toggle`);
   const expanderButton = document.getElementById(`essentials-expander-button`);
+  const expanderButtonIcon = document.getElementById(`essentials-expander-button-arrow`);
   const expanderContent = document.getElementById(`essentials-expander-content`);
   const images = document.querySelectorAll(`.essentials__image`);
   
@@ -55,13 +56,12 @@ const Essentials = () => {
       expanderButton.addEventListener(`click`, e => {
         expanded = !expanded;
 
-        
         if (expanded) {
-          console.log("expanding");
           expanderContent.classList.add(`expanded`);
+          expanderButtonIcon.classList.add(`rotated`);
         } else {
-          console.log("collapsing");
           expanderContent.classList.remove(`expanded`);
+          expanderButtonIcon.classList.remove(`rotated`);
         }
       });
     }
