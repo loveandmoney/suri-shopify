@@ -34,9 +34,9 @@ const Newsletter = () => {
         const body = new FormData(form);
 
         fetch(url, {
-          headers: { 
-            "Content-Type": `application/json`,
-            Accept: `application/${type}`
+          headers: {
+            Accept: `application/json`,
+            "Content-Type": `application/json`
           },
           method: `POST`,
           body,
