@@ -1,3 +1,5 @@
+import { fetchConfig } from "../utils/helpers";
+
 const Newsletter = () => {
   if (typeof window === `undefined`) {
     return;
@@ -13,6 +15,8 @@ const Newsletter = () => {
 
   //
 
+  // const listId = `XFzjGW`;
+
   // ---------------------------------------------------------------------------
   // methods
 
@@ -26,7 +30,17 @@ const Newsletter = () => {
       form.addEventListener(`click`, e => {
         e.preventDefault();
 
-        console.log("Klaviyo AJAX here");
+        const url = form.getAttribute(`action`);
+        const config = fetchConfig(`javascript`);
+
+        config.body = new FormData(form);
+
+        fetch(url, config).then((response) => {
+          console.log(response);
+        })
+        .catch((e) => {
+          console.error(e);
+        });
 
         return true;
       });
