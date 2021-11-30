@@ -1,0 +1,145 @@
+{% schema %}
+
+{
+  "name": "Parallax Blur Banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }, {
+      "type": "select",
+      "id": "headingPosition",
+      "label": "Heading Position Mobile",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        }, {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ]
+    }, {
+      "type": "text",
+      "id": "body",
+      "label": "Body"
+    }, {
+      "type": "text",
+      "id": "buttonText",
+      "label": "Button Text"
+    }, {
+      "type": "image_picker",
+      "id": "backgroundImage",
+      "label": "Background Image"
+    }, {
+      "type": "image_picker",
+      "id": "backgroundImageMobile",
+      "label": "Background Image Mobile"
+    }
+  ],
+  "templates": [
+    "index",
+    "page"
+  ]
+}
+
+{% endschema %}
+
+
+{% capture mobile_parallax %}
+  <figure
+    class="w-full h-full relative block"
+    data-component="Parallax"
+    data-maxtranslate="40vw"
+  >
+    <img src="{{ section.settings.backgroundImageMobile | image_url }}" class="w-full h-full relative block object-cover" loading="lazy"/>
+  </figure>
+{% endcapture %}
+
+{% capture mobile_background %}
+  <div class="parallax-blur-banner__background w-full h-full absolute top-0 bottom-0 right-0 left-0">
+    <div class="w-full h-1/2 absolute bottom-0 right-0 left-0 z-10 overflow-hidden">
+      <div class="parallax-blur-banner__mobile-blur w-full relative block blur-md">
+        {{ mobile_parallax }}
+      </div>
+    </div>
+
+    {{ mobile_parallax }}
+  </div>
+{% endcapture %}
+
+{% capture mobile_content %}
+  <article class="parallax-blur-banner__container w-full h-full relative flex flex-col md:hidden justify-between">
+    {{ mobile_background }}
+
+    <div class="parallax-blur-banner__text w-full h-1/2 absolute bottom-0 left-0 right-0 block px-4 py-8">
+      <div class="col-start-1 col-span-3">
+        <header class="mb-6">
+          <p class="h2">{{ section.settings.heading }}</p>
+        </header>
+
+        <p class="b1 mb-6">{{ section.settings.body }}</p>
+      </div>
+
+      <a href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case">
+        <button class="button button--black w-full h-12 flex items-center justify-start px-6 py-4" type="button">
+          <span class="w-3 h-3 rounded-full bg-ux-lime mr-4"></span>
+          <span>{{ section.settings.buttonText }}</span>
+        </button>
+      </a>
+    </div>
+  </article>
+{% endcapture %}
+
+{% capture desktop_parallax %}
+  <figure
+    class="parallax-blur-banner__parallax w-full h-full relative flex items-center justify-end"
+    data-component="Parallax"
+    data-maxtranslate="10vw"
+  >
+    <img src="{{ section.settings.backgroundImage | image_url }}" class="h-full relative block" loading="lazy"/>
+  </figure>
+{% endcapture %}
+
+{% capture desktop_background %}
+  <div class="parallax-blur-banner__background w-full h-full absolute top-0 bottom-0 right-0 left-0">
+    <div class="w-1/2 h-full absolute top-0 bottom-0 left-0 z-10 overflow-hidden">
+      <div class="w-[200%] h-full relative block blur-lg">
+        {{ desktop_parallax }}
+      </div>
+    </div>
+
+    {{ desktop_parallax }}
+  </div>
+{% endcapture %}
+
+{% capture desktop_content %}
+  <article class="parallax-blur-banner__container w-full h-full relative hidden md:flex items-center justify-center">
+    {{ desktop_background }}
+
+    <div class="grid">
+      <div class="parallax-blur-banner__text col-span-4 col-start-2 h-full flex flex-col items-start justify-center z-20">
+        <header class="mb-6">
+          <p class="h2 whitespace-pre-wrap">{{ section.settings.heading }}</p>
+        </header>
+
+        <p class="b1 mb-6">{{ section.settings.body }}</p>
+
+        <a href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case">
+          <button class="button button--black h-12 flex items-center justify-start px-6 py-4">
+            <span class="w-3 h-3 rounded-full bg-ux-lime mr-4"></span>
+            <span>{{ section.settings.buttonText }}</span>
+          </button>
+        </a>
+      </div>
+    </div>
+  </article>
+{% endcapture %}
+
+<section class="parallax-blur-banner w-full relative bg-brand-50 text-mono-white">
+  {{ mobile_content }}
+  
+  {{ desktop_content }}
+</section>

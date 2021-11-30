@@ -1,7 +1,7 @@
 {
   "sections": {
-    "full-image-cta": {
-      "type": "full-image-cta",
+    "parallax-blur-banner": {
+      "type": "parallax-blur-banner",
       "settings": {
         "heading": "A world class clean that doesn’t cost our planet.",
         "headingPosition": "bottom",
@@ -44,6 +44,17 @@
         "image4XS": "shopify:\/\/shop_images\/home-mobile-carousel-08.jpg"
       }
     },
+    "blur-banner": {
+      "type": "blur-banner",
+      "settings": {
+        "heading": "Now taking pre-orders.",
+        "headingPosition": "bottom",
+        "body": "Get 40% off on our limited stock pre-launch.",
+        "buttonText": "Pre-order Now",
+        "backgroundImage": "shopify:\/\/shop_images\/home-desktop-atf.jpg",
+        "backgroundImageMobile": "shopify:\/\/shop_images\/home-mobile-atf.jpg"
+      }
+    },
     "newsletter": {
       "type": "newsletter",
       "settings": {
@@ -51,10 +62,11 @@
     }
   },
   "order": [
-    "full-image-cta",
+    "parallax-blur-banner",
     "simple-text",
     "gallery1",
     "gallery2",
+    "blur-banner",
     "newsletter"
   ]
 }
