@@ -1,11 +1,7 @@
-import debounce from "../utils/debounce.js";
-
 const Tray = () => {
   if (typeof window === `undefined`) {
     return;
   }
-
-  console.log(`[component] Tray`);
 
   // ---------------------------------------------------------------------------
   // DOM
@@ -17,7 +13,6 @@ const Tray = () => {
   // ---------------------------------------------------------------------------
   // variables
 
-  let desktopTrayVisible = false;
   let mobileButtonVisible = false;
 
   // ---------------------------------------------------------------------------
@@ -49,9 +44,9 @@ const Tray = () => {
 
     if (closeButton && desktopTray) {
       closeButton.addEventListener(`click`, e => {
-        desktopTrayVisible = false;
-
-        desktopTray.classList.remove(`active`);
+        if (desktopTray?.classList?.contains(`active`)) {
+          desktopTray.classList.remove(`active`);
+        }
       });
     }
   }
