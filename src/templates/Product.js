@@ -296,6 +296,12 @@ const Product = () => {
                 const itemCount = parseInt(parsedState?.item_count);
 
                 headerCartQuantity.innerHTML = itemCount === 0 ? `` : itemCount;
+                
+                if (itemCount > 0) {
+                  headerCartQuantity.classList.remove(`opacity-0`);
+                } else {
+                  headerCartQuantity.classList.add(`opacity-0`);
+                }
               });
             }
 
