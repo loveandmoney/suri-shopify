@@ -81,6 +81,7 @@
   assign available = product.available | default: false
   assign buyable = product.selected_or_first_available_variant.available
   assign money_price = price | money
+  assign quantity = product.selected_or_first_available_variant
 
   assign discount = 0
 
@@ -95,6 +96,8 @@
     assign money_price = price | money_with_currency
   endif
 -%}
+
+<script>console.log({{ product.selected_or_first_available_variant | json }});</script>
 
 <div class="main-product animation-appear-down-slow animation-delay-3 w-full relative md:pb-12 bg-mono-50" data-template="Product">
   <section class="relative">
@@ -140,7 +143,7 @@
         </li>
 
         {%- for media in product.media -%}
-          {%- unless media.preview_image.alt == 'variant' or media.id == product.selected_or_first_available_variant.featured_media.id -%}
+          {%- unless media.preview_image.alt == 'variant' or media.preview_image.alt != 'xs' or media.id == product.selected_or_first_available_variant.featured_media.id -%}
             <li class="swiper-slide w-full h-full relative">
               <img class="w-full h-full relative block object-cover" srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w" src="{{ media | img_url: '1500x' }}" loading="lazy" width="576" height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}" alt="{{ media.preview_image.alt | escape }}">
             </li>
@@ -164,11 +167,11 @@
         </li>
 
         {%- for media in product.media -%}
-          {%- unless media.preview_image.alt == 'variant' or media.id == product.selected_or_first_available_variant.featured_media.id -%}
+          {%- unless media.preview_image.alt == 'variant' or media.preview_image.alt == 'xs' or media.id == product.selected_or_first_available_variant.featured_media.id -%}
             {% assign image_count = image_count | plus: 1 %}
             {% assign remainder = image_count | modulo: 3 %}
 
-            <li class="main-product__gallery__item main-product__gallery__item--{% if remainder == 0 %}full{% else %}half{% endif %} relative">
+            <li class="main-product__gallery__item main-product__gallery__item--{% if remainder == 0 or media.preview_image.alt == 'full' %}full{% else %}half{% endif %} relative">
               <div class="w-full relative bg-midnight-black-100">
                 <figure class="w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center overflow-hidden">
                   <img class="w-full h-full relative block object-cover" srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w" src="{{ media | img_url: '1500x' }}" loading="lazy" width="576" height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}" alt="{{ media.preview_image.alt | escape }}">
@@ -255,7 +258,7 @@
                     </div>
                   </button>
 
-                  <input id="product-quantity" name="quantity" class="main-product__input--number w-8 h-full relative block bg-transparent text-center" form="{{ product_form_id }}" min="1" value="1" type="number"/>
+                  <input id="product-quantity" name="quantity" class="main-product__input--number w-8 h-full relative block bg-transparent text-center" form="{{ product_form_id }}" min="1" max="5" value="1" type="number"/>
 
                   <button class="main-product__quantity-adjust w-12 h-12 relative block select-none" id="product-quantity-up" name="plus" type="button">
                     <div class="w-full h-full relative flex items-center justify-center">

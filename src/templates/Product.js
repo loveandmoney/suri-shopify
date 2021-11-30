@@ -383,9 +383,28 @@ const Product = () => {
               return;
             }
 
-            console.log(`res: `, response);
-
             const { title, quantity } = response;
+
+            if (headerCartQuantity) {
+              fetch(`${routes.cart_url}`, {
+                ...fetchConfig()
+              }).then((response) => {
+                return response.text()
+              }).then(state => {
+                const parsedState = JSON.parse(state);
+                const itemCount = parseInt(parsedState?.item_count);
+
+                headerCartQuantity.innerHTML = itemCount === 0 ? `` : itemCount;
+                
+                if (headerCartQuantityContainer) {
+                  if (itemCount > 0) {
+                    headerCartQuantityContainer.classList.remove(`opacity-0`);
+                  } else {
+                    headerCartQuantityContainer.classList.add(`opacity-0`);
+                  }
+                }
+              });
+            }
 
             if (addWidget && addWidgetItem && addWidgetQuantity) {
               addWidgetItem.innerHTML = title;

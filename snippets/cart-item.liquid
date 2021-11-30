@@ -1,7 +1,10 @@
+<script>console.log({{ line_item | json }});</script>
+
 {%- liquid
   assign price = line_item.original_price | plus: 0.00
   assign compare_at_price = line_item.variant.compare_at_price | plus: 0.00
   assign discount = 0
+  assign formatted_title = line_item.title | downcase
 
   if price != compare_at_price
     assign relative_value = price | divided_by: compare_at_price
@@ -14,9 +17,13 @@
     <div class="w-full relative">
       <header class="relative flex justify-between">
         <h2 class="w-full pr-6 md:pr-12 b1">
-          <a href="{{ line_item.url }}" class="main-cart__item__url w-full relative block">
+          {% if formatted_title contains 'replacement' %}
             {{ line_item.title }}
-          </a>
+          {% else %}
+            <a href="{{ line_item.url }}" class="main-cart__item__url w-full relative block">
+              {{ line_item.title }}
+            </a>
+          {% endif %}
         </h2>
 
         <a class="main-cart__item__remove w-10 h-10 absolute top-0 right-0 z-10 flex items-start justify-end b1" href="/cart/change?line={{ line_index }}&quantity=0">
