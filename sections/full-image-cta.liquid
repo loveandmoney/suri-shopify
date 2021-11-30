@@ -88,17 +88,19 @@
 
       <p class="b1 mb-6">{{ section.settings.body }}</p>
 
-      <button class="button w-auto h-12 col-start-5 col-span-4 flex items-center justify-start px-6 py-4 bg-mono-100">
-        <span class="button w-3 h-3 bg-ux-lime mr-4"></span>
-        <span>{{ section.settings.buttonText }}</span>
-      </button>
+      <a href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case">
+        <button class="button w-auto h-12 col-start-5 col-span-4 flex items-center justify-start px-6 py-4 bg-mono-100">
+          <span class="button w-3 h-3 bg-ux-lime mr-4"></span>
+          <span>{{ section.settings.buttonText }}</span>
+        </button>
+      </a>
     </div>
   </article>
 {% endcapture %}
 
 <section class="full-image-cta w-full h-[90vh] sm:h-[56.5vh] md:h-screen relative block bg-mono-100 text-mono-white">
-  <img src="{{ section.settings.backgroundImage | image_url }}" class="w-full h-full hidden md:block absolute top-0 bottom-0 right-0 left-0 block object-cover"/>
-  <img src="{{ section.settings.backgroundImageMobile | image_url }}" class="w-full h-full block md:hidden absolute top-0 bottom-0 right-0 left-0 block object-cover"/>
+  <img src="{{ section.settings.backgroundImage | image_url }}" class="w-full h-full hidden md:block absolute top-0 bottom-0 right-0 left-0 object-cover"/>
+  <img src="{{ section.settings.backgroundImageMobile | image_url }}" class="w-full h-full block md:hidden absolute top-0 bottom-0 right-0 left-0 object-cover"/>
 
   {{ mobile_content }}
 
