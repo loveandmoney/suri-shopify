@@ -55,7 +55,7 @@
       </header>
     {% endif %}
 
-    <div class="backdrop-filter-blur absolute bottom-0 left-0 right-0 block px-4 py-8 sm:grid">
+    <div class="backdrop-filter-blur absolute bottom-0 left-0 right-0 block px-4 py-8">
       {% if section.settings.headingPosition == "bottom" %}
         <div class="col-start-1 col-span-3">
           <header class="mb-6">
@@ -69,7 +69,7 @@
       {% endif %}
 
       <a href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case">
-        <button type="button" class="button w-full h-12 col-start-5 col-span-4 flex items-center justify-start px-6 py-4 bg-mono-100">
+        <button class="button button--black w-full h-12 flex items-center justify-start px-6 py-4" type="button">
           <span class="button w-3 h-3 bg-ux-lime mr-4"></span>
           <span>{{ section.settings.buttonText }}</span>
         </button>
@@ -79,21 +79,24 @@
 {% endcapture %}
 
 {% capture desktop_content %}
-  <article class="w-full h-full relative hidden md:grid">
-    <div class="backdrop-filter-blur absolute top-0 bottom-0 left-0 w-1/2 h-full"></div>
-    <div class="col-start-2 col-span-4 w-full h-full flex flex-col items-start justify-center z-10">
-      <header class="mb-6">
-        <p class="h2">{{ section.settings.heading }}</p>
-      </header>
+  <article class="w-full h-full relative hidden md:flex items-center justify-center">
+    <div class="backdrop-filter-blur w-1/2 h-full absolute top-0 bottom-0 left-0"></div>
 
-      <p class="b1 mb-6">{{ section.settings.body }}</p>
+    <div class="grid">
+      <div class="col-span-4 col-start-2 h-full flex flex-col items-start justify-center z-10">
+        <header class="mb-6">
+          <p class="h2 whitespace-pre-wrap">{{ section.settings.heading }}</p>
+        </header>
 
-      <a href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case">
-        <button class="button w-auto h-12 col-start-5 col-span-4 flex items-center justify-start px-6 py-4 bg-mono-100">
-          <span class="button w-3 h-3 bg-ux-lime mr-4"></span>
-          <span>{{ section.settings.buttonText }}</span>
-        </button>
-      </a>
+        <p class="b1 mb-6">{{ section.settings.body }}</p>
+
+        <a href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case">
+          <button class="button button--black h-12 flex items-center justify-start px-6 py-4">
+            <span class="w-3 h-3 rounded-full bg-ux-lime mr-4"></span>
+            <span>{{ section.settings.buttonText }}</span>
+          </button>
+        </a>
+      </div>
     </div>
   </article>
 {% endcapture %}

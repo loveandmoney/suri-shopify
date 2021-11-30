@@ -1,10 +1,8 @@
 .button {
-  transition: 0.3s $ease-out-cubic background;
-
   border-radius: 100px;
 
   &--black {
-    transition: 0.15s $ease-out-cubic background, 0.15s $ease-out-cubic color;
+    transition: 0.3s $ease-out-cubic background, 0.3s $ease-out-cubic color;
 
     background: theme("colors.mono-100");
     color: theme("colors.mono-white");
@@ -23,7 +21,7 @@
   }
 
   &--green {
-    transition: 0.15s $ease-out-cubic background, 0.15s $ease-out-cubic color;
+    transition: 0.3s $ease-out-cubic background, 0.3s $ease-out-cubic color;
 
     background: theme("colors.ux-green");
     color: theme("colors.mono-white");
@@ -42,7 +40,7 @@
   }
 
   &--white {
-    transition: 0.15s $ease-out-cubic background, 0.15s $ease-out-cubic color;
+    transition: 0.3s $ease-out-cubic background, 0.3s $ease-out-cubic color;
 
     background: theme("colors.mono-white");
     color: theme("colors.ux-green");
