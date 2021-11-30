@@ -30,6 +30,7 @@ const Product = () => {
   const buyButtonText = buyButton.querySelector(`.button-text`);
   const expanders = document.querySelectorAll(`.main-product__expander`);
   const headerCartQuantity = document.getElementById(`cart-quantity`);
+  const headerCartQuantityContainer = document.getElementById(`cart-quantity-container`);
   const quantityInput = document.getElementById(`product-quantity`);
   const quantityUp = document.getElementById(`product-quantity-up`);
   const quantityDown = document.getElementById(`product-quantity-down`);
@@ -297,10 +298,12 @@ const Product = () => {
 
                 headerCartQuantity.innerHTML = itemCount === 0 ? `` : itemCount;
                 
-                if (itemCount > 0) {
-                  headerCartQuantity.classList.remove(`opacity-0`);
-                } else {
-                  headerCartQuantity.classList.add(`opacity-0`);
+                if (headerCartQuantityContainer) {
+                  if (itemCount > 0) {
+                    headerCartQuantityContainer.classList.remove(`opacity-0`);
+                  } else {
+                    headerCartQuantityContainer.classList.add(`opacity-0`);
+                  }
                 }
               });
             }
