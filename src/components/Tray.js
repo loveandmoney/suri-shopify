@@ -1,11 +1,7 @@
-import debounce from "../utils/debounce.js";
-
 const Tray = () => {
   if (typeof window === `undefined`) {
     return;
   }
-
-  console.log(`[component] Tray`);
 
   // ---------------------------------------------------------------------------
   // DOM
@@ -17,16 +13,15 @@ const Tray = () => {
   // ---------------------------------------------------------------------------
   // variables
 
-  let desktopTrayVisible = false;
   let mobileButtonVisible = false;
 
   // ---------------------------------------------------------------------------
   // methods
 
-  const handleScroll = (e) => {
+  const handleScroll = e => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    mobileButtonVisible = scrollTop > (window.innerHeight * 0.8);
+    mobileButtonVisible = scrollTop > window.innerHeight * 0.8;
 
     const isActive = mobileButton?.classList?.contains(`active`);
 
@@ -37,7 +32,7 @@ const Tray = () => {
     } else if (isActive) {
       mobileButton.classList.remove(`active`);
     }
-  }
+  };
 
   // ---------------------------------------------------------------------------
   // initialization
@@ -49,19 +44,19 @@ const Tray = () => {
 
     if (closeButton && desktopTray) {
       closeButton.addEventListener(`click`, e => {
-        desktopTrayVisible = false;
-
-        desktopTray.classList.remove(`active`);
+        if (desktopTray?.classList?.contains(`active`)) {
+          desktopTray.classList.remove(`active`);
+        }
       });
     }
-  }
+  };
 
   // ---------------------------------------------------------------------------
   // execution
 
   const main = () => {
     addListeners();
-  }
+  };
 
   main();
 };
