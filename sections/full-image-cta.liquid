@@ -89,9 +89,9 @@
 {% endcapture %}
 
 
-{% capture desktop_background %}
+{% capture desktop_parallax %}
   <figure
-    class="animation-appear-down-slow animation-delay-2 w-full h-full absolute top-0 bottom-0 right-0 left-0 hidden md:block"
+    class="w-full h-full relative"
     data-component="Parallax"
     data-maxtranslate="10vw"
   >
@@ -99,12 +99,22 @@
   </figure>
 {% endcapture %}
 
+{% capture desktop_background %}
+  <div class="animation-appear-down-slow animation-delay-2 w-full h-full absolute top-0 bottom-0 right-0 left-0 hidden md:block">
+    <div class="w-1/2 h-full absolute top-0 bottom-0 left-0 z-10 overflow-hidden">
+      <div class="w-[200%] h-full relative block blur-lg">
+        {{ desktop_parallax }}
+      </div>
+    </div>
+
+    {{ desktop_parallax }}
+  </div>
+{% endcapture %}
+
 {% capture desktop_content %}
   <article class="w-full h-full relative hidden md:flex items-center justify-center">
-    <div class="backdrop-filter-blur w-1/2 h-full absolute top-0 bottom-0 left-0"></div>
-
     <div class="grid">
-      <div class="col-span-4 col-start-2 h-full flex flex-col items-start justify-center z-10">
+      <div class="col-span-4 col-start-2 h-full flex flex-col items-start justify-center z-20">
         <header class="mb-6">
           <p class="h2 whitespace-pre-wrap">{{ section.settings.heading }}</p>
         </header>
@@ -122,7 +132,7 @@
   </article>
 {% endcapture %}
 
-<section class="full-image-cta w-full relative bg-mono-100 text-mono-white">
+<section class="full-image-cta w-full relative bg-brand-50 text-mono-white">
   {{ mobile_background }}
   {{ mobile_content }}
   
