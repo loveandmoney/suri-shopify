@@ -1,6 +1,10 @@
 .blur-banner {
+  height: 90vh;
+
   @include md {
+    height: 56.25vw;
     min-height: 768px;
+    max-height: 900px;
   }
 
   //
