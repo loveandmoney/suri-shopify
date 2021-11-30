@@ -85,4 +85,14 @@
     height: 200%;
     top: -100%;
   }
+
+  &__parallax {
+    img {
+      max-width: none;
+
+      // @include md {
+      //   margin-right: -3vw;
+      // }
+    }
+  }
 }
