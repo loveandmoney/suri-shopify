@@ -1,5 +1,7 @@
 .newsletter {
   &__form {
+    transition: 0.5s $ease-out-cubic opacity;
+
     &.complete {
       .newsletter__form__input {
         opacity: 0;
@@ -10,7 +12,18 @@
         opacity: 1;
         transform: translate3d(0, 0, 0);
       }
+
+      .newsletter__form__submit {
+        opacity: 0;
+      }
     }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    //
 
     &__input {
       transition: 0.5s $ease-out-cubic opacity, 0.5s $ease-out-cubic transform;
@@ -41,6 +54,10 @@
 
       opacity: 0;
       transform: translate3d(0, 1rem, 0);
+    }
+
+    &__submit {
+      transition: 0.5s $ease-out-cubic opacity;
     }
   }
 }

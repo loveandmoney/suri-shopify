@@ -9,6 +9,7 @@ const Newsletter = () => {
   // DOM
 
   const form = document.getElementById(`klaviyo-form`);
+  const formEmail = document.getElementById(`newsletter-email`);
   
   // ---------------------------------------------------------------------------
   // variables
@@ -20,7 +21,24 @@ const Newsletter = () => {
   // ---------------------------------------------------------------------------
   // methods
 
-  //
+  const disableForm = () => {
+    if (!form) {
+      return;
+    }
+
+    form.classList.add(`disabled`);
+    formEmail.disabled = true;
+    formEmail.setAttribute(`aria-disabled`, true);
+  }
+
+  const completeForm = () => {
+    if (!form) {
+      return;
+    }
+
+    form.classList.remove(`disabled`);
+    form.classList.add(`complete`);
+  }
 
   // ---------------------------------------------------------------------------
   // initialization
@@ -32,6 +50,19 @@ const Newsletter = () => {
 
         const url = form.getAttribute(`action`);
         const body = new FormData(form);
+
+        disableForm();
+
+        const clientUrl = window?.location?.href;
+
+        if (clientUrl?.includes(`localhost`) || clientUrl?.includes(`127.0.0.1`)) {
+          // test mode
+          setTimeout(() => {
+            completeForm();
+          }, 1000);
+
+          return;
+        }
 
         fetch(url, {
           headers: {
