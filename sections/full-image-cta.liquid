@@ -59,7 +59,7 @@
 {% endcapture %}
 
 {% capture mobile_background %}
-  <div class="animation-appear-down-slow animation-delay-2 w-full h-full absolute top-0 bottom-0 right-0 left-0">
+  <div class="full-image-cta__background w-full h-full absolute top-0 bottom-0 right-0 left-0">
     <div class="w-full h-1/2 absolute bottom-0 right-0 left-0 z-10 overflow-hidden">
       <div class="full-image-cta__mobile-blur w-full relative block blur-md">
         {{ mobile_parallax }}
@@ -71,10 +71,10 @@
 {% endcapture %}
 
 {% capture mobile_content %}
-  <article class="w-full h-full relative flex flex-col md:hidden justify-between">
+  <article class="full-image-cta__container w-full h-full relative flex flex-col md:hidden justify-between">
     {{ mobile_background }}
 
-    <div class="w-full h-1/2 absolute bottom-0 left-0 right-0 block px-4 py-8">
+    <div class="full-image-cta__text w-full h-1/2 absolute bottom-0 left-0 right-0 block px-4 py-8">
       <div class="col-start-1 col-span-3">
         <header class="mb-6">
           <p class="h2">{{ section.settings.heading }}</p>
@@ -104,7 +104,7 @@
 {% endcapture %}
 
 {% capture desktop_background %}
-  <div class="animation-appear-down-slow animation-delay-2 w-full h-full absolute top-0 bottom-0 right-0 left-0">
+  <div class="full-image-cta__background w-full h-full absolute top-0 bottom-0 right-0 left-0">
     <div class="w-1/2 h-full absolute top-0 bottom-0 left-0 z-10 overflow-hidden">
       <div class="w-[200%] h-full relative block blur-lg">
         {{ desktop_parallax }}
@@ -116,11 +116,11 @@
 {% endcapture %}
 
 {% capture desktop_content %}
-  <article class="w-full h-full relative hidden md:flex items-center justify-center">
+  <article class="full-image-cta__container w-full h-full relative hidden md:flex items-center justify-center">
     {{ desktop_background }}
 
     <div class="grid">
-      <div class="col-span-4 col-start-2 h-full flex flex-col items-start justify-center z-20">
+      <div class="full-image-cta__text col-span-4 col-start-2 h-full flex flex-col items-start justify-center z-20">
         <header class="mb-6">
           <p class="h2 whitespace-pre-wrap">{{ section.settings.heading }}</p>
         </header>

@@ -102,6 +102,33 @@ $fast-transition: $fast-transition-speed $ease-out-cubic;
 
 //
 
+@keyframes appear-more {
+  from {
+    transform: translate3d(0, 60px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.animation-appear-more {
+  animation: $default-transition appear-more forwards;
+
+  transform: translate3d(0, 60px, 0);
+  opacity: 0;
+
+  &-slow {
+    animation: $slow-transition appear-more forwards;
+
+    transform: translate3d(0, 60px, 0);
+    opacity: 0;
+  }
+}
+
+//
+
 @keyframes appear-down {
   from {
     transform: translate3d(0, -14px, 0);
