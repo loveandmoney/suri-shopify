@@ -5,4 +5,11 @@
   @include md {
     min-height: 768px;
   }
+
+  //
+
+  &__mobile-blur {
+    height: 200%;
+    top: -100%;
+  }
 }

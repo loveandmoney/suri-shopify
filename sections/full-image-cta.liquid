@@ -47,9 +47,10 @@
 
 {% endschema %}
 
-{% capture mobile_background %}
+
+{% capture mobile_parallax %}
   <figure
-    class="animation-appear-down-slow animation-delay-2 w-full h-full absolute top-0 bottom-0 right-0 left-0 block md:hidden"
+    class="w-full h-full relative block"
     data-component="Parallax"
     data-maxtranslate="40vw"
   >
@@ -57,26 +58,30 @@
   </figure>
 {% endcapture %}
 
+{% capture mobile_background %}
+  <div class="animation-appear-down-slow animation-delay-2 w-full h-full absolute top-0 bottom-0 right-0 left-0">
+    <div class="w-full h-1/2 absolute bottom-0 right-0 left-0 z-10 overflow-hidden">
+      <div class="full-image-cta__mobile-blur w-full relative block blur-md">
+        {{ mobile_parallax }}
+      </div>
+    </div>
+
+    {{ mobile_parallax }}
+  </div>
+{% endcapture %}
+
 {% capture mobile_content %}
-  <article class="w-full h-full relative flex flex-col md:hidden justify-between p-4">
-    {% if section.settings.headingPosition == "top" %}
-      <header class="">
-        <p class="h2">{{ section.settings.heading }}</p>
-      </header>
-    {% endif %}
+  <article class="w-full h-full relative flex flex-col md:hidden justify-between">
+    {{ mobile_background }}
 
-    <div class="backdrop-filter-blur absolute bottom-0 left-0 right-0 block px-4 py-8">
-      {% if section.settings.headingPosition == "bottom" %}
-        <div class="col-start-1 col-span-3">
-          <header class="mb-6">
-            <p class="h2">{{ section.settings.heading }}</p>
-          </header>
+    <div class="w-full h-1/2 absolute bottom-0 left-0 right-0 block px-4 py-8">
+      <div class="col-start-1 col-span-3">
+        <header class="mb-6">
+          <p class="h2">{{ section.settings.heading }}</p>
+        </header>
 
-          <p class="b1 mb-6">{{ section.settings.body }}</p>
-        </div>
-      {% else %}
-        <p class="col-start-1 col-span-3 b1 mb-6 sm:mb-0">{{ section.settings.body }}</p>
-      {% endif %}
+        <p class="b1 mb-6">{{ section.settings.body }}</p>
+      </div>
 
       <a href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case">
         <button class="button button--black w-full h-12 flex items-center justify-start px-6 py-4" type="button">
@@ -87,7 +92,6 @@
     </div>
   </article>
 {% endcapture %}
-
 
 {% capture desktop_parallax %}
   <figure
@@ -100,7 +104,7 @@
 {% endcapture %}
 
 {% capture desktop_background %}
-  <div class="animation-appear-down-slow animation-delay-2 w-full h-full absolute top-0 bottom-0 right-0 left-0 hidden md:block">
+  <div class="animation-appear-down-slow animation-delay-2 w-full h-full absolute top-0 bottom-0 right-0 left-0">
     <div class="w-1/2 h-full absolute top-0 bottom-0 left-0 z-10 overflow-hidden">
       <div class="w-[200%] h-full relative block blur-lg">
         {{ desktop_parallax }}
@@ -113,6 +117,8 @@
 
 {% capture desktop_content %}
   <article class="w-full h-full relative hidden md:flex items-center justify-center">
+    {{ desktop_background }}
+
     <div class="grid">
       <div class="col-span-4 col-start-2 h-full flex flex-col items-start justify-center z-20">
         <header class="mb-6">
@@ -133,9 +139,7 @@
 {% endcapture %}
 
 <section class="full-image-cta w-full relative bg-brand-50 text-mono-white">
-  {{ mobile_background }}
   {{ mobile_content }}
   
-  {{ desktop_background }}
   {{ desktop_content }}
 </section>
