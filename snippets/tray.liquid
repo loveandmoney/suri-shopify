@@ -37,9 +37,11 @@
       </div>
 
       <div class="col-span-3 relative">
-        <button class="button button--green w-full h-12 flex items-center justify-center py-4" type="button">
-          <span>Pre-order Now</span>
-        </button>
+        <a href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case" class="w-full relative block">
+          <button class="button button--green w-full h-12 flex items-center justify-center py-4" type="button">
+            <span>Pre-order Now</span>
+          </button>
+        </a>
       </div>
     </article>
 
@@ -55,7 +57,7 @@
   </section>
 {% endcapture %}
 
-<nav class="w-full fixed bottom-0 right-0 left-0 z-10 pointer-events-none" data-component="Tray">
+<nav class="animation-appear-slow animation-delay-5 w-full fixed bottom-0 right-0 left-0 z-10 pointer-events-none" data-component="Tray">
   {{ mobile_content }}
 
   {{ desktop_content }}
