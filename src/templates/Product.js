@@ -1,4 +1,4 @@
-import { fetchConfig } from "../utils/helpers";
+import { fetchConfig } from '../utils/helpers';
 
 const Product = () => {
   if (typeof window === `undefined`) {
@@ -7,12 +7,16 @@ const Product = () => {
 
   // ---------------------------------------------------------------------------
   // DOM
-  
-  const allVariantData = JSON.parse(document.getElementById(`variant-data`).textContent);
+
+  const allVariantData = JSON.parse(
+    document.getElementById(`variant-data`).textContent
+  );
   const activeVariantInput = document.getElementById(`buy-button-identifier`);
-  const addOnData = JSON.parse(document.getElementById(`add-on-data`).textContent);
+  const addOnData = JSON.parse(
+    document.getElementById(`add-on-data`).textContent
+  );
   const activeAddOnInput = document.getElementById(`add-on-button-identifier`);
-  
+
   let activeVariant = allVariantData?.[0];
   let activeAddOn = addOnData?.variants?.[0];
 
@@ -30,7 +34,9 @@ const Product = () => {
   const buyButtonText = buyButton.querySelector(`.button-text`);
   const expanders = document.querySelectorAll(`.main-product__expander`);
   const headerCartQuantity = document.getElementById(`cart-quantity`);
-  const headerCartQuantityContainer = document.getElementById(`cart-quantity-container`);
+  const headerCartQuantityContainer = document.getElementById(
+    `cart-quantity-container`
+  );
   const quantityInput = document.getElementById(`product-quantity`);
   const quantityUp = document.getElementById(`product-quantity-up`);
   const quantityDown = document.getElementById(`product-quantity-down`);
@@ -43,7 +49,7 @@ const Product = () => {
 
   const displayedVariantText = {};
   const selectedOptions = [];
-  
+
   let activeExpander = null;
   let widgetShowTimeout;
   let widgetHideTimeout;
@@ -52,19 +58,19 @@ const Product = () => {
   // ---------------------------------------------------------------------------
   // methods
 
-  const collapseAllExpanders  = () => {
+  const collapseAllExpanders = () => {
     expanders.forEach((expander, expanderIndex) => {
       expander.classList.remove(`expanded`);
     });
-  }
+  };
 
-  const deSelectVariantPickersByName  = name => {
+  const deSelectVariantPickersByName = name => {
     variantPickers.forEach((picker, pickerIndex) => {
       if (picker?.name === name) {
         picker.parentNode.classList.remove(`active`);
       }
     });
-  }
+  };
 
   const expandItem = (node, index) => {
     collapseAllExpanders();
@@ -76,9 +82,9 @@ const Product = () => {
       activeExpander = index;
       node.classList.add(`expanded`);
     }
-  }
+  };
 
-  const refreshQuantityStatus = (quantity) => {
+  const refreshQuantityStatus = quantity => {
     if (quantity === 1) {
       quantityDown.classList.add(`opacity-25`);
       quantityDown.classList.add(`pointer-events-none`);
@@ -86,7 +92,7 @@ const Product = () => {
       quantityDown.classList.remove(`opacity-25`);
       quantityDown.classList.remove(`pointer-events-none`);
     }
-  }
+  };
 
   const setQuantity = quantity => {
     if (!quantityInput || quantity < 1) {
@@ -96,7 +102,7 @@ const Product = () => {
     refreshQuantityStatus(quantity);
 
     quantityInput.value = quantity;
-  }
+  };
 
   const matchOptionsToVariant = () => {
     if (!activeVariantInput) {
@@ -143,7 +149,10 @@ const Product = () => {
         return;
       }
 
-      if (matchedVariant?.options?.[0]?.toLowerCase().trim() === addOnVariant?.options?.[0]?.toLowerCase().trim()) {
+      if (
+        matchedVariant?.options?.[0]?.toLowerCase().trim() ===
+        addOnVariant?.options?.[0]?.toLowerCase().trim()
+      ) {
         matchedAddOn = addOnVariant;
       }
     });
@@ -157,7 +166,7 @@ const Product = () => {
       addOnButton.classList.add(`button--disabled`);
       addOnButtonText.innerHTML = `Sold Out`;
     }
-   
+
     if (matchedVariant?.featured_image?.src) {
       if (variantImage) {
         variantImage.src = matchedVariant.featured_image.src;
@@ -165,7 +174,7 @@ const Product = () => {
       if (variantImageXS) {
         variantImageXS.src = matchedVariant.featured_image.src;
       }
-      
+
       if (addOnImage) {
         addOnImage.src = matchedVariant.featured_image.src;
       }
@@ -178,7 +187,7 @@ const Product = () => {
     activeVariantInput.value = matchedVariant.id;
     activeAddOn = matchedAddOn;
     activeAddOnInput.value = matchedAddOn.id;
-  }
+  };
 
   const resetWidgetTimeouts = () => {
     addWidget.classList.remove(`active`);
@@ -186,15 +195,15 @@ const Product = () => {
     if (widgetShowTimeout) {
       clearTimeout(widgetShowTimeout);
     }
-    
+
     if (widgetHideTimeout) {
       clearTimeout(widgetHideTimeout);
     }
-    
+
     if (widgetResetTimeout) {
       clearTimeout(widgetResetTimeout);
     }
-  }
+  };
 
   const selectOption = ({ name, value }) => {
     let changeIndex = null;
@@ -215,7 +224,7 @@ const Product = () => {
 
       matchOptionsToVariant();
     }
-  }
+  };
 
   // ---------------------------------------------------------------------------
   // initialization
@@ -224,7 +233,9 @@ const Product = () => {
     variantPickers.forEach((picker, pickerIndex) => {
       const { checked, name, value } = picker;
 
-      const displayedValue = document.getElementById(`variant-value-${name?.toLowerCase()?.replaceAll(` `, `-`)}`);
+      const displayedValue = document.getElementById(
+        `variant-value-${name?.toLowerCase()?.replaceAll(` `, `-`)}`
+      );
 
       if (displayedValue) {
         displayedVariantText[name] = displayedValue;
@@ -252,7 +263,7 @@ const Product = () => {
         addOnImage.src = activeVariant.featured_image.src;
       }
     }
-  }
+  };
 
   const addListeners = () => {
     if (addToCartForm) {
@@ -278,8 +289,8 @@ const Product = () => {
         config.body = formData;
 
         fetch(`${routes.cart_add_url}`, config)
-          .then((response) => response.json())
-          .then((response) => {
+          .then(response => response.json())
+          .then(response => {
             if (response.status) {
               console.log(`error: `, response.description);
               return;
@@ -290,22 +301,25 @@ const Product = () => {
             if (headerCartQuantity) {
               fetch(`${routes.cart_url}`, {
                 ...fetchConfig()
-              }).then((response) => {
-                return response.text()
-              }).then(state => {
-                const parsedState = JSON.parse(state);
-                const itemCount = parseInt(parsedState?.item_count);
+              })
+                .then(response => {
+                  return response.text();
+                })
+                .then(state => {
+                  const parsedState = JSON.parse(state);
+                  const itemCount = parseInt(parsedState?.item_count);
 
-                headerCartQuantity.innerHTML = itemCount === 0 ? `` : itemCount;
-                
-                if (headerCartQuantityContainer) {
-                  if (itemCount > 0) {
-                    headerCartQuantityContainer.classList.remove(`opacity-0`);
-                  } else {
-                    headerCartQuantityContainer.classList.add(`opacity-0`);
+                  headerCartQuantity.innerHTML =
+                    itemCount === 0 ? `` : itemCount;
+
+                  if (headerCartQuantityContainer) {
+                    if (itemCount > 0) {
+                      headerCartQuantityContainer.classList.remove(`opacity-0`);
+                    } else {
+                      headerCartQuantityContainer.classList.add(`opacity-0`);
+                    }
                   }
-                }
-              });
+                });
             }
 
             if (addWidget && addWidgetItem && addWidgetQuantity) {
@@ -326,14 +340,14 @@ const Product = () => {
               }, 4500);
             }
           })
-          .catch((e) => {
+          .catch(e => {
             console.error(e);
           })
           .finally(() => {
             buyButton.classList.remove(`button--disabled`);
             buyButton.setAttribute(`aria-disabled`, false);
           });
-        
+
         return true;
       });
     }
@@ -362,8 +376,8 @@ const Product = () => {
         config.body = formData;
 
         fetch(`${routes.cart_add_url}`, config)
-          .then((response) => response.json())
-          .then((response) => {
+          .then(response => response.json())
+          .then(response => {
             if (response.status) {
               console.log(`error: `, response.description);
               return;
@@ -410,14 +424,14 @@ const Product = () => {
               }, 4500);
             }
           })
-          .catch((e) => {
+          .catch(e => {
             console.error(e);
           })
           .finally(() => {
             addOnButton.classList.remove(`button--disabled`);
             addOnButton.setAttribute(`aria-disabled`, false);
           });
-        
+
         return true;
       });
     }
@@ -466,16 +480,16 @@ const Product = () => {
         refreshQuantityStatus(parseInt(newQuantity));
       });
     }
-    
+
     if (variantPickers?.[0]) {
-      variantPickers.forEach((picker) => {
+      variantPickers.forEach(picker => {
         picker.addEventListener(`change`, e => {
           const { name, value } = picker;
 
           deSelectVariantPickersByName(name);
 
           picker.parentNode.classList.add(`active`);
-          
+
           if (displayedVariantText?.[name]) {
             displayedVariantText[name].innerHTML = value;
           }
@@ -484,7 +498,7 @@ const Product = () => {
         });
       });
     }
-  }
+  };
 
   // ---------------------------------------------------------------------------
   // execution
@@ -492,7 +506,7 @@ const Product = () => {
   const main = () => {
     parseData();
     addListeners();
-  }
+  };
 
   main();
 };

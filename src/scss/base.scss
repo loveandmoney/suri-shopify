@@ -3,7 +3,7 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   font-size: 16px;
-  background: theme("colors.brand-75");
+  background: theme('colors.brand-75');
 }
 
 body {
@@ -43,25 +43,25 @@ textarea:focus {
   outline: none;
 }
 
-input:not[type="checkbox"] {
+input:not[type='checkbox'] {
   appearance: none;
 }
 
 input {
   &::-webkit-input-placeholder {
-    color: "black" !important;
+    color: 'black' !important;
   }
 
   &::-moz-placeholder {
-    color: "black" !important;
+    color: 'black' !important;
   }
 
   &:-ms-input-placeholder {
-    color: "black" !important;
+    color: 'black' !important;
   }
 
   &:-moz-placeholder {
-    color: "black" !important;
+    color: 'black' !important;
   }
 }
 
@@ -86,4 +86,8 @@ textarea {
   border: 0;
   clip: rect(0 0 0 0);
   word-wrap: normal !important;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
 }

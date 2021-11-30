@@ -70,15 +70,14 @@ module.exports = {
   },
 
   optimization: {
-    minimizer: [
-      new TerserJSPlugin({}),
-      new CssMinimizerPlugin()
-    ]
+    minimizer: [new TerserJSPlugin({}), new CssMinimizerPlugin()]
   },
 
   plugins: [
     new MiniCssExtractPlugin({
       filename: `style.min.css`
     })
-  ]
+  ],
+
+  devtool: 'source-map'
 };

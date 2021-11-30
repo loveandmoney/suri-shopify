@@ -18,10 +18,10 @@ const Tray = () => {
   // ---------------------------------------------------------------------------
   // methods
 
-  const handleScroll = (e) => {
+  const handleScroll = e => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    mobileButtonVisible = scrollTop > (window.innerHeight * 0.8);
+    mobileButtonVisible = scrollTop > window.innerHeight * 0.8;
 
     const isActive = mobileButton?.classList?.contains(`active`);
 
@@ -32,7 +32,7 @@ const Tray = () => {
     } else if (isActive) {
       mobileButton.classList.remove(`active`);
     }
-  }
+  };
 
   // ---------------------------------------------------------------------------
   // initialization
@@ -49,14 +49,14 @@ const Tray = () => {
         }
       });
     }
-  }
+  };
 
   // ---------------------------------------------------------------------------
   // execution
 
   const main = () => {
     addListeners();
-  }
+  };
 
   main();
 };
