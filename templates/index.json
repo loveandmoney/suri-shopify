@@ -34,14 +34,14 @@
     "gallery2": {
       "type": "gallery",
       "settings": {
-        "image1": "shopify:\/\/shop_images\/home-desktop-carousel-01.jpg",
-        "image2": "shopify:\/\/shop_images\/home-desktop-carousel-02.jpg",
-        "image3": "shopify:\/\/shop_images\/home-desktop-carousel-03.jpg",
-        "image4": "shopify:\/\/shop_images\/home-desktop-carousel-04.jpg",
-        "image1XS": "shopify:\/\/shop_images\/home-mobile-carousel-01.jpg",
-        "image2XS": "shopify:\/\/shop_images\/home-mobile-carousel-02.jpg",
-        "image3XS": "shopify:\/\/shop_images\/home-mobile-carousel-03.jpg",
-        "image4XS": "shopify:\/\/shop_images\/home-mobile-carousel-04.jpg"
+        "image1": "shopify:\/\/shop_images\/home-desktop-carousel-05.jpg",
+        "image2": "shopify:\/\/shop_images\/home-desktop-carousel-06_59ffcad4-1e9a-476a-95e9-d24b8768913a.jpg",
+        "image3": "shopify:\/\/shop_images\/home-desktop-carousel-07_6d525134-e064-452a-8192-583a8148b5de.jpg",
+        "image4": "shopify:\/\/shop_images\/home-desktop-carousel-08.jpg",
+        "image1XS": "shopify:\/\/shop_images\/home-mobile-carousel-05.jpg",
+        "image2XS": "shopify:\/\/shop_images\/home-mobile-carousel-06.jpg",
+        "image3XS": "shopify:\/\/shop_images\/home-mobile-carousel-07.jpg",
+        "image4XS": "shopify:\/\/shop_images\/home-mobile-carousel-08.jpg"
       }
     },
     "newsletter": {
