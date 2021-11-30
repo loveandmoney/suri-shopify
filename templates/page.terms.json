@@ -1,72 +1,16 @@
 {
   "sections": {
-    "parallax-blur-banner": {
-      "type": "parallax-blur-banner",
+    "policy": {
+      "type": "policy",
       "settings": {
-        "heading": "A world class clean that doesn’t cost our planet.",
-        "headingPosition": "bottom",
-        "body": "We are only making limited stocks for pre-launch. Don't miss out.",
-        "buttonText": "Pre-order Now & Save 40%",
-        "backgroundImage": "shopify:\/\/shop_images\/home-desktop-atf.jpg",
-        "backgroundImageMobile": "shopify:\/\/shop_images\/home-mobile-atf.jpg"
-      }
-    },
-    "simple-text": {
-      "type": "simple-text",
-      "settings": {
-        "heading": "Every toothbrush you’ve ever owned still exists.",
-        "body": "<p>Humans dispose of over 4 billion toothbrushes a year; enough to circle the earth 12 times.<\/p><p>Which is why we need to take toothbrush design back to first principles. If we can do our best to make each component resuable, repairable, or truly recyclable, we can do more with less. <\/p>"
-      }
-    },
-    "gallery1": {
-      "type": "gallery",
-      "settings": {
-        "image1": "shopify:\/\/shop_images\/home-desktop-carousel-01.jpg",
-        "image2": "shopify:\/\/shop_images\/home-desktop-carousel-02.jpg",
-        "image3": "shopify:\/\/shop_images\/home-desktop-carousel-03.jpg",
-        "image4": "shopify:\/\/shop_images\/home-desktop-carousel-04.jpg",
-        "image1XS": "shopify:\/\/shop_images\/home-mobile-carousel-01.jpg",
-        "image2XS": "shopify:\/\/shop_images\/home-mobile-carousel-02.jpg",
-        "image3XS": "shopify:\/\/shop_images\/home-mobile-carousel-03.jpg",
-        "image4XS": "shopify:\/\/shop_images\/home-mobile-carousel-04.jpg"
-      }
-    },
-    "gallery2": {
-      "type": "gallery",
-      "settings": {
-        "image1": "shopify:\/\/shop_images\/home-desktop-carousel-05.jpg",
-        "image2": "shopify:\/\/shop_images\/home-desktop-carousel-06_59ffcad4-1e9a-476a-95e9-d24b8768913a.jpg",
-        "image3": "shopify:\/\/shop_images\/home-desktop-carousel-07_6d525134-e064-452a-8192-583a8148b5de.jpg",
-        "image4": "shopify:\/\/shop_images\/home-desktop-carousel-08.jpg",
-        "image1XS": "shopify:\/\/shop_images\/home-mobile-carousel-05.jpg",
-        "image2XS": "shopify:\/\/shop_images\/home-mobile-carousel-06.jpg",
-        "image3XS": "shopify:\/\/shop_images\/home-mobile-carousel-07.jpg",
-        "image4XS": "shopify:\/\/shop_images\/home-mobile-carousel-08.jpg"
-      }
-    },
-    "blur-banner": {
-      "type": "blur-banner",
-      "settings": {
-        "heading": "Now taking pre-orders.",
-        "headingPosition": "bottom",
-        "body": "Get 40% off on our limited stock pre-launch.",
-        "buttonText": "Pre-order Now",
-        "backgroundImage": "shopify:\/\/shop_images\/home-desktop-full-image-cta_1.jpg",
-        "backgroundImageMobile": "shopify:\/\/shop_images\/home-desktop-full-image-cta.jpg"
-      }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
+        "label1": "Privacy Policy",
+        "label2": "Terms of Service",
+        "label3": "Cookie Policy",
+        "label4": "Acceptable Use Policy"
       }
     }
   },
   "order": [
-    "parallax-blur-banner",
-    "simple-text",
-    "gallery1",
-    "gallery2",
-    "blur-banner",
-    "newsletter"
+    "policy"
   ]
 }

@@ -1,0 +1,58 @@
+{% schema %}
+
+{
+  "name": "Policy",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "string",
+      "id": "label1",
+      "label": "Label 1"
+    },
+    {
+      "type": "string",
+      "id": "label2",
+      "label": "Label 2"
+    },
+    {
+      "type": "string",
+      "id": "label3",
+      "label": "Label 3"
+    },
+    {
+      "type": "string",
+      "id": "label4",
+      "label": "Label 4"
+    }
+  ]
+}
+
+{% endschema %}
+
+<div class="policy w-full relative pt-32 md:pb-12 bg-mono-50">
+  <section class="grid">
+    <nav class="col-span-4 col-start-2">
+      <ul class="w-full relative block border">
+        <li>
+          <p class="b1">{{ section.settings.label1 }}</p>
+        </li>
+
+        <li>
+          <p class="b1">{{ section.settings.label2 }}</p>
+        </li>
+
+        <li>
+          <p class="b1">{{ section.settings.label3 }}</p>
+        </li>
+
+        <li>
+          <p class="b1">{{ section.settings.label4 }}</p>
+        </li>
+      </ul>
+    </nav>
+
+    <article class="col-span-5 relative">
+      <p class="b1">Right</p>
+    </article>
+  </section>
+</div>
