@@ -74,14 +74,12 @@
   <article class="parallax-blur-banner__container w-full h-full relative flex flex-col md:hidden justify-between">
     {{ mobile_background }}
 
-    <div class="parallax-blur-banner__text w-full h-1/2 absolute bottom-0 left-0 right-0 block px-4 py-8">
-      <div class="col-start-1 col-span-3">
-        <header class="mb-6">
-          <p class="h2">{{ section.settings.heading }}</p>
-        </header>
+    <div class="parallax-blur-banner__text w-full h-1/2 absolute bottom-0 left-0 right-0 z-10 block px-4 py-8">
+      <header class="mb-6">
+        <p class="h2">{{ section.settings.heading }}</p>
+      </header>
 
-        <p class="b1 mb-6">{{ section.settings.body }}</p>
-      </div>
+      <p class="b1 mb-6">{{ section.settings.body }}</p>
 
       <a href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case">
         <button class="button button--black w-full h-12 flex items-center justify-start px-6 py-4" type="button">
@@ -120,7 +118,7 @@
     {{ desktop_background }}
 
     <div class="grid">
-      <div class="parallax-blur-banner__text col-span-4 col-start-2 h-full flex flex-col items-start justify-center z-20">
+      <div class="parallax-blur-banner__text col-span-4 col-start-2 h-full relative z-10 flex flex-col items-start justify-center">
         <header class="mb-6">
           <p class="h2 whitespace-pre-wrap">{{ section.settings.heading }}</p>
         </header>
@@ -140,6 +138,5 @@
 
 <section class="parallax-blur-banner w-full relative bg-brand-50 text-mono-white">
   {{ mobile_content }}
-  
   {{ desktop_content }}
 </section>
