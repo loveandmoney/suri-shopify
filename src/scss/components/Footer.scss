@@ -1,4 +1,14 @@
 .footer {
+  &__link {
+    @include hoverable {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  //
+
   svg {
     height: 26px;
 

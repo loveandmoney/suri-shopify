@@ -46,8 +46,14 @@
         {%- case block.type -%}
           {%- when 'link_list' -%}
             {%- for link in block.settings.menu.links -%}
+              {%- liquid
+                assign stringToCheck = link.url
+                assign startsWith = '/'
+                assign checkArray = stringToCheck | split: startsWith 
+              -%}
+
               <div class="col-span-12 md:col-span-2 inline-block mt-2 md:-mt-1 text-center md:text-left">
-                <a href="{{ link.url }}" rel="noopener noreferrer" target="_blank" class="block py-2 md:py-0">
+                <a href="{{ link.url }}" {% unless checkArray[0] == blank %}rel="noopener noreferrer" target="_blank"{% endunless %} class="footer__link block py-2 md:py-0">
                   <p class="b2">{{ link.title }}</p>
                 </a>
               </div>
