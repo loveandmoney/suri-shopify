@@ -31,11 +31,17 @@ const Newsletter = () => {
         e.preventDefault();
 
         const url = form.getAttribute(`action`);
-        const config = fetchConfig(`javascript`);
+        const body = new FormData(form);
 
-        config.body = new FormData(form);
-
-        fetch(url, config).then((response) => {
+        fetch(url, {
+          headers: { 
+            "Content-Type": `application/json`,
+            Accept: `application/${type}`
+          },
+          method: `POST`,
+          body,
+          mode: `no-cors`
+        }).then((response) => {
           console.log(response);
         })
         .catch((e) => {
