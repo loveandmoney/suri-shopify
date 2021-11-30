@@ -47,6 +47,16 @@
 
 {% endschema %}
 
+{% capture mobile_background %}
+  <figure
+    class="animation-appear-down-slow animation-delay-2 w-full h-full absolute top-0 bottom-0 right-0 left-0 block md:hidden"
+    data-component="Parallax"
+    data-maxtranslate="40vw"
+  >
+    <img src="{{ section.settings.backgroundImageMobile | image_url }}" class="w-full h-full relative block object-cover" loading="lazy"/>
+  </figure>
+{% endcapture %}
+
 {% capture mobile_content %}
   <article class="w-full h-full relative flex flex-col md:hidden justify-between p-4">
     {% if section.settings.headingPosition == "top" %}
@@ -78,6 +88,17 @@
   </article>
 {% endcapture %}
 
+
+{% capture desktop_background %}
+  <figure
+    class="animation-appear-down-slow animation-delay-2 w-full h-full absolute top-0 bottom-0 right-0 left-0 hidden md:block"
+    data-component="Parallax"
+    data-maxtranslate="10vw"
+  >
+    <img src="{{ section.settings.backgroundImage | image_url }}" class="w-full h-full relative block object-cover" loading="lazy"/>
+  </figure>
+{% endcapture %}
+
 {% capture desktop_content %}
   <article class="w-full h-full relative hidden md:flex items-center justify-center">
     <div class="backdrop-filter-blur w-1/2 h-full absolute top-0 bottom-0 left-0"></div>
@@ -101,11 +122,10 @@
   </article>
 {% endcapture %}
 
-<section class="full-image-cta w-full h-[90vh] sm:h-[56.5vh] md:h-screen relative block bg-mono-100 text-mono-white">
-  <img src="{{ section.settings.backgroundImage | image_url }}" class="w-full h-full hidden md:block absolute top-0 bottom-0 right-0 left-0 object-cover"/>
-  <img src="{{ section.settings.backgroundImageMobile | image_url }}" class="w-full h-full block md:hidden absolute top-0 bottom-0 right-0 left-0 object-cover"/>
-
+<section class="full-image-cta w-full relative bg-mono-100 text-mono-white">
+  {{ mobile_background }}
   {{ mobile_content }}
-
+  
+  {{ desktop_background }}
   {{ desktop_content }}
 </section>

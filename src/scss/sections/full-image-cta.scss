@@ -1,4 +1,11 @@
 .full-image-cta {
+  height: calc(100vh - 3rem);
+  margin-top: 3rem;
+
+  @include md {
+    min-height: 768px;
+  }
+
   /* slightly transparent fallback */
   .backdrop-filter-blur {
     background-color: rgba(255, 255, 255, 0.3);
