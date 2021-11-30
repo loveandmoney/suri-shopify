@@ -10,9 +10,19 @@
       "label": "Label 1"
     },
     {
+      "type": "richtext",
+      "id": "content1",
+      "label": "Content 1"
+    },
+    {
       "type": "text",
       "id": "label2",
       "label": "Label 2"
+    },
+    {
+      "type": "richtext",
+      "id": "content2",
+      "label": "Content 2"
     },
     {
       "type": "text",
@@ -20,10 +30,20 @@
       "label": "Label 3"
     },
     {
+      "type": "richtext",
+      "id": "content3",
+      "label": "Content 3"
+    },
+    {
       "type": "text",
       "id": "label4",
       "label": "Label 4"
-    }
+    },
+    {
+      "type": "richtext",
+      "id": "content4",
+      "label": "Content 4"
+    },
   ]
 }
 
@@ -31,8 +51,8 @@
 
 <div class="policy w-full relative pt-32 md:pb-12 bg-mono-50">
   <section class="grid">
-    <nav class="col-span-4 col-start-2">
-      <ul class="w-full relative block border">
+    <nav class="col-span-12 md:col-span-4 md:col-start-3 md:h-screen md:sticky md:top-24 md:left-0">
+      <ul class="w-full relative block">
         <li>
           <p class="b1">{{ section.settings.label1 }}</p>
         </li>
@@ -51,7 +71,7 @@
       </ul>
     </nav>
 
-    <article class="col-span-5 relative">
+    <article class="col-span-5 relative min-h-screen">
       <p class="b1">Right</p>
     </article>
   </section>
