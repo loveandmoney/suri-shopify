@@ -73,7 +73,8 @@ const Newsletter = () => {
           body,
           mode: `no-cors`
         }).then((response) => {
-          console.log(response);
+          // console.log(response);
+          completeForm();
         })
         .catch((e) => {
           console.error(e);
