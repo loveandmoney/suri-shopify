@@ -51,8 +51,8 @@
         "headingPosition": "bottom",
         "body": "Get 40% off on our limited stock pre-launch.",
         "buttonText": "Pre-order Now",
-        "backgroundImage": "shopify:\/\/shop_images\/home-desktop-atf.jpg",
-        "backgroundImageMobile": "shopify:\/\/shop_images\/home-mobile-atf.jpg"
+        "backgroundImage": "shopify:\/\/shop_images\/home-desktop-full-image-cta_1.jpg",
+        "backgroundImageMobile": "shopify:\/\/shop_images\/home-desktop-full-image-cta.jpg"
       }
     },
     "newsletter": {
