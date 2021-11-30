@@ -1,0 +1,62 @@
+{%- liquid
+  assign price = line_item.original_price | plus: 0.00
+  assign compare_at_price = line_item.variant.compare_at_price | plus: 0.00
+  assign discount = 0
+
+  if price != compare_at_price
+    assign relative_value = price | divided_by: compare_at_price
+    assign discount = 1.0 | minus: relative_value | times: 100 | floor
+  endif
+-%}
+
+{% capture mobile_content %}
+  <section class="relative md:hidden">
+    <article class="grid">
+      <div class="col-span-full relative flex items-center justify-center pb-6">
+        <a href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case" class="w-full relative block">
+          <button class="tray__mobile-button button button--black w-full h-12 flex items-center justify-start px-6 py-4" id="tray-mobile-button" type="button">
+            <span class="w-3 h-3 rounded-full bg-ux-lime mr-4"></span>
+            <span>Pre-order Now &amp; Save 40%</span>
+          </button>
+        </a>
+      </div>
+    </article>
+  </section>
+{% endcapture %}
+
+{% capture desktop_content %}
+  <section id="tray-desktop" class="tray--desktop active w-full relative hidden md:block pointer-events-auto py-9 bg-mono-100 text-mono-white">
+    <article class="grid items-center">
+      <div class="col-span-4 col-start-2 relative flex items-center justify-start">
+        <span class="w-3 h-3 rounded-full bg-ux-lime mr-4"></span>
+        <p class="b1">Now taking pre-orders</p>
+      </div>
+
+      <div class="col-span-3 relative pr-8">
+        <p class="b1">Get 40% off on our limited stock pre-launch.</p>
+      </div>
+
+      <div class="col-span-3 relative">
+        <button class="button button--green w-full h-12 flex items-center justify-center py-4" type="button">
+          <span>Pre-order Now</span>
+        </button>
+      </div>
+    </article>
+
+    <div class="w-12 h-12 absolute top-0 right-0">
+      <button class="w-full h-full relative block" id="tray-close-button" type="button">
+        <div class="w-full h-full relative flex items-start justify-end p-3">
+          <svg class="w-3 h-3" fill="none" viewbox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" d="M5.99987 5.05719L10.2425 0.814551L11.1853 1.75736L6.94268 6L11.1853 10.2426L10.2425 11.1854L5.99987 6.94281L1.75723 11.1854L0.814418 10.2426L5.05706 6L0.814418 1.75736L1.75723 0.814551L5.99987 5.05719Z" fill-rule="evenodd" fill="white"/>
+          </svg>
+        </div>
+      </button>
+    </div>
+  </section>
+{% endcapture %}
+
+<nav class="w-full fixed bottom-0 right-0 left-0 z-10 pointer-events-none" data-component="Tray">
+  {{ mobile_content }}
+
+  {{ desktop_content }}
+</nav>
