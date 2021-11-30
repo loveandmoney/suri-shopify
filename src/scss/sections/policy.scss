@@ -1,0 +1,32 @@
+.policy {
+  &__button {
+    &.selected {
+      text-decoration: underline;
+    }
+
+    @include hoverable {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__content {
+    &__container {
+      transition: 0.3s $default-transition opacity,
+        0.3s $default-transition transform;
+
+      opacity: 0;
+      transform: translate3d(0, 1rem, 0);
+
+      &.active {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

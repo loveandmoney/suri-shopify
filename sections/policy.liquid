@@ -49,33 +49,41 @@
 
 {% endschema %}
 
-<div class="policy w-full relative pt-32 md:pb-12 bg-mono-50">
+<div class="policy w-full relative pt-24 md:pt-32 md:pb-12 bg-mono-50" data-template="Policy">
   <section class="grid">
-    <nav class="col-span-12 md:col-span-4 md:col-start-3 md:h-screen md:sticky md:top-24 md:left-0">
+    <nav class="col-span-12 md:col-span-4 md:col-start-3 md:h-screen md:sticky md:top-24 md:left-0 mb-12 md:mb-0">
       <ul class="w-full relative block">
         <li>
-          <p class="b1">{{ section.settings.label1 }}</p>
+          <button type="button" class="policy__button selected py-2 h2" data-index="0">
+            <span>{{ section.settings.label1 }}</span>
+          </button>
         </li>
 
         <li>
-          <p class="b1">{{ section.settings.label2 }}</p>
+          <button type="button" class="policy__button py-2 h2" data-index="1">
+            <span>{{ section.settings.label2 }}</span>
+          </button>
         </li>
 
         <li>
-          <p class="b1">{{ section.settings.label3 }}</p>
+          <button type="button" class="policy__button py-2 h2" data-index="2">
+            <span>{{ section.settings.label3 }}</span>
+          </button>
         </li>
 
         <li>
-          <p class="b1">{{ section.settings.label4 }}</p>
+          <button type="button" class="policy__button py-2 h2" data-index="3">
+            <span>{{ section.settings.label4 }}</span>
+          </button>
         </li>
       </ul>
     </nav>
 
-    <article class="col-span-5 relative min-h-screen">
-      <p class="b1">{{ section.settings.content1 }}</p>
-      <p class="b1">{{ section.settings.content2 }}</p>
-      <p class="b1">{{ section.settings.content3 }}</p>
-      <p class="b1">{{ section.settings.content4 }}</p>
+    <article class="policy__content col-span-12 md:col-span-5 relative min-h-screen mb-12 md:mb-32">
+      <div id="policy-1" class="policy__content__container active b2">{{ section.settings.content1 }}</div>
+      <div id="policy-2" class="policy__content__container hidden b2">{{ section.settings.content2 }}</div>
+      <div id="policy-3" class="policy__content__container hidden b2">{{ section.settings.content3 }}</div>
+      <div id="policy-4" class="policy__content__container hidden b2">{{ section.settings.content4 }}</div>
     </article>
   </section>
 </div>
