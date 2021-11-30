@@ -2,6 +2,7 @@
 
 {
   "name": "Gallery",
+  "tag": "section",
   "settings": [
     {
       "type": "image_picker",
@@ -47,25 +48,25 @@
     <ul class="swiper-wrapper relative" id="gallery-swiper">
       <li class="swiper-slide w-full relative">
         <figure class="w-full h-full relative flex items-center justify-center">
-          <img src="{{ 'home-desktop-carousel-01.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt=""/>
+          <img src="{{ section.settings.image1XS | image_url }}" class="w-full h-full relative block object-cover" alt=""/>
         </figure>
       </li>
 
       <li class="swiper-slide w-full relative">
         <figure class="w-full h-full relative flex items-center justify-center">
-          <img src="{{ 'home-desktop-carousel-02.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt=""/>
+          <img src="{{ section.settings.image2XS | image_url }}" class="w-full h-full relative block object-cover" alt=""/>
         </figure>
       </li>
 
       <li class="swiper-slide w-full relative">
         <figure class="w-full h-full relative flex items-center justify-center">
-          <img src="{{ 'home-desktop-carousel-03.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt=""/>
+          <img src="{{ section.settings.image3XS | image_url }}" class="w-full h-full relative block object-cover" alt=""/>
         </figure>
       </li>
 
       <li class="swiper-slide w-full relative">
         <figure class="w-full h-full relative flex items-center justify-center">
-          <img src="{{ 'home-desktop-carousel-04.jpg' | asset_url }}" class="w-full h-full relative block object-cover" alt=""/>
+          <img src="{{ section.settings.image4XS | image_url }}" class="w-full h-full relative block object-cover" alt=""/>
         </figure>
       </li>
     </ul>
@@ -77,19 +78,19 @@
     <div class="grid">
       <ul class="col-span-12 relative flex">
         <li class="relative">
-          <img src="{{ 'home-desktop-carousel-01.jpg' | asset_url }}" class="w-full h-full object-cover" alt=""/>
+          <img src="{{ section.settings.image1 | image_url }}" class="w-full h-full object-cover" alt=""/>
         </li>
 
         <li class="relative">
-          <img src="{{ 'home-desktop-carousel-02.jpg' | asset_url }}" class="w-full h-full object-cover" alt=""/>
+          <img src="{{ section.settings.image2 | image_url }}" class="w-full h-full object-cover" alt=""/>
         </li>
 
         <li class="relative">
-          <img src="{{ 'home-desktop-carousel-03.jpg' | asset_url }}" class="w-full h-full object-cover" alt=""/>
+          <img src="{{ section.settings.image3 | image_url }}" class="w-full h-full object-cover" alt=""/>
         </li>
 
         <li class="relative">
-          <img src="{{ 'home-desktop-carousel-04.jpg' | asset_url }}" class="w-full h-full object-cover" alt=""/>
+          <img src="{{ section.settings.image4 | image_url }}" class="w-full h-full object-cover" alt=""/>
         </li>
       </ul>
     </div>

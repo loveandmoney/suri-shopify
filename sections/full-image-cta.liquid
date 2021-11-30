@@ -1,4 +1,5 @@
 {% schema %}
+
 {
   "name": "Full Image CTA",
   "tag": "section",
@@ -7,8 +8,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading"
-    },
-    {
+    }, {
       "type": "select",
       "id": "headingPosition",
       "label": "Heading Position Mobile",
@@ -16,32 +16,27 @@
         {
           "value": "top",
           "label": "Top"
-        },
-        {
+        }, {
           "value": "bottom",
           "label": "Bottom"
         }
       ]
-    },
-    {
+    }, {
       "type": "text",
       "id": "body",
       "label": "Body"
-    },
-    {
+    }, {
       "type": "text",
       "id": "buttonText",
       "label": "Button Text"
-    },
-    {
-        "type": "image_picker",
-        "id": "backgroundImage",
-        "label": "Background Image"
-    },
-    {
-        "type": "image_picker",
-        "id": "backgroundImageMobile",
-        "label": "Background Image Mobile"
+    }, {
+      "type": "image_picker",
+      "id": "backgroundImage",
+      "label": "Background Image"
+    }, {
+      "type": "image_picker",
+      "id": "backgroundImageMobile",
+      "label": "Background Image Mobile"
     }
   ],
   "templates": [
@@ -59,7 +54,7 @@
         <p class="h2">{{ section.settings.heading }}</p>
       </header>
     {% endif %}
-    
+
     <div class="backdrop-filter-blur absolute bottom-0 left-0 right-0 block px-4 py-8 sm:grid">
       {% if section.settings.headingPosition == "bottom" %}
         <div class="col-start-1 col-span-3">
@@ -83,25 +78,25 @@
 
 {% capture desktop_content %}
   <article class="w-full h-full relative hidden md:grid">
-      <div class="backdrop-filter-blur absolute top-0 bottom-0 left-0 w-1/2 h-full"></div>
-      <div class="col-start-2 col-span-4 w-full h-full flex flex-col items-start justify-center z-10">
-        <header class="mb-6">
-          <p class="h2">{{ section.settings.heading }}</p>
-        </header>
+    <div class="backdrop-filter-blur absolute top-0 bottom-0 left-0 w-1/2 h-full"></div>
+    <div class="col-start-2 col-span-4 w-full h-full flex flex-col items-start justify-center z-10">
+      <header class="mb-6">
+        <p class="h2">{{ section.settings.heading }}</p>
+      </header>
 
-        <p class="b1 mb-6">{{ section.settings.body }}</p>
+      <p class="b1 mb-6">{{ section.settings.body }}</p>
 
-        <button class="button w-auto h-12 col-start-5 col-span-4 flex items-center justify-start px-6 py-4 bg-mono-100">
-          <span class="button w-3 h-3 bg-ux-lime mr-4"></span>
-          <span>{{ section.settings.buttonText }}</span>
-        </button>
-      </div>
+      <button class="button w-auto h-12 col-start-5 col-span-4 flex items-center justify-start px-6 py-4 bg-mono-100">
+        <span class="button w-3 h-3 bg-ux-lime mr-4"></span>
+        <span>{{ section.settings.buttonText }}</span>
+      </button>
+    </div>
   </article>
 {% endcapture %}
 
 <section class="full-image-cta w-full h-[90vh] sm:h-[56.5vh] md:h-screen relative block bg-mono-100 text-mono-white">
-  <img src="{{ section.settings.backgroundImage | image_url }}" class="w-full h-full hidden md:block absolute top-0 bottom-0 right-0 left-0 block object-cover" />
-  <img src="{{ section.settings.backgroundImageMobile | image_url }}" class="w-full h-full block md:hidden absolute top-0 bottom-0 right-0 left-0 block object-cover" />
+  <img src="{{ section.settings.backgroundImage | image_url }}" class="w-full h-full hidden md:block absolute top-0 bottom-0 right-0 left-0 block object-cover"/>
+  <img src="{{ section.settings.backgroundImageMobile | image_url }}" class="w-full h-full block md:hidden absolute top-0 bottom-0 right-0 left-0 block object-cover"/>
 
   {{ mobile_content }}
 
