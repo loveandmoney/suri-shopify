@@ -4,9 +4,13 @@
       "type": "policy",
       "settings": {
         "label1": "Privacy Policy",
+        "content1": "Privacy Policy",
         "label2": "Terms of Service",
+        "content2": "Terms of Service",
         "label3": "Cookie Policy",
-        "label4": "Acceptable Use Policy"
+        "content3": "Cookie Policy",
+        "label4": "Acceptable Use Policy",
+        "content4": "Acceptable Use Policy"
       }
     }
   },
