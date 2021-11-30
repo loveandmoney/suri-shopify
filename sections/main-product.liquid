@@ -81,6 +81,7 @@
   assign available = product.available | default: false
   assign buyable = product.selected_or_first_available_variant.available
   assign money_price = price | money
+  assign quantity = product.selected_or_first_available_variant
 
   assign discount = 0
 
@@ -95,6 +96,8 @@
     assign money_price = price | money_with_currency
   endif
 -%}
+
+<script>console.log({{ product.selected_or_first_available_variant | json }});</script>
 
 <div class="main-product animation-appear-down-slow animation-delay-3 w-full relative md:pb-12 bg-mono-50" data-template="Product">
   <section class="relative">
@@ -255,7 +258,7 @@
                     </div>
                   </button>
 
-                  <input id="product-quantity" name="quantity" class="main-product__input--number w-8 h-full relative block bg-transparent text-center" form="{{ product_form_id }}" min="1" value="1" type="number"/>
+                  <input id="product-quantity" name="quantity" class="main-product__input--number w-8 h-full relative block bg-transparent text-center" form="{{ product_form_id }}" min="1" max="5" value="1" type="number"/>
 
                   <button class="main-product__quantity-adjust w-12 h-12 relative block select-none" id="product-quantity-up" name="plus" type="button">
                     <div class="w-full h-full relative flex items-center justify-center">
