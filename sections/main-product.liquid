@@ -89,7 +89,7 @@
     assign price_float = price | plus: 1.0
     assign compare_float = compare_at_price | plus: 1.0
     assign relative_value = price_float | divided_by: compare_float
-    assign discount = 1.0 | minus: relative_value | times: 100 | floor
+    assign discount = 1.0 | minus: relative_value | times: 100 | ceil
   endif
 
   if settings.currency_code_enabled
@@ -157,6 +157,7 @@
     <article class="grid">
       {% assign image_count = 1 %}
 
+      <!-- desktop gallery -->
       <ul class="col-span-5 col-start-2 relative hidden md:flex flex-wrap justify-between pt-16" role="list">
         <li class="main-product__gallery__item main-product__gallery__item--half relative">
           <div class="w-full relative bg-midnight-black-100">
