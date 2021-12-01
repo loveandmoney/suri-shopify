@@ -3,8 +3,32 @@
     "faq": {
       "type": "faq",
       "blocks": {
+        "1303375d-0513-417d-b254-3d93bfd559fe": {
+          "type": "faq",
+          "settings": {
+            "title": "Question 1",
+            "answer": "<p>Answer 1<\/p>"
+          }
+        },
+        "7cc5f891-6719-48d9-b29c-12a555699637": {
+          "type": "faq",
+          "settings": {
+            "title": "Question 2",
+            "answer": "<p>Answer 2<\/p>"
+          }
+        },
+        "4faa6879-3508-4306-81c9-47f7ab99498a": {
+          "type": "faq",
+          "settings": {
+            "title": "Question 3",
+            "answer": "<p>Answer 3<\/p>"
+          }
+        }
       },
       "block_order": [
+        "1303375d-0513-417d-b254-3d93bfd559fe",
+        "7cc5f891-6719-48d9-b29c-12a555699637",
+        "4faa6879-3508-4306-81c9-47f7ab99498a"
       ],
       "settings": {
       }
