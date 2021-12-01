@@ -2,15 +2,59 @@
   "sections": {
     "policy": {
       "type": "policy",
+      "blocks": {
+        "c8aa93c1-88ec-42c5-91ba-8e22aef0fd6d": {
+          "type": "policy",
+          "settings": {
+            "title": "Privacy Policy",
+            "content": "<p>Your privacy is important to us. It is SURI's policy to respect your privacy and comply with any applicable law and regulation regarding any personal information we may collect about you, including across our website, https:\/\/www.trysuri.com, and other sites we own and operate.<\/p><p>Personal information is any information about you which can be used to identify you. This includes information about you as a person (such as name, address, and date of birth), your devices, payment details, and even information about how you use a website or online service.<\/p><p>In the event our site contains links to third-party sites and services, please be aware that those sites and services have their own privacy policies. After following a link to any third-party content, you should read their posted privacy policy information about how they collect and use personal information. This Privacy Policy does not apply to any of your activities after you leave our site.<\/p><p>This policy is effective as of 22 October 2021.<\/p><p>Last updated: 22 October 2021<\/p><p>Information We Collect<\/p><p>Information we collect falls into one of two categories: “voluntarily provided” information and “automatically collected” information.“Voluntarily provided” information refers to any information you knowingly and actively provide us when using or participating in any of our services and promotions.“Automatically collected” information refers to any information automatically sent by your devices in the course of accessing our products and services.<\/p><p>Log Data<\/p><p>When you visit our website, our servers may automatically log the standard data provided by your web browser. It may include your device’s Internet Protocol (IP) address, your browser type and version, the pages you visit, the time and date of your visit, the time spent on each page, and other details about your visit.Additionally, if you encounter certain errors while using the site, we may automatically collect data about the error and the circumstances surrounding its occurrence. This data may include technical details about your device, what you were trying to do when the error happened, and other technical information relating to the problem. You may or may not receive notice of such errors, even in the moment they occur, that they have occurred, or what the nature of the error is.Please be aware that while this information may not be personally identifying by itself, it may be possible to combine it with other data to personally identify individual persons.<\/p><p>Children’s Privacy<\/p><p>Information we collect falls into one of two categories: “voluntarily provided” information and “automatically collected” information.“Voluntarily provided” information refers to any information you knowingly and actively provide us when using or participating in any of our services and promotions.“Automatically collected” information refers to any information automatically sent by your devices in the course of accessing our products and services.<\/p>"
+          }
+        },
+        "a13a01da-147a-479c-bb3c-a2f0453f7fc0": {
+          "type": "policy",
+          "settings": {
+            "title": "Terms of Service",
+            "content": "<p>Terms of Service<\/p>"
+          }
+        },
+        "9dc51bc1-e9cc-4a7e-97f0-486549c26812": {
+          "type": "policy",
+          "settings": {
+            "title": "Cookie Policy",
+            "content": "<p>Cookie Policy<\/p>"
+          }
+        },
+        "bfb8108e-d8b9-48f2-a14f-8d5ae9b8f1f9": {
+          "type": "policy",
+          "settings": {
+            "title": "Acceptable Use Policy",
+            "content": "<p>Acceptable Use Policy<\/p>"
+          }
+        },
+        "1ac9ea03-d016-4e86-b582-c15c12d5d9f1": {
+          "type": "policy",
+          "settings": {
+            "title": "Returns & Refunds",
+            "content": "<p><span style=\"text-decoration:underline\">Electric Toothbrushes:<\/span><strong><br\/><\/strong><br\/>We offer a 100-day money back guarantee on all electric toothbrush purchases from the date of delivery. If you are unsatisfied with your electric toothbrush we will refund you with no questions asked. Please note that to be eligible for a refund your item must not have physical damage to it caused by improper use or dropping it. <br\/><br\/>To receive your refund, your item must be purchased from trysuri.com and we must first receive it from you in its original packaging. Once your return has been received and inspected, we will send a follow up email confirming this and if the refund has been approved. Please note your refund can only be processed on the payment card\/method used during your transaction, and occasionally it may take up to two weeks for your refund to be processed. If it has been over two weeks and your refund has not been received, we recommend you first contact your credit card company or bank as sometimes it may take some time before your refund is officially posted.<br\/><br\/>To start the refund process please contact support@trysuri.com and you will be provided with the necessary details to send your product back to us.<br\/><br\/><strong>We kindly ask you do not post a return to us without contacting us first.<\/strong><br\/><\/p><p><br\/><span style=\"text-decoration:underline\">All other products:<\/span><br\/><br\/>For all other products we offer a 30 day returns policy, where you have 30 days from the date of delivery to request a refund or exchange.<br\/><br\/>To receive your refund, your item must be purchased from trysuri.com and we must first receive it from you in its original packaging, it must be unused and in the same condition you received it in. Once your return is received and inspected, we will send you an email to notify you that we have received your returned item. We will also notify you of the approval of your refund. Please note your refund can only be processed on the payment card\/method used during your transaction, and occasionally it may take up to two weeks for your refund to be processed. If it has been over two weeks and your refund has not been received, we recommend you first contact your credit card company or bank as sometimes it may take some time before your refund is officially posted.<br\/><br\/><strong> Note we do not offer returns or refunds for our gift cards.<\/strong><br\/><br\/>To start the refund process please contact <a href=\"mailto:support@trysuri.com\" target=\"_blank\" title=\"mailto:support@trysuri.com\">support@trysuri.com<\/a> and you will be provided with the necessary details to send your product back to us. <br\/><br\/><strong>We kindly ask you do not post a return to us without contacting us first.<\/strong><br\/><br\/><br\/>Note for all returns you will be responsible for paying for your own shipping costs for returning your item. Shipping costs are non-refundable. If you receive a refund, the cost of return shipping will be deducted from your refund.  <\/p><p>If you are shipping an item over £75\/$100, you should consider using a trackable shipping service or purchasing shipping insurance. We don’t guarantee that we will receive your returned item.<\/p>"
+          }
+        },
+        "b451e647-80bf-45ee-9f3f-4c69c1dd8a3e": {
+          "type": "policy",
+          "settings": {
+            "title": "Exchanges",
+            "content": "<p>We only replace items if they are defective or damaged.  If your product appears defective or damaged please send us an email at <a href=\"mailto:support@trysuri.com\" target=\"_blank\" title=\"mailto:support@trysuri.com\">support@trysuri.com<\/a>.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "c8aa93c1-88ec-42c5-91ba-8e22aef0fd6d",
+        "a13a01da-147a-479c-bb3c-a2f0453f7fc0",
+        "9dc51bc1-e9cc-4a7e-97f0-486549c26812",
+        "bfb8108e-d8b9-48f2-a14f-8d5ae9b8f1f9",
+        "1ac9ea03-d016-4e86-b582-c15c12d5d9f1",
+        "b451e647-80bf-45ee-9f3f-4c69c1dd8a3e"
+      ],
       "settings": {
-        "label1": "Privacy Policy",
-        "content1": "<p>Your privacy is important to us. It is SURI's policy to respect your privacy and comply with any applicable law and regulation regarding any personal information we may collect about you, including across our website, https:\/\/www.trysuri.com, and other sites we own and operate.<\/p><p>Personal information is any information about you which can be used to identify you. This includes information about you as a person (such as name, address, and date of birth), your devices, payment details, and even information about how you use a website or online service.<\/p><p>In the event our site contains links to third-party sites and services, please be aware that those sites and services have their own privacy policies. After following a link to any third-party content, you should read their posted privacy policy information about how they collect and use personal information. This Privacy Policy does not apply to any of your activities after you leave our site.<\/p><p>This policy is effective as of 22 October 2021.<\/p><p>Last updated: 22 October 2021<\/p><p>Information We Collect<\/p><p>Information we collect falls into one of two categories: “voluntarily provided” information and “automatically collected” information.“Voluntarily provided” information refers to any information you knowingly and actively provide us when using or participating in any of our services and promotions.“Automatically collected” information refers to any information automatically sent by your devices in the course of accessing our products and services.<\/p><p>Log Data<\/p><p>When you visit our website, our servers may automatically log the standard data provided by your web browser. It may include your device’s Internet Protocol (IP) address, your browser type and version, the pages you visit, the time and date of your visit, the time spent on each page, and other details about your visit.Additionally, if you encounter certain errors while using the site, we may automatically collect data about the error and the circumstances surrounding its occurrence. This data may include technical details about your device, what you were trying to do when the error happened, and other technical information relating to the problem. You may or may not receive notice of such errors, even in the moment they occur, that they have occurred, or what the nature of the error is.Please be aware that while this information may not be personally identifying by itself, it may be possible to combine it with other data to personally identify individual persons.<\/p><p>Children’s Privacy<\/p><p>Information we collect falls into one of two categories: “voluntarily provided” information and “automatically collected” information.“Voluntarily provided” information refers to any information you knowingly and actively provide us when using or participating in any of our services and promotions.“Automatically collected” information refers to any information automatically sent by your devices in the course of accessing our products and services.<\/p><p><\/p>",
-        "label2": "Terms of Service",
-        "content2": "<p>Terms of Service<\/p>",
-        "label3": "Cookie Policy",
-        "content3": "<p>Cookie Policy<\/p>",
-        "label4": "Acceptable Use Policy",
-        "content4": "<p>Acceptable Use Policy<\/p>"
       }
     }
   },
