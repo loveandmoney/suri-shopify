@@ -64,7 +64,8 @@
     },
     "image-tiles": {
       "type": "image-tiles",
-      "settings": {}
+      "settings": {
+      }
     },
     "simple-text": {
       "type": "simple-text",
@@ -75,15 +76,18 @@
     },
     "attributes": {
       "type": "attributes",
-      "settings": {}
+      "settings": {
+      }
     },
     "essentials": {
       "type": "essentials",
-      "settings": {}
+      "settings": {
+      }
     },
     "newsletter": {
       "type": "newsletter",
-      "settings": {}
+      "settings": {
+      }
     }
   },
   "order": [
