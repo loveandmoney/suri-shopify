@@ -4,45 +4,23 @@
   "name": "Policy",
   "tag": "section",
   "settings": [
+  ],
+  "blocks": [
     {
-      "type": "text",
-      "id": "label1",
-      "label": "Label 1"
-    },
-    {
-      "type": "richtext",
-      "id": "content1",
-      "label": "Content 1"
-    },
-    {
-      "type": "text",
-      "id": "label2",
-      "label": "Label 2"
-    },
-    {
-      "type": "richtext",
-      "id": "content2",
-      "label": "Content 2"
-    },
-    {
-      "type": "text",
-      "id": "label3",
-      "label": "Label 3"
-    },
-    {
-      "type": "richtext",
-      "id": "content3",
-      "label": "Content 3"
-    },
-    {
-      "type": "text",
-      "id": "label4",
-      "label": "Label 4"
-    },
-    {
-      "type": "richtext",
-      "id": "content4",
-      "label": "Content 4"
+      "name": "Policy",
+      "type": "policy",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Name"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
     }
   ]
 }
@@ -55,37 +33,20 @@
   <section class="grid">
     <nav class="col-span-12 md:col-span-4 md:col-start-3 md:h-screen md:sticky md:top-24 md:left-0 mb-12 md:mb-0 md:pr-12">
       <ul class="w-full relative block">
-        <li>
-          <button type="button" class="policy__button selected py-2 text-left" data-index="0">
-            <span class="h2">{{ section.settings.label1 }}</span>
-          </button>
-        </li>
-
-        <li>
-          <button type="button" class="policy__button py-2 text-left" data-index="1">
-            <span class="h2">{{ section.settings.label2 }}</span>
-          </button>
-        </li>
-
-        <li>
-          <button type="button" class="policy__button py-2 text-left" data-index="2">
-            <span class="h2">{{ section.settings.label3 }}</span>
-          </button>
-        </li>
-
-        <li>
-          <button type="button" class="policy__button py-2 text-left" data-index="3">
-            <span class="h2">{{ section.settings.label4 }}</span>
-          </button>
-        </li>
+        {% for block in section.blocks %}
+          <li>
+            <button type="button" class="policy__button selected py-2 text-left" data-index="{{ forloop.index0 }}">
+              <span class="h2">{{ block.settings.title }}</span>
+            </button>
+          </li>
+        {% endfor %}
       </ul>
     </nav>
 
     <article class="policy__content col-span-12 md:col-span-5 relative min-h-screen mb-12 md:mb-32">
-      <div id="policy-1" class="policy__content__container active b2">{{ section.settings.content1 }}</div>
-      <div id="policy-2" class="policy__content__container hidden b2">{{ section.settings.content2 }}</div>
-      <div id="policy-3" class="policy__content__container hidden b2">{{ section.settings.content3 }}</div>
-      <div id="policy-4" class="policy__content__container hidden b2">{{ section.settings.content4 }}</div>
+      {% for block in section.blocks %}
+        <div id="policy-content" class="policy__content__container hidden b2">{{ block.settings.content }}</div>
+      {% endfor %}
     </article>
   </section>
 </div>

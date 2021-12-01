@@ -9,22 +9,12 @@ const Policy = () => {
   // DOM
 
   const buttons = document.querySelectorAll(`.policy__button`);
-  const content1 = document.getElementById(`policy-1`);
-  const content2 = document.getElementById(`policy-2`);
-  const content3 = document.getElementById(`policy-3`);
-  const content4 = document.getElementById(`policy-4`);
+  const policyContent = document.querySelectorAll(`#policy-content`);
 
   //
 
   // ---------------------------------------------------------------------------
   // variables
-
-  const contentArray = [
-    content1,
-    content2,
-    content3,
-    content4
-  ];
 
   // ---------------------------------------------------------------------------
   // methods
@@ -34,15 +24,15 @@ const Policy = () => {
       button.classList.remove(`selected`);
     });
 
-    contentArray.forEach((contentItem, contentIndex) => {
+    policyContent.forEach((contentItem, contentIndex) => {
       contentItem.classList.remove(`active`);
       contentItem.classList.add(`hidden`);
     });
-  }
-  
+  };
+
   // ---------------------------------------------------------------------------
   // initialization
-  
+
   const addListeners = () => {
     if (buttons?.[0]) {
       buttons.forEach(button => {
@@ -52,16 +42,16 @@ const Policy = () => {
           button.classList.add(`selected`);
 
           const index = button.getAttribute(`data-index`);
-          
-          contentArray[index].classList.remove(`hidden`);
-          
+
+          policyContent[index].classList.remove(`hidden`);
+
           setTimeout(() => {
-            contentArray[index].classList.add(`active`);
+            policyContent[index].classList.add(`active`);
           }, 10);
         });
       });
     }
-  }
+  };
 
   // ---------------------------------------------------------------------------
   // execution
