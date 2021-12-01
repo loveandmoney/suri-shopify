@@ -4,11 +4,12 @@
       "type": "parallax-blur-banner",
       "settings": {
         "heading": "A world class clean that doesn’t cost our planet.",
-        "headingPosition": "bottom",
         "body": "We are only making limited stocks for pre-launch. Don't miss out.",
         "buttonText": "Pre-order now & save 40%",
         "backgroundImage": "shopify:\/\/shop_images\/home-desktop-atf.jpg",
-        "backgroundImageMobile": "shopify:\/\/shop_images\/home-mobile-atf.jpg"
+        "backgroundImageMobile": "shopify:\/\/shop_images\/home-mobile-atf.jpg",
+        "blurDesktop": false,
+        "blurMobile": true
       }
     },
     "simple-text": {
@@ -48,11 +49,12 @@
       "type": "blur-banner",
       "settings": {
         "heading": "Now taking pre-orders.",
-        "headingPosition": "bottom",
         "body": "Get 40% off on our limited stock pre-launch.",
         "buttonText": "Pre-order Now",
         "backgroundImage": "shopify:\/\/shop_images\/home-desktop-full-image-cta_1.jpg",
-        "backgroundImageMobile": "shopify:\/\/shop_images\/home-desktop-full-image-cta.jpg"
+        "backgroundImageMobile": "shopify:\/\/shop_images\/home-desktop-full-image-cta.jpg",
+        "blurDesktop": false,
+        "blurMobile": true
       }
     },
     "brand-story": {
