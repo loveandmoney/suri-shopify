@@ -1,0 +1,52 @@
+{% schema %}
+
+{
+  "name": "FAQs",
+  "tag": "section",
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "name": "faq",
+      "type": "faq",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}
+
+<!-- todo: maybe change the name to expandable-text, change to data-component, call the same JS -->
+<!-- reuse with a pages.faq.json file (currently sourced by pages.terms.json) -->
+<div class="policy animation-appear-down animation-delay-2 w-full relative pt-24 md:pt-32 md:pb-12 bg-mono-50" data-template="FAQ">
+  <section class="grid">
+    <nav class="col-span-12 md:col-span-4 md:col-start-3 md:h-screen md:sticky md:top-24 md:left-0 mb-12 md:mb-0 md:pr-12">
+      <ul class="w-full relative block">
+        {% for block in section.blocks %}
+          <li>
+            <button type="button" class="faq__button policy__button selected py-2 text-left" data-index="{{ forloop.index0 }}">
+              <span class="h2">{{ block.settings.title }}</span>
+            </button>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <article class="policy__content col-span-12 md:col-span-5 relative min-h-screen mb-12 md:mb-32">
+      {% for block in section.blocks %}
+        <div class="faq-content policy__content__container hidden b2">{{ block.settings.answer }}</div>
+      {% endfor %}
+    </article>
+  </section>
+</div>

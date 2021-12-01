@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "faq": {
+      "type": "faq",
+      "blocks": {
+      },
+      "block_order": [
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "faq"
+  ]
+}
