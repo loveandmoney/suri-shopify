@@ -1,4 +1,4 @@
-import { fetchConfig } from '../utils/helpers';
+import { fetchConfig, findAncestor } from '../utils/helpers';
 
 const Product = () => {
   if (typeof window === `undefined`) {
@@ -7,6 +7,9 @@ const Product = () => {
 
   // ---------------------------------------------------------------------------
   // DOM
+
+  //
+  // variant parsing
 
   const allVariantData = JSON.parse(
     document.getElementById(`variant-data`).textContent
@@ -37,26 +40,44 @@ const Product = () => {
   const headerCartQuantityContainer = document.getElementById(
     `cart-quantity-container`
   );
+  const loadableImageContainers = document.querySelectorAll(`.main-product__gallery__item`);
+  const loadableImageTags = document.querySelectorAll(`.loadable-image`);
   const quantityInput = document.getElementById(`product-quantity`);
   const quantityUp = document.getElementById(`product-quantity-up`);
   const quantityDown = document.getElementById(`product-quantity-down`);
-  const variantImage = document.getElementById(`product-variant-image`);
-  const variantImageXS = document.getElementById(`product-variant-image-xs`);
   const variantPickers = document.querySelectorAll(`.variant-picker`);
 
   // ---------------------------------------------------------------------------
   // variables
 
   const displayedVariantText = {};
+  const imageGallery = {};
   const selectedOptions = [];
 
   let activeExpander = null;
+  let device;
   let widgetShowTimeout;
   let widgetHideTimeout;
   let widgetResetTimeout;
 
   // ---------------------------------------------------------------------------
   // methods
+
+  const onDeviceChange = () => {
+    refreshGallery();
+  }
+
+  const detectDevice = () => {
+    let newDevice = window.innerWidth < 1024 ? `xs` : `xl`;
+
+    if (newDevice !== device) {
+      onDeviceChange();
+    }
+
+    device = newDevice;
+  }
+
+  //
 
   const collapseAllExpanders = () => {
     expanders.forEach((expander, expanderIndex) => {
@@ -168,16 +189,9 @@ const Product = () => {
     }
 
     if (matchedVariant?.featured_image?.src) {
-      if (variantImage) {
-        variantImage.src = matchedVariant.featured_image.src;
-      }
-      if (variantImageXS) {
-        variantImageXS.src = matchedVariant.featured_image.src;
-      }
-
-      if (addOnImage) {
-        addOnImage.src = matchedVariant.featured_image.src;
-      }
+      // if (addOnImage) {
+      //   addOnImage.src = matchedVariant.featured_image.src;
+      // }
     }
 
     //
@@ -187,7 +201,84 @@ const Product = () => {
     activeVariantInput.value = matchedVariant.id;
     activeAddOn = matchedAddOn;
     activeAddOnInput.value = matchedAddOn.id;
+
+    refreshGallery();
   };
+
+  const refreshGallery = () => {
+    if (!device || device !== `xl` || !activeVariant || !loadableImageTags?.[0]) {
+      return;
+    }
+     
+    const loadableColor = activeVariant?.option1?.replace(` `, `-`)?.toLowerCase()?.trim();
+
+    let loadableClasses;
+    
+    if (device === `xl`) {
+      loadableClasses = [
+        `xl:${loadableColor}:default`,
+        `xl:${loadableColor}:full`
+      ];
+    } else {
+      loadableClasses = [
+        `${device}:${loadableColor}`,
+        `${device}:${loadableColor}`
+      ];
+    }
+
+    const gallery = {};
+
+    loadableImageTags.forEach(img => {
+      const loadableKey = img?.getAttribute(`data-loadablekey`);
+
+      if (!gallery?.[loadableKey]) {
+        gallery[loadableKey] = []
+      }
+
+      const parent = findAncestor(img, `loadable-image-parent`);
+
+      if (parent) {
+        gallery[loadableKey].push({
+          img,
+          parent
+        });
+      }
+    });
+
+    const galleryKeys = Object.keys(gallery);
+
+    if (galleryKeys?.[0]) {
+      galleryKeys.forEach(loadableKey => {
+        const galleryItems = gallery?.[loadableKey];
+
+        galleryItems.forEach(({ img, parent }) => {
+          if (!img || !parent) {
+            return;
+          }
+          
+          if (!loadableClasses?.includes(loadableKey)) {
+            parent.classList.add(`hidden`);
+            return;
+          }
+
+          const src = img.getAttribute(`data-src`);
+          const srcSet = img.getAttribute(`data-srcset`);
+          
+          img.setAttribute(`src`, src)
+          img.setAttribute(`srcset`, srcSet)
+          img.classList.add(`loaded`);
+          
+          parent.classList.remove(`hidden`);
+        });
+      });
+    }
+
+    // if (activeVariant?.featured_image?.src) {
+    //   if (addOnImage) {
+    //     addOnImage.src = activeVariant.featured_image.src;
+    //   }
+    // }
+  }
 
   const resetWidgetTimeouts = () => {
     addWidget.classList.remove(`active`);
@@ -251,21 +342,12 @@ const Product = () => {
       }
     });
 
-    if (activeVariant?.featured_image?.src) {
-      if (variantImage) {
-        variantImage.src = activeVariant.featured_image.src;
-      }
-      if (variantImageXS) {
-        variantImageXS.src = activeVariant.featured_image.src;
-      }
-
-      if (addOnImage) {
-        addOnImage.src = activeVariant.featured_image.src;
-      }
-    }
+    refreshGallery();
   };
 
   const addListeners = () => {
+    window.addEventListener(`resize`, detectDevice, false);
+
     if (addToCartForm) {
       addToCartForm.addEventListener(`submit`, e => {
         e.preventDefault();
@@ -504,6 +586,7 @@ const Product = () => {
   // execution
 
   const main = () => {
+    detectDevice();
     parseData();
     addListeners();
   };

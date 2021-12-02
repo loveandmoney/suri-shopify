@@ -51,18 +51,12 @@
 
       &--half {
         width: calc(50% - #{$spacing / 2});
-
-        & > div {
-          padding-bottom: 124.5%;
-        }
+        padding-bottom: 66%;
       }
 
       &--full {
         width: 100%;
-
-        & > div {
-          padding-bottom: 50%;
-        }
+        padding-bottom: 50%;
       }
     }
   }

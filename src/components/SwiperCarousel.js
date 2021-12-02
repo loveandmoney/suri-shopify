@@ -42,7 +42,6 @@ const SwiperCarousel = (caller) => {
         }
       });
     }
-
   }
   
   const main = () => {
