@@ -1,5 +1,7 @@
 {
   "current": {
+    "checkout_header_image": "shopify:\/\/shop_images\/SURI_Bathroom.jpg",
+    "checkout_logo_image": "shopify:\/\/shop_images\/SURI_LOGO.jpg",
     "sections": {
       "header": {
         "type": "header",
