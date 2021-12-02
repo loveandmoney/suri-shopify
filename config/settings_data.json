@@ -1,7 +1,16 @@
 {
   "current": {
-    "checkout_header_image": "shopify:\/\/shop_images\/SURI_Bathroom.jpg",
+    "checkout_header_image": "shopify:\/\/shop_images\/banner_checkout_2.jpg",
     "checkout_logo_image": "shopify:\/\/shop_images\/SURI_LOGO.jpg",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "large",
+    "checkout_body_background_color": "#ffffff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_color": "#f2f2f2",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#097c07",
+    "checkout_button_color": "#097c07",
     "sections": {
       "header": {
         "type": "header",
