@@ -46,7 +46,6 @@ const Product = () => {
   const headerCartQuantityContainer = document.getElementById(
     `cart-quantity-container`
   );
-  const loadableImageContainers = document.querySelectorAll(`.main-product__gallery__item`);
   const loadableImageTags = document.querySelectorAll(`.loadable-image`);
   const quantityInput = document.getElementById(`product-quantity`);
   const quantityUp = document.getElementById(`product-quantity-up`);
@@ -170,7 +169,10 @@ const Product = () => {
             
             img.setAttribute(`src`, src)
             img.setAttribute(`srcset`, srcSet)
-            img.classList.add(`loaded`);
+            
+            img.onload = () => {
+              img.classList.add(`loaded`);
+            }
             
             parent.classList.remove(`hidden`);
           });

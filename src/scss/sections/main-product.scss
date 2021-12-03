@@ -1,3 +1,13 @@
+.loadable-image {
+  transition: $slow-transition opacity;
+
+  opacity: 0;
+
+  &.loaded {
+    opacity: 1;
+  }
+}
+
 .main-product {
   padding-top: 48px;
 
