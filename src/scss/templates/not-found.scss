@@ -10,4 +10,12 @@
       transform: translate3d(15vw, 0, 0);
     }
   }
+
+  &__frost {
+    filter: blur(16px);
+
+    // figure {
+    //   top: -90vh;
+    // }
+  }
 }
