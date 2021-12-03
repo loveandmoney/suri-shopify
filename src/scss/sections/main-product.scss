@@ -97,6 +97,18 @@
     }
   }
 
+  &__swiper {
+    &.invisible {
+      opacity: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    @include md {
+      display: none;
+    }
+  }
+
   &__variant-picker {
     &.active {
       .main-product__variant-picker__button {

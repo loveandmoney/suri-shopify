@@ -97,6 +97,32 @@
   if settings.currency_code_enabled
     assign money_price = price | money_with_currency
   endif
+
+  assign gallery_keys = ""
+  assign swiper_keys = ""
+
+  for media in product.media
+    assign key = media.preview_image.alt
+
+    unless gallery_keys contains key
+      if gallery_keys == blank
+        assign gallery_keys = gallery_keys | append: key
+      else
+        assign gallery_keys = gallery_keys | append: "," | append: key
+      endif
+    endunless
+
+    unless swiper_keys contains key or key contains "xl"
+      if swiper_keys == blank
+        assign swiper_keys = swiper_keys | append: key
+      else
+        assign swiper_keys = swiper_keys | append: "," | append: key
+      endif
+    endunless
+  endfor
+
+  assign gallery_keys = gallery_keys | split: ","
+  assign swiper_keys = swiper_keys | split: ","
 -%}
 
 <div class="main-product animation-appear-down-slow animation-delay-3 w-full relative md:pb-12 bg-mono-50" data-template="Product">
@@ -136,26 +162,43 @@
       {% endfor %}
     </article>
 
-    <div class="swiper-container swiper--product-gallery md:hidden" data-component="SwiperCarousel" data-swiperid="product-gallery">
-      <ul class="swiper-wrapper relative">
-        {%- for media in product.media -%}
-          <li class="swiper-slide w-full h-full relative">
-            <img
-              class="w-full h-full relative block object-cover"
-              width="576"
-              height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}"
-              src="{{ media | img_url: '1500x' }}"
-              srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w"
-              data-src="{{ media | img_url: '1500x' }}"
-              data-srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w"
-              loading="lazy"
-              alt="{{ media.preview_image.alt | escape }}">
-          </li>
-        {% endfor %}
-      </ul>
-      
-      <div class="swiper-pagination swiper-pagination--product-gallery w-full absolute bottom-0 right-0 left-0 z-10 flex sm:hidden justify-center pb-5"></div>
+    <div class="relative md:hidden">
+      {% for key in swiper_keys %}
+        {% assign js_key = key | replace: 'xs:', '' %}
+
+        <section class="main-product__swiper relative invisible" data-key="{{ js_key }}">
+          <div
+            id="product-gallery-{{ js_key }}"
+            class="swiper-container swiper--product-gallery-{{ js_key }} md:hidden"
+            data-component="SwiperCarousel"
+            data-swiperid="product-gallery-{{ js_key }}"
+          >
+            <ul class="swiper-wrapper relative">
+              {%- for media in product.media -%}
+                {% if media.preview_image.alt == key %}
+                  <li class="swiper-slide w-full h-full relative">
+                    <img
+                      class="w-full h-full relative block object-cover"
+                      width="576"
+                      height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}"
+                      src="{{ media | img_url: '1500x' }}"
+                      srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w"
+                      data-src="{{ media | img_url: '1500x' }}"
+                      data-srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w"
+                      loading="lazy"
+                      alt="{{ media.preview_image.alt | escape }}"
+                    />
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+
+            <div class="swiper-pagination swiper-pagination--product-gallery-{{ js_key }} w-full absolute bottom-0 right-0 left-0 z-10 flex sm:hidden justify-center pb-5"></div>
+          </div>
+        </section>
+      {% endfor %}
     </div>
+
     
     <article class="grid">
       <!-- desktop gallery -->

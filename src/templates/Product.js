@@ -46,6 +46,7 @@ const Product = () => {
   const quantityUp = document.getElementById(`product-quantity-up`);
   const quantityDown = document.getElementById(`product-quantity-down`);
   const variantPickers = document.querySelectorAll(`.variant-picker`);
+  const xsSwipers = document.querySelectorAll(`.main-product__swiper`);
 
   // ---------------------------------------------------------------------------
   // variables
@@ -62,6 +63,106 @@ const Product = () => {
 
   // ---------------------------------------------------------------------------
   // methods
+
+  const refreshGallery = () => {
+    if (!device || !activeVariant || !loadableImageTags?.[0]) {
+      return;
+    }
+
+    const loadableColor = activeVariant?.option1?.replace(` `, `-`)?.toLowerCase()?.trim();
+
+    if (device === `xs`) {
+      if (xsSwipers?.[0]) {
+        let activeSwiper;
+
+        xsSwipers.forEach(swiper => {
+          swiper.classList.add(`invisible`);
+
+          if (activeSwiper) {
+            return;
+          }
+
+          const key = swiper.getAttribute(`data-key`);
+
+          if (key === loadableColor) {
+            activeSwiper = swiper;
+          }
+        });
+
+        if (activeSwiper) {
+          console.log(activeSwiper);
+          activeSwiper.classList.remove(`invisible`);
+        }
+      }
+    } else {
+      let loadableClasses;
+      
+      if (device === `xl`) {
+        loadableClasses = [
+          `xl:${loadableColor}:default`,
+          `xl:${loadableColor}:full`
+        ];
+      } else {
+        loadableClasses = [
+          `${device}:${loadableColor}`,
+          `${device}:${loadableColor}`
+        ];
+      }
+
+      const gallery = {};
+
+      loadableImageTags.forEach(img => {
+        const loadableKey = img?.getAttribute(`data-loadablekey`);
+
+        if (!gallery?.[loadableKey]) {
+          gallery[loadableKey] = []
+        }
+
+        const parent = findAncestor(img, `loadable-image-parent`);
+
+        if (parent) {
+          gallery[loadableKey].push({
+            img,
+            parent
+          });
+        }
+      });
+
+      const galleryKeys = Object.keys(gallery);
+
+      if (galleryKeys?.[0]) {
+        galleryKeys.forEach(loadableKey => {
+          const galleryItems = gallery?.[loadableKey];
+
+          galleryItems.forEach(({ img, parent }) => {
+            if (!img || !parent) {
+              return;
+            }
+            
+            if (!loadableClasses?.includes(loadableKey)) {
+              parent.classList.add(`hidden`);
+              return;
+            }
+
+            const src = img.getAttribute(`data-src`);
+            const srcSet = img.getAttribute(`data-srcset`);
+            
+            img.setAttribute(`src`, src)
+            img.setAttribute(`srcset`, srcSet)
+            img.classList.add(`loaded`);
+            
+            parent.classList.remove(`hidden`);
+          });
+        });
+      }
+
+      // if (activeVariant?.featured_image?.src) {
+      //   if (addOnImage) {
+      //     addOnImage.src = activeVariant.featured_image.src;
+      //   }
+      // }
+    }
+  }
 
   const onDeviceChange = () => {
     refreshGallery();
@@ -204,81 +305,6 @@ const Product = () => {
 
     refreshGallery();
   };
-
-  const refreshGallery = () => {
-    if (!device || device !== `xl` || !activeVariant || !loadableImageTags?.[0]) {
-      return;
-    }
-     
-    const loadableColor = activeVariant?.option1?.replace(` `, `-`)?.toLowerCase()?.trim();
-
-    let loadableClasses;
-    
-    if (device === `xl`) {
-      loadableClasses = [
-        `xl:${loadableColor}:default`,
-        `xl:${loadableColor}:full`
-      ];
-    } else {
-      loadableClasses = [
-        `${device}:${loadableColor}`,
-        `${device}:${loadableColor}`
-      ];
-    }
-
-    const gallery = {};
-
-    loadableImageTags.forEach(img => {
-      const loadableKey = img?.getAttribute(`data-loadablekey`);
-
-      if (!gallery?.[loadableKey]) {
-        gallery[loadableKey] = []
-      }
-
-      const parent = findAncestor(img, `loadable-image-parent`);
-
-      if (parent) {
-        gallery[loadableKey].push({
-          img,
-          parent
-        });
-      }
-    });
-
-    const galleryKeys = Object.keys(gallery);
-
-    if (galleryKeys?.[0]) {
-      galleryKeys.forEach(loadableKey => {
-        const galleryItems = gallery?.[loadableKey];
-
-        galleryItems.forEach(({ img, parent }) => {
-          if (!img || !parent) {
-            return;
-          }
-          
-          if (!loadableClasses?.includes(loadableKey)) {
-            parent.classList.add(`hidden`);
-            return;
-          }
-
-          const src = img.getAttribute(`data-src`);
-          const srcSet = img.getAttribute(`data-srcset`);
-          
-          img.setAttribute(`src`, src)
-          img.setAttribute(`srcset`, srcSet)
-          img.classList.add(`loaded`);
-          
-          parent.classList.remove(`hidden`);
-        });
-      });
-    }
-
-    // if (activeVariant?.featured_image?.src) {
-    //   if (addOnImage) {
-    //     addOnImage.src = activeVariant.featured_image.src;
-    //   }
-    // }
-  }
 
   const resetWidgetTimeouts = () => {
     addWidget.classList.remove(`active`);
