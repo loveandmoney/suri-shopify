@@ -1,4 +1,10 @@
 .not-found {
+  height: 90vh;
+
+  @include md {
+    height: 100vh;
+  }
+
   figure {
     @include md {
       transform: translate3d(15vw, 0, 0);

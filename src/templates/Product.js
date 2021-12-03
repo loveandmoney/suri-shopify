@@ -283,7 +283,7 @@ const Product = () => {
     if (matchedVariant?.available) {
       buyButton.disabled = false;
       buyButton.classList.remove(`button--disabled`);
-      buyButtonText.innerHTML = `Pre-order Now`;
+      buyButtonText.innerHTML = `Pre-order now`;
     } else {
       buyButton.disabled = true;
       buyButton.classList.add(`button--disabled`);
