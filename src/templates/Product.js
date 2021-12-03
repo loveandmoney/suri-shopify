@@ -74,9 +74,12 @@ const Product = () => {
       return;
     }
 
-    //
-    // show / hide gallery imagery based on activeVariant
+    // add-on section switcher
+    if (activeVariant?.featured_image?.src && addOnImage) {
+      addOnImage.src = activeVariant.featured_image.src;
+    }
 
+    // variant-driven imagery
     const loadableColor = activeVariant?.option1?.replace(` `, `-`)?.toLowerCase()?.trim();
 
     if (device === `xs`) {
@@ -126,10 +129,6 @@ const Product = () => {
         }
       }
     } else if (loadableImageTags?.[0]) {
-      if (activeVariant?.featured_image?.src && addOnImage) {
-        addOnImage.src = activeVariant.featured_image.src;
-      }
-
       const loadableClasses = [
         `xl:${loadableColor}:default`,
         `xl:${loadableColor}:full`
