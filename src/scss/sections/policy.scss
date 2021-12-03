@@ -28,5 +28,15 @@
         margin-bottom: 1rem;
       }
     }
+
+    strong {
+      display: block;
+      margin: 4rem 0 1.5rem;
+      padding-top: 1.5rem;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22px;
+      border-top: 1px solid black;
+    }
   }
 }
