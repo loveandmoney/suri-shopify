@@ -3,8 +3,8 @@
     "parallax-blur-banner": {
       "type": "parallax-blur-banner",
       "settings": {
-        "heading": "A world class clean that doesn’t cost our planet.",
-        "body": "We are only making limited stocks for pre-launch. Don't miss out.",
+        "heading": "A world-class clean that doesn’t cost our planet.",
+        "body": "SURI is the new, sustainable electric toothbrush. Delivering an effective clean with innovative plant-based materials.",
         "buttonText": "Pre-order now & save 40%",
         "backgroundImage": "shopify:\/\/shop_images\/home-desktop-atf.jpg",
         "backgroundImageMobile": "shopify:\/\/shop_images\/home-mobile-atf.jpg",
@@ -50,7 +50,7 @@
       "settings": {
         "heading": "Now taking pre-orders.",
         "body": "Get 40% off on our limited stock pre-launch.",
-        "buttonText": "Pre-order Now",
+        "buttonText": "Pre-order now",
         "backgroundImage": "shopify:\/\/shop_images\/home-desktop-full-image-cta_1.jpg",
         "backgroundImageMobile": "shopify:\/\/shop_images\/home-desktop-full-image-cta.jpg",
         "blurDesktop": false,
