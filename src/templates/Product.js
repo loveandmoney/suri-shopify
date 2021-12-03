@@ -121,7 +121,6 @@ const Product = () => {
             });
 
             swipers[loadableColor] = swiper;
-            console.log(swipers);
           }
         }
       }
@@ -417,7 +416,7 @@ const Product = () => {
           .then(response => response.json())
           .then(response => {
             if (response.status) {
-              console.log(`error: `, response.description);
+              console.error(response.description);
               return;
             }
 

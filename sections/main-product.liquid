@@ -80,10 +80,8 @@
   assign product_form_id = 'product-form-add'
   assign price = product.price
   assign compare_at_price = product.compare_at_price
-  assign available = product.available | default: false
   assign buyable = product.selected_or_first_available_variant.available
   assign money_price = price | money
-  assign quantity = product.selected_or_first_available_variant
 
   assign discount = 0
 
@@ -195,10 +193,8 @@
         </section>
       {% endfor %}
     </div>
-
     
     <article class="grid">
-      <!-- desktop gallery -->
       <ul class="col-span-5 col-start-2 relative hidden md:flex flex-wrap justify-between pt-16" role="list">
         {%- for media in product.media -%}
           <li class="main-product__gallery__item main-product__gallery__item--half loadable-image-parent relative overflow-hidden bg-midnight-black-100" data-loadablekey="{{ media.preview_image.alt }}">
