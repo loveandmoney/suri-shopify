@@ -99,9 +99,11 @@
 
   &__swiper {
     &.invisible {
+      width: 100vw;
       opacity: 0;
-      position: absolute;
+      position: fixed;
       pointer-events: none;
+      z-index: -9999;
     }
 
     @include md {

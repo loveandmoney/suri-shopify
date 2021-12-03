@@ -125,7 +125,7 @@
   assign swiper_keys = swiper_keys | split: ","
 -%}
 
-<div class="main-product animation-appear-down-slow animation-delay-3 w-full relative md:pb-12 bg-mono-50" data-template="Product">
+<div class="main-product animation-appear-down-slow animation-delay-3 w-full relative overflow-x-hidden md:pb-12 bg-mono-50" data-template="Product">
   <section class="relative">
     <article class="grid md:hidden">
       {%- for block in section.blocks -%}
@@ -162,7 +162,6 @@
       {% endfor %}
     </article>
 
-    <!-- overflow-x-hidden -->
     <div class="w-full relative md:hidden">
       {% for key in swiper_keys %}
         {% assign js_key = key | replace: 'xs:', '' %}
@@ -170,7 +169,7 @@
         <section class="main-product__swiper relative invisible" data-key="{{ js_key }}">
           <div
             id="product-gallery-{{ js_key }}"
-            class="swiper-container swiper--product-gallery-{{ js_key }} md:hidden"
+            class="swiper-container swiper--product-gallery-{{ js_key }} relative"
             data-swiperid="product-gallery-{{ js_key }}"
           >
             <ul class="swiper-wrapper relative">
@@ -178,11 +177,9 @@
                 {% if media.preview_image.alt == key %}
                   <li class="swiper-slide w-full h-full relative">
                     <img
-                      class="w-full h-full relative block object-cover"
+                      class="swiper-image w-full h-full relative block object-cover"
                       width="576"
                       height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}"
-                      src="{{ media | img_url: '1500x' }}"
-                      srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w"
                       data-src="{{ media | img_url: '1500x' }}"
                       data-srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w"
                       loading="lazy"

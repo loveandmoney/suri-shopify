@@ -72,8 +72,7 @@ const Product = () => {
   // methods
 
   const refreshGallery = () => {
-    
-    if (!device || !activeVariant || !loadableImageTags?.[0]) {
+    if (!device || !activeVariant) {
       return;
     }
 
@@ -101,6 +100,18 @@ const Product = () => {
           activeSwiper.classList.remove(`invisible`);
 
           if (!swipers?.[loadableColor]) {
+            const swiperImages = activeSwiper.querySelectorAll(`.swiper-image`);
+
+            if (swiperImages?.[0]) {
+              swiperImages.forEach(swiperImage => {
+                const src = swiperImage.getAttribute(`data-src`);
+                const srcSet = swiperImage.getAttribute(`data-srcset`);
+
+                swiperImage.setAttribute(`src`, src);
+                swiperImage.setAttribute(`srcset`, srcSet);
+              });
+            }
+
             const swiper = new Swiper(`.swiper--product-gallery-${loadableColor}`, {
               loop: false,
               pagination: {
@@ -110,23 +121,15 @@ const Product = () => {
             });
 
             swipers[loadableColor] = swiper;
+            console.log(swipers);
           }
         }
       }
-    } else {
-      let loadableClasses;
-      
-      if (device === `xl`) {
-        loadableClasses = [
-          `xl:${loadableColor}:default`,
-          `xl:${loadableColor}:full`
-        ];
-      } else {
-        loadableClasses = [
-          `${device}:${loadableColor}`,
-          `${device}:${loadableColor}`
-        ];
-      }
+    } else if (loadableImageTags?.[0]) {
+      const loadableClasses = [
+        `xl:${loadableColor}:default`,
+        `xl:${loadableColor}:full`
+      ];
 
       const gallery = {};
 
@@ -174,12 +177,6 @@ const Product = () => {
           });
         });
       }
-
-      // if (activeVariant?.featured_image?.src) {
-      //   if (addOnImage) {
-      //     addOnImage.src = activeVariant.featured_image.src;
-      //   }
-      // }
     }
   }
 
@@ -191,10 +188,11 @@ const Product = () => {
     let newDevice = window.matchMedia(`only screen and (max-width: 1023px)`).matches ? `xs` : `xl`;
 
     if (newDevice !== device) {
+      device = newDevice;
       onDeviceChange();
+    } else {
+      device = newDevice;
     }
-
-    device = newDevice;
   }
 
   //
