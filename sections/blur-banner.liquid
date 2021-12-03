@@ -93,7 +93,7 @@
 
 {% capture desktop_image %}
   <figure class="blur-banner__image w-full h-full relative flex items-center justify-end">
-    <img src="{{ section.settings.backgroundImage | image_url }}" class="h-full relative block" loading="lazy"/>
+    <img src="{{ section.settings.backgroundImage | image_url }}" class="w-full h-full relative block object-cover" loading="lazy"/>
   </figure>
 {% endcapture %}
 

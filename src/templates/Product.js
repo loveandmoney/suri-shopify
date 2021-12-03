@@ -57,7 +57,6 @@ const Product = () => {
   // variables
 
   const displayedVariantText = {};
-  const imageGallery = {};
   const selectedOptions = [];
   const swipers = {};
 
@@ -77,11 +76,13 @@ const Product = () => {
 
     //
     // sort replacement image first
-
     
     if (activeVariant?.featured_image?.src && addOnImage) {
       addOnImage.src = activeVariant.featured_image.src;
     }
+
+    //
+    // show / hide gallery imagery based on activeVariant
 
     const loadableColor = activeVariant?.option1?.replace(` `, `-`)?.toLowerCase()?.trim();
 
