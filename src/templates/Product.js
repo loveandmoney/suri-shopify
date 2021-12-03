@@ -75,13 +75,6 @@ const Product = () => {
     }
 
     //
-    // sort replacement image first
-    
-    if (activeVariant?.featured_image?.src && addOnImage) {
-      addOnImage.src = activeVariant.featured_image.src;
-    }
-
-    //
     // show / hide gallery imagery based on activeVariant
 
     const loadableColor = activeVariant?.option1?.replace(` `, `-`)?.toLowerCase()?.trim();
@@ -133,6 +126,10 @@ const Product = () => {
         }
       }
     } else if (loadableImageTags?.[0]) {
+      if (activeVariant?.featured_image?.src && addOnImage) {
+        addOnImage.src = activeVariant.featured_image.src;
+      }
+
       const loadableClasses = [
         `xl:${loadableColor}:default`,
         `xl:${loadableColor}:full`
