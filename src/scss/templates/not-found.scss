@@ -1,0 +1,7 @@
+.not-found {
+  figure {
+    @include md {
+      transform: translate3d(15vw, 0, 0);
+    }
+  }
+}
