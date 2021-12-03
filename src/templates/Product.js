@@ -75,6 +75,14 @@ const Product = () => {
       return;
     }
 
+    //
+    // sort replacement image first
+
+    
+    if (activeVariant?.featured_image?.src && addOnImage) {
+      addOnImage.src = activeVariant.featured_image.src;
+    }
+
     const loadableColor = activeVariant?.option1?.replace(` `, `-`)?.toLowerCase()?.trim();
 
     if (device === `xs`) {
@@ -305,12 +313,6 @@ const Product = () => {
       addOnButton.disabled = true;
       addOnButton.classList.add(`button--disabled`);
       addOnButtonText.innerHTML = `Sold Out`;
-    }
-
-    if (matchedVariant?.featured_image?.src) {
-      // if (addOnImage) {
-      //   addOnImage.src = matchedVariant.featured_image.src;
-      // }
     }
 
     //
