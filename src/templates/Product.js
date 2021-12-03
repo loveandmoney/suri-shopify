@@ -1,4 +1,10 @@
 import { fetchConfig, findAncestor } from '../utils/helpers';
+import SwiperCore, { Navigation, Pagination }  from "swiper/core";
+import Swiper from "swiper";
+
+SwiperCore.use([Navigation, Pagination]);
+
+import "swiper/swiper-bundle.css";
 
 const Product = () => {
   if (typeof window === `undefined`) {
@@ -54,6 +60,7 @@ const Product = () => {
   const displayedVariantText = {};
   const imageGallery = {};
   const selectedOptions = [];
+  const swipers = {};
 
   let activeExpander = null;
   let device;
@@ -65,6 +72,7 @@ const Product = () => {
   // methods
 
   const refreshGallery = () => {
+    
     if (!device || !activeVariant || !loadableImageTags?.[0]) {
       return;
     }
@@ -90,8 +98,19 @@ const Product = () => {
         });
 
         if (activeSwiper) {
-          console.log(activeSwiper);
           activeSwiper.classList.remove(`invisible`);
+
+          if (!swipers?.[loadableColor]) {
+            const swiper = new Swiper(`.swiper--product-gallery-${loadableColor}`, {
+              loop: false,
+              pagination: {
+                el: `.swiper-pagination--product-gallery-${loadableColor}`,
+                type: `bullets`
+              }
+            });
+
+            swipers[loadableColor] = swiper;
+          }
         }
       }
     } else {
@@ -169,7 +188,7 @@ const Product = () => {
   }
 
   const detectDevice = () => {
-    let newDevice = window.innerWidth < 1024 ? `xs` : `xl`;
+    let newDevice = window.matchMedia(`only screen and (max-width: 1023px)`).matches ? `xs` : `xl`;
 
     if (newDevice !== device) {
       onDeviceChange();

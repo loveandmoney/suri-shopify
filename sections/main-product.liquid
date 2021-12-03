@@ -162,7 +162,8 @@
       {% endfor %}
     </article>
 
-    <div class="relative md:hidden">
+    <!-- overflow-x-hidden -->
+    <div class="w-full relative md:hidden">
       {% for key in swiper_keys %}
         {% assign js_key = key | replace: 'xs:', '' %}
 
@@ -170,7 +171,6 @@
           <div
             id="product-gallery-{{ js_key }}"
             class="swiper-container swiper--product-gallery-{{ js_key }} md:hidden"
-            data-component="SwiperCarousel"
             data-swiperid="product-gallery-{{ js_key }}"
           >
             <ul class="swiper-wrapper relative">
@@ -186,7 +186,7 @@
                       data-src="{{ media | img_url: '1500x' }}"
                       data-srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %} {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %} {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w"
                       loading="lazy"
-                      alt="{{ media.preview_image.alt | escape }}"
+                      alt="{{ product.title }}"
                     />
                   </li>
                 {% endif %}
