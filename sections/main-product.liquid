@@ -96,19 +96,10 @@
     assign money_price = price | money_with_currency
   endif
 
-  assign gallery_keys = ""
   assign swiper_keys = ""
 
   for media in product.media
     assign key = media.preview_image.alt
-
-    unless gallery_keys contains key
-      if gallery_keys == blank
-        assign gallery_keys = gallery_keys | append: key
-      else
-        assign gallery_keys = gallery_keys | append: "," | append: key
-      endif
-    endunless
 
     unless swiper_keys contains key or key contains "xl"
       if swiper_keys == blank
@@ -119,7 +110,6 @@
     endunless
   endfor
 
-  assign gallery_keys = gallery_keys | split: ","
   assign swiper_keys = swiper_keys | split: ","
 -%}
 
@@ -197,7 +187,13 @@
     <article class="grid">
       <ul class="col-span-5 col-start-2 relative hidden md:flex flex-wrap justify-between pt-16" role="list">
         {%- for media in product.media -%}
-          <li class="main-product__gallery__item main-product__gallery__item--half loadable-image-parent relative overflow-hidden bg-midnight-black-100" data-loadablekey="{{ media.preview_image.alt }}">
+          {% assign width = 'half' %}
+
+          {% if media.preview_image.alt contains ':full' %}
+            {% assign width = 'full' %}
+          {% endif %}
+
+          <li class="main-product__gallery__item main-product__gallery__item--{{ width }} loadable-image-parent relative overflow-hidden bg-midnight-black-100" data-loadablekey="{{ media.preview_image.alt }}">
             <figure class="w-full h-full absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center overflow-hidden">
               <img
                 width="576"
