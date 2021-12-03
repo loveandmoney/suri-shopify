@@ -24,7 +24,7 @@ const FAQ = () => {
       button.classList.remove(`selected`);
     });
 
-    faqContent.forEach((contentItem, contentIndex) => {
+    faqContent.forEach((contentItem) => {
       contentItem.classList.remove(`active`);
       contentItem.classList.add(`hidden`);
     });

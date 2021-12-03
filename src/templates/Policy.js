@@ -9,7 +9,7 @@ const Policy = () => {
   // DOM
 
   const buttons = document.querySelectorAll(`.policy__button`);
-  const policyContent = document.querySelectorAll(`#policy-content`);
+  const policyContent = document.querySelectorAll(`.policy__content__container`);
 
   //
 
@@ -24,7 +24,7 @@ const Policy = () => {
       button.classList.remove(`selected`);
     });
 
-    policyContent.forEach((contentItem, contentIndex) => {
+    policyContent.forEach((contentItem) => {
       contentItem.classList.remove(`active`);
       contentItem.classList.add(`hidden`);
     });

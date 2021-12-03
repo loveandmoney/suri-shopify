@@ -43,7 +43,7 @@
 
     <article class="policy__content col-span-12 md:col-span-5 relative min-h-screen mb-12 md:mb-32">
       {% for block in section.blocks %}
-        <div id="policy-content" class="policy__content__container {% if forloop.index0 == 0 %}active{% else %}hidden{% endif %} b2">{{ block.settings.content }}</div>
+        <div class="policy__content__container {% if forloop.index0 == 0 %}active{% else %}hidden{% endif %} b2">{{ block.settings.content }}</div>
       {% endfor %}
     </article>
   </section>
