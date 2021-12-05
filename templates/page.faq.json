@@ -23,12 +23,28 @@
             "title": "Updating your order",
             "answer": "<p>You can amend or change your order including ask for a refund up until your order ships. After your order ships our 100 day money back guarantee will start and you will be able to return your purchase to us with no questions asked for up to 100 days. To make any amends contact <span style=\"text-decoration:underline\">support@trysuri.com<\/span> .<\/p>"
           }
+        },
+        "35cdeca7-9464-4743-a0ef-c62731606cac": {
+          "type": "faq",
+          "settings": {
+            "title": "Recycling",
+            "answer": "<p>We offer free recycling for our toothbrush heads when you subscribe. Every order will come with a compostable return mailer for you to send the heads back to us -we ask that you collect at least 3 before sending them to reduce our carbon footprint. <br\/><br\/>If you would like to recycle your head or brush and are not subscribed please contact us at support@trysuri.com and we'll send you a mailer -we currently offer pre-paid shipping for recycling in the UK only (but are looking to expand global soon!).<\/p>"
+          }
+        },
+        "29d16081-723f-4018-a953-72174cc92f21": {
+          "type": "faq",
+          "settings": {
+            "title": "Product Problems",
+            "answer": "<p>We hope your SURI is always working at it's best, however if anything appears wrong or not working please contact us as soon as possible at support@trysuri.com for help. Note if your SURI won't turn charge or turn on we recommend using another USB charger and wall outlet as a first step.<\/p>"
+          }
         }
       },
       "block_order": [
         "1303375d-0513-417d-b254-3d93bfd559fe",
         "7cc5f891-6719-48d9-b29c-12a555699637",
-        "4faa6879-3508-4306-81c9-47f7ab99498a"
+        "4faa6879-3508-4306-81c9-47f7ab99498a",
+        "35cdeca7-9464-4743-a0ef-c62731606cac",
+        "29d16081-723f-4018-a953-72174cc92f21"
       ],
       "settings": {
       }
