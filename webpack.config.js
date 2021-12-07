@@ -9,7 +9,8 @@ module.exports = {
   mode: `production`,
   output: {
     path: path.resolve(__dirname, `assets`),
-    filename: `bundle.min.js`
+    filename: `bundle.min.js`,
+    assetModuleFilename: '[name][ext]'
   },
 
   module: {
@@ -27,15 +28,9 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
-          {
-            loader: `css-loader`
-          },
-          {
-            loader: `postcss-loader`
-          },
+          MiniCssExtractPlugin.loader,
+          `css-loader`,
+          `postcss-loader`,
           {
             loader: `sass-loader`,
             options: {
@@ -46,31 +41,18 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
-        use: [
-          {
-            loader: `file-loader`,
-            options: {
-              outputPath: `assets`
-            }
-          }
-        ]
+        type: `asset/resource`
       },
       {
         test: /\.(woff|woff2|ttf|otf|eot)$/,
-        use: [
-          {
-            loader: `file-loader`,
-            options: {
-              name: `[name].[ext]`
-            }
-          }
-        ]
+        type: `asset/resource`
       }
     ]
   },
 
   optimization: {
-    minimizer: [new TerserJSPlugin({}), new CssMinimizerPlugin()]
+    minimize: true,
+    minimizer: [new TerserJSPlugin(), new CssMinimizerPlugin()]
   },
 
   plugins: [
