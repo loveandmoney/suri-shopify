@@ -64,6 +64,19 @@
         "body": "<p>We are only making limited stocks for pre-launch.<\/p><p>Don't miss out.<\/p>"
       }
     },
+    "gallery3": {
+      "type": "gallery",
+      "settings": {
+        "image1": "shopify:\/\/shop_images\/home-desktop-carousel-05.jpg",
+        "image2": "shopify:\/\/shop_images\/home-desktop-carousel-06_97beb687-f283-49dd-a5ea-fc1a5a7bd78d.jpg",
+        "image3": "shopify:\/\/shop_images\/home-desktop-carousel-07_6d525134-e064-452a-8192-583a8148b5de.jpg",
+        "image4": "shopify:\/\/shop_images\/home-desktop-carousel-08_65282c83-f7c0-4025-8095-38fdcd9382fb.jpg",
+        "image1XS": "shopify:\/\/shop_images\/home-mobile-carousel-05.jpg",
+        "image2XS": "shopify:\/\/shop_images\/home-mobile-carousel-06_5bf23f7d-73c4-4b00-8e47-8440d644849b.jpg",
+        "image3XS": "shopify:\/\/shop_images\/home-mobile-carousel-07.jpg",
+        "image4XS": "shopify:\/\/shop_images\/home-mobile-carousel-08_de075c76-4239-4117-b4fc-c5a9ffb8faa0.jpg"
+      }
+    },
     "newsletter": {
       "type": "newsletter",
       "settings": {
@@ -77,6 +90,7 @@
     "gallery2",
     "blur-banner",
     "brand-story",
+    "gallery3",
     "newsletter"
   ]
 }
