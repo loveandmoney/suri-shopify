@@ -1,0 +1,87 @@
+{%- liquid
+  assign price = line_item.original_price | plus: 0.00
+  assign compare_at_price = line_item.variant.compare_at_price | plus: 0.00
+  assign discount = 0
+  assign formatted_title = line_item.title | downcase
+
+  if price != compare_at_price
+    assign relative_value = price | divided_by: compare_at_price
+    assign discount = 1.0 | minus: relative_value | times: 100 | floor
+  endif
+-%}
+
+<article class="w-full relative flex items-stretch overflow-hidden bg-transparent text-black">
+  <div class="w-full relative flex pt-10 pb-10 border-mono-75 border-b">
+    <div class="w-full relative">
+      <header class="relative flex justify-between">
+        <h2 class="w-full pr-6 b1">
+          {% if formatted_title contains 'replacement' %}
+            {{ line_item.title }}
+          {% else %}
+            <a href="{{ line_item.url }}" class="main-cart__item__url w-full relative block">
+              {{ line_item.title }}
+            </a>
+          {% endif %}
+        </h2>
+
+        <a class="main-cart__item__remove w-10 h-10 absolute top-0 right-0 z-10 flex items-start justify-end b1" href="/cart/change?line={{ line_index }}&quantity=0">
+          <svg fill="none" viewbox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.5 5.5L5.5 16.5" stroke-linecap="square" stroke-linejoin="round" stroke-width="1.5" stroke="black"/>
+            <path d="M5.5 5.5L16.5 16.5" stroke-linecap="square" stroke-linejoin="round" stroke-width="1.5" stroke="black"/>
+          </svg>
+        </a>
+      </header>
+
+      <article class="relative mt-4 flex items-center justify-start">
+        <label class="block mr-3 b3">
+          Qty:
+        </label>
+
+        <div class="main-cart__quantity w-20 h-8 relative flex items-center justify-between overflow-hidden rounded-full border">
+          <button class="main-cart__quantity-adjust cart-item-adjust cart-item-adjust--down w-10 h-8 relative block select-none" data-id="{{ line_item.id }}" name="minus" type="button">
+            <div class="w-full h-full relative flex items-center justify-center">
+              <span class="-mt-1 b1">-</span>
+            </div>
+          </button>
+
+          <input
+            id="product-quantity-{{ line_item.index | plus: 1 }}"
+            name="product-quantity-{{ line_item.index | plus: 1 }}"
+            aria-label="Quantity adjust {{ line_item.product.title }}"
+            data-id="{{ line_item.id }}"
+            data-index="{{ line_item.index | plus: 1 }}"
+            class="cart-item-quantity main-cart__input main-cart__input--number w-6 h-full relative block bg-transparent text-center"
+            min="1"
+            value="{{ line_item.quantity }}"
+            type="number"
+          />
+
+          <button class="main-cart__quantity-adjust cart-item-adjust cart-item-adjust--up w-10 h-8 relative block select-none" data-id="{{ line_item.id }}" name="plus" type="button">
+            <div class="w-full h-full relative flex items-center justify-center">
+              <span class="-mt-1 b1">+</span>
+            </div>
+          </button>
+        </div>
+      </article>
+
+      <div class="w-full relative flex items-center justify-between mt-4">
+        {%- if discount == 0 -%}
+          <p class="b1">
+            {{ price | money }}
+          </p>
+        {%- else -%}
+          <p class="b1">
+            <span class="">
+              {{ price | money }}
+            </span>
+            <span class="line-through text-mono-75">
+              {{ compare_at_price | money }}
+            </span>
+          </p>
+
+          <p class="b3 text-ux-green">{{ discount }}% discount applied</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</article>
