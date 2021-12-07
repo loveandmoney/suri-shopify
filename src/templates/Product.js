@@ -1,10 +1,7 @@
 import { fetchConfig, findAncestor } from '../utils/helpers';
-import SwiperCore, { Navigation, Pagination }  from "swiper/core";
-import Swiper from "swiper";
+import Swiper, { Navigation, Pagination } from 'swiper';
 
-SwiperCore.use([Navigation, Pagination]);
-
-import "swiper/swiper-bundle.css";
+import 'swiper/css/bundle';
 
 const Product = () => {
   if (typeof window === `undefined`) {
@@ -80,7 +77,10 @@ const Product = () => {
     }
 
     // variant-driven imagery
-    const loadableColor = activeVariant?.option1?.replace(` `, `-`)?.toLowerCase()?.trim();
+    const loadableColor = activeVariant?.option1
+      ?.replace(` `, `-`)
+      ?.toLowerCase()
+      ?.trim();
 
     if (device === `xs`) {
       if (xsSwipers?.[0]) {
@@ -116,13 +116,17 @@ const Product = () => {
               });
             }
 
-            const swiper = new Swiper(`.swiper--product-gallery-${loadableColor}`, {
-              loop: false,
-              pagination: {
-                el: `.swiper-pagination--product-gallery-${loadableColor}`,
-                type: `bullets`
+            const swiper = new Swiper(
+              `.swiper--product-gallery-${loadableColor}`,
+              {
+                modules: [Navigation, Pagination],
+                loop: false,
+                pagination: {
+                  el: `.swiper-pagination--product-gallery-${loadableColor}`,
+                  type: `bullets`
+                }
               }
-            });
+            );
 
             swipers[loadableColor] = swiper;
           }
@@ -140,7 +144,7 @@ const Product = () => {
         const loadableKey = img?.getAttribute(`data-loadablekey`);
 
         if (!gallery?.[loadableKey]) {
-          gallery[loadableKey] = []
+          gallery[loadableKey] = [];
         }
 
         const parent = findAncestor(img, `loadable-image-parent`);
@@ -163,7 +167,7 @@ const Product = () => {
             if (!img || !parent) {
               return;
             }
-            
+
             if (!loadableClasses?.includes(loadableKey)) {
               parent.classList.add(`hidden`);
               return;
@@ -171,27 +175,30 @@ const Product = () => {
 
             const src = img.getAttribute(`data-src`);
             const srcSet = img.getAttribute(`data-srcset`);
-            
-            img.setAttribute(`src`, src)
-            img.setAttribute(`srcset`, srcSet)
-            
+
+            img.setAttribute(`src`, src);
+            img.setAttribute(`srcset`, srcSet);
+
             img.onload = () => {
               img.classList.add(`loaded`);
-            }
-            
+            };
+
             parent.classList.remove(`hidden`);
           });
         });
       }
     }
-  }
+  };
 
   const onDeviceChange = () => {
     refreshGallery();
-  }
+  };
 
   const detectDevice = () => {
-    let newDevice = window.matchMedia(`only screen and (max-width: 1023px)`).matches ? `xs` : `xl`;
+    let newDevice = window.matchMedia(`only screen and (max-width: 1023px)`)
+      .matches
+      ? `xs`
+      : `xl`;
 
     if (newDevice !== device) {
       device = newDevice;
@@ -199,7 +206,7 @@ const Product = () => {
     } else {
       device = newDevice;
     }
-  }
+  };
 
   //
 
@@ -513,22 +520,25 @@ const Product = () => {
             if (headerCartQuantity) {
               fetch(`${routes.cart_url}`, {
                 ...fetchConfig()
-              }).then((response) => {
-                return response.text()
-              }).then(state => {
-                const parsedState = JSON.parse(state);
-                const itemCount = parseInt(parsedState?.item_count);
+              })
+                .then(response => {
+                  return response.text();
+                })
+                .then(state => {
+                  const parsedState = JSON.parse(state);
+                  const itemCount = parseInt(parsedState?.item_count);
 
-                headerCartQuantity.innerHTML = itemCount === 0 ? `` : itemCount;
-                
-                if (headerCartQuantityContainer) {
-                  if (itemCount > 0) {
-                    headerCartQuantityContainer.classList.remove(`opacity-0`);
-                  } else {
-                    headerCartQuantityContainer.classList.add(`opacity-0`);
+                  headerCartQuantity.innerHTML =
+                    itemCount === 0 ? `` : itemCount;
+
+                  if (headerCartQuantityContainer) {
+                    if (itemCount > 0) {
+                      headerCartQuantityContainer.classList.remove(`opacity-0`);
+                    } else {
+                      headerCartQuantityContainer.classList.add(`opacity-0`);
+                    }
                   }
-                }
-              });
+                });
             }
 
             if (addWidget && addWidgetItem && addWidgetQuantity) {

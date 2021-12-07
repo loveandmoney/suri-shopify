@@ -1,37 +1,38 @@
 @charset 'UTF-8';
 
-@import "./fonts/fonts.scss";
-@import "./swiper.scss"; //
-@import "tailwindcss/base";
+@import './fonts/fonts.scss';
+@import './swiper.scss'; //
+@import 'tailwindcss/base';
 
-@import "screen.scss";
-@import "base.scss";
-@import "transitions.scss";
+@import 'screen.scss';
+@import 'base.scss';
+@import 'transitions.scss';
 
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@import "grid.scss";
+@import 'grid.scss';
 
-@import "components/Attributes.scss";
-@import "components/Banner.scss";
-@import "components/Button.scss";
-@import "components/Gallery.scss";
-@import "components/Essentials.scss";
-@import "components/Footer.scss";
-@import "components/Header.scss";
-@import "components/Newsletter.scss";
-@import "components/Page.scss";
-@import "components/SimpleText.scss";
-@import "components/SwiperCarousel.scss";
-@import "components/Tray.scss";
+@import 'components/Attributes.scss';
+@import 'components/Banner.scss';
+@import 'components/Button.scss';
+@import 'components/Gallery.scss';
+@import 'components/Essentials.scss';
+@import 'components/Footer.scss';
+@import 'components/Header.scss';
+@import 'components/Newsletter.scss';
+@import 'components/Page.scss';
+@import 'components/SideCart.scss';
+@import 'components/SimpleText.scss';
+@import 'components/SwiperCarousel.scss';
+@import 'components/Tray.scss';
 
-@import "sections/blur-banner.scss";
-@import "sections/parallax-blur-banner.scss";
-@import "sections/policy.scss";
-@import "sections/main-cart.scss";
-@import "sections/main-product.scss";
+@import 'sections/blur-banner.scss';
+@import 'sections/parallax-blur-banner.scss';
+@import 'sections/policy.scss';
+@import 'sections/main-cart.scss';
+@import 'sections/main-product.scss';
 
-@import "templates/index.scss";
-@import "templates/not-found.scss";
-@import "templates/product.scss";
+@import 'templates/index.scss';
+@import 'templates/not-found.scss';
+@import 'templates/product.scss';
