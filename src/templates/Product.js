@@ -1,10 +1,7 @@
 import { fetchConfig, findAncestor } from '../utils/helpers';
-import SwiperCore, { Navigation, Pagination } from 'swiper/core';
-import Swiper from 'swiper';
+import Swiper, { Navigation, Pagination } from 'swiper';
 
-SwiperCore.use([Navigation, Pagination]);
-
-import 'swiper/swiper-bundle.css';
+import 'swiper/css/bundle';
 
 const Product = () => {
   if (typeof window === `undefined`) {
@@ -122,6 +119,7 @@ const Product = () => {
             const swiper = new Swiper(
               `.swiper--product-gallery-${loadableColor}`,
               {
+                modules: [Navigation, Pagination],
                 loop: false,
                 pagination: {
                   el: `.swiper-pagination--product-gallery-${loadableColor}`,

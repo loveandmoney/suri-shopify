@@ -58,7 +58,7 @@
       margin-bottom: $spacing;
 
       &--half {
-        width: calc(50% - #{$spacing / 2});
+        width: calc(50% - $spacing / 2);
         padding-bottom: 66%;
       }
 
@@ -88,13 +88,13 @@
       0.15s $ease-out-cubic opacity;
 
     background: transparent;
-    color: theme("colors.mono-100");
+    color: theme('colors.mono-100');
     border: 1px solid transparent;
 
     @include hoverable {
       &:hover {
-        background: theme("colors.mono-100");
-        color: theme("colors.mono-white");
+        background: theme('colors.mono-100');
+        color: theme('colors.mono-white');
       }
     }
   }

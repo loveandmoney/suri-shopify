@@ -1,11 +1,8 @@
-import SwiperCore, { Navigation, Pagination }  from "swiper/core";
-import Swiper from "swiper";
+import Swiper, { Navigation, Pagination } from 'swiper';
 
-SwiperCore.use([Navigation, Pagination]);
+import 'swiper/css/bundle';
 
-import "swiper/swiper-bundle.css";
-
-const SwiperCarousel = (caller) => {
+const SwiperCarousel = caller => {
   const id = caller?.getAttribute(`data-swiperid`);
 
   if (!id) {
@@ -16,6 +13,7 @@ const SwiperCarousel = (caller) => {
 
   const initializeSwiper = () => {
     swiper = new Swiper(`.swiper--${id}`, {
+      modules: [Navigation, Pagination],
       loop: false,
       pagination: {
         el: `.swiper-pagination--${id}`,
@@ -26,7 +24,7 @@ const SwiperCarousel = (caller) => {
     const onChange = caller?.getAttribute(`data-onchange`);
 
     if (onChange && onChange?.includes(`.`)) {
-      swiper.on(`slideChange`, (e) => {
+      swiper.on(`slideChange`, e => {
         const changeSplit = caller.getAttribute(`data-onchange`).split(`.`);
 
         if (!changeSplit?.[0] || !changeSplit?.[1]) {
@@ -42,13 +40,13 @@ const SwiperCarousel = (caller) => {
         }
       });
     }
-  }
-  
+  };
+
   const main = () => {
     initializeSwiper();
-  }
+  };
 
   main();
-}
+};
 
 export default SwiperCarousel;

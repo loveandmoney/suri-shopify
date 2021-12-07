@@ -1,0 +1,13 @@
+.side-cart {
+  &[aria-hidden='false'] {
+    pointer-events: all;
+
+    .side-cart__overlay {
+      opacity: 0.5;
+    }
+
+    .side-cart__content {
+      right: 0;
+    }
+  }
+}

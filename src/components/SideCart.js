@@ -1,6 +1,4 @@
-import { fetchConfig } from '../utils/helpers';
-
-const Header = () => {
+const SideCart = () => {
   if (typeof window === `undefined`) {
     return;
   }
@@ -8,24 +6,29 @@ const Header = () => {
   // ---------------------------------------------------------------------------
   // DOM
 
-  const cartButton = document.getElementById(`header-cart-button`);
-  const checkoutButton = document.getElementById(`header-checkout-button`);
   const sideCart = document.getElementById(`side-cart`);
+  const closeButton = document.getElementById(`side-cart-close`);
+  const sideCartOverlay = document.getElementById(`side-cart-overlay`);
 
   // ---------------------------------------------------------------------------
   // initialization
 
   const addListeners = () => {
-    if (cartButton) {
-      cartButton.addEventListener(`click`, e => {
-        sideCart.setAttribute('aria-hidden', 'false');
+    if (closeButton) {
+      closeButton.addEventListener(`click`, e => {
+        sideCart.setAttribute('aria-hidden', 'true');
+      });
+    }
+
+    if (sideCartOverlay) {
+      sideCartOverlay.addEventListener(`click`, e => {
+        sideCart.setAttribute('aria-hidden', 'true');
       });
     }
   };
 
   // ---------------------------------------------------------------------------
   // execution
-
   const main = () => {
     addListeners();
   };
@@ -33,4 +36,4 @@ const Header = () => {
   main();
 };
 
-export default Header;
+export default SideCart;
