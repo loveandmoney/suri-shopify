@@ -66,6 +66,7 @@
     },
     "gallery3": {
       "type": "gallery",
+      "disabled": true,
       "settings": {
         "image1": "shopify:\/\/shop_images\/home-desktop-carousel-05.jpg",
         "image2": "shopify:\/\/shop_images\/home-desktop-carousel-06_97beb687-f283-49dd-a5ea-fc1a5a7bd78d.jpg",
