@@ -50,6 +50,17 @@ const Product = () => {
   const variantPickers = document.querySelectorAll(`.variant-picker`);
   const xsSwipers = document.querySelectorAll(`.main-product__swiper`);
 
+  const sideCartContent = document.getElementById(`side-cart-content`);
+  const mainCartListEmpty = document.getElementById(`main-cart-list-empty`);
+  // const mainCartList = document.getElementById(`main-cart-list`);
+
+  const mainCartListTemplate = document.getElementById(
+    `main-cart-list-template`
+  );
+  const sideCartItemTemplate = document.getElementById(
+    `side-cart-item-template`
+  );
+
   // ---------------------------------------------------------------------------
   // variables
 
@@ -439,6 +450,8 @@ const Product = () => {
                 })
                 .then(state => {
                   const parsedState = JSON.parse(state);
+                  console.log(`parsedState`, parsedState);
+
                   const itemCount = parseInt(parsedState?.item_count);
 
                   headerCartQuantity.innerHTML =
@@ -449,6 +462,100 @@ const Product = () => {
                       headerCartQuantityContainer.classList.remove(`opacity-0`);
                     } else {
                       headerCartQuantityContainer.classList.add(`opacity-0`);
+                    }
+                  }
+
+                  if (itemCount > 0) {
+                    if (mainCartListEmpty) {
+                      // remove the empty cart
+                      mainCartListEmpty.remove();
+
+                      // create the cart list but only if
+                      // the list doesn't already exist
+                      if (!document.getElementById('main-cart-list-2')) {
+                        const mainCartListClone =
+                          mainCartListTemplate.content.cloneNode(true);
+
+                        sideCartContent.appendChild(mainCartListClone);
+                      }
+
+                      // get the cart items list
+                      const mainCartList =
+                        document.querySelector('.cart__list');
+
+                      if (mainCartList) {
+                        parsedState.items.forEach((item, itemIndex) => {
+                          // ===== variables
+                          const sideCartItemClone =
+                            sideCartItemTemplate.content.cloneNode(true);
+
+                          const listItemWrapper =
+                            sideCartItemClone.querySelector(
+                              `.cart__list__item`
+                            );
+
+                          const listItemHeader =
+                            sideCartItemClone.querySelector(`#product-title`);
+
+                          const quantityInput =
+                            sideCartItemClone.querySelector(
+                              `.cart-item-quantity`
+                            );
+                          const adjustQuantityDownButton =
+                            sideCartItemClone.querySelector(
+                              `.cart-item-adjust--down`
+                            );
+                          const adjustQuantityUpButton =
+                            sideCartItemClone.querySelector(
+                              `.cart-item-adjust--up`
+                            );
+
+                          // ===== methods
+                          listItemWrapper.setAttribute(
+                            'data-cart-item-index',
+                            itemIndex
+                          );
+
+                          listItemHeader.innerText = item.title;
+
+                          quantityInput.setAttribute(
+                            `id`,
+                            `product-quantity-${itemIndex + 1}`
+                          );
+                          quantityInput.setAttribute(
+                            `name`,
+                            `product-quantity-${itemIndex + 1}`
+                          );
+                          quantityInput.setAttribute(
+                            `aria-label`,
+                            `Quantity adjust ${item.product_title}`
+                          );
+                          quantityInput.setAttribute(`data-id`, `${item.id}`);
+                          quantityInput.setAttribute(
+                            `data-index`,
+                            `${itemIndex + 1}`
+                          );
+                          quantityInput.setAttribute(
+                            `value`,
+                            `${item.quantity}`
+                          );
+
+                          adjustQuantityDownButton.setAttribute(
+                            `data-id`,
+                            `${item.id}`
+                          );
+                          adjustQuantityUpButton.setAttribute(
+                            `data-id`,
+                            `${item.id}`
+                          );
+
+                          if (item.quantity > 1) {
+                            return;
+                          } else {
+                            mainCartList.appendChild(sideCartItemClone);
+                          }
+                        });
+                      }
                     }
                   }
                 });
