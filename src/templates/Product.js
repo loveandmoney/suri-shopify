@@ -65,6 +65,8 @@ const Product = () => {
     `side-cart-item-template`
   );
 
+  const sideCartComponent = document.getElementById(`side-cart-component`);
+
   // ---------------------------------------------------------------------------
   // variables
 
@@ -444,7 +446,7 @@ const Product = () => {
             }
 
             // yes, the add_to_cart form was submitted properly
-            // 
+            //
             // what are the ways we can get from here to SideCart.onAddToCart?
             // 1. SideCart.onAddToCart, but we need the singleton already attached to <side-cart>
             //    - can we document.getElementsByTagName(`side-cart`)
@@ -454,6 +456,8 @@ const Product = () => {
 
             //
             // product.js live area stuff which we could improve later
+
+            sideCartComponent.dispatchEvent(new Event(`lam:cart-add`));
 
             const { title, quantity } = response;
 
@@ -466,7 +470,6 @@ const Product = () => {
                 })
                 .then(state => {
                   const parsedState = JSON.parse(state);
-                  console.log(`parsedState`, parsedState);
 
                   const itemCount = parseInt(parsedState?.item_count);
 
@@ -481,99 +484,99 @@ const Product = () => {
                     }
                   }
 
-                  if (itemCount > 0) {
-                    if (mainCartListEmpty) {
-                      // remove the empty cart
-                      mainCartListEmpty.remove();
+                  // if (itemCount > 0) {
+                  //   if (mainCartListEmpty) {
+                  //     // remove the empty cart
+                  //     mainCartListEmpty.remove();
 
-                      // create the cart list but only if
-                      // the list doesn't already exist
-                      if (!document.getElementById('main-cart-list-2')) {
-                        const mainCartListClone =
-                          mainCartListTemplate.content.cloneNode(true);
+                  //     // create the cart list but only if
+                  //     // the list doesn't already exist
+                  //     if (!document.getElementById('main-cart-list-2')) {
+                  //       const mainCartListClone =
+                  //         mainCartListTemplate.content.cloneNode(true);
 
-                        sideCartContent.appendChild(mainCartListClone);
-                      }
+                  //       sideCartContent.appendChild(mainCartListClone);
+                  //     }
 
-                      // get the cart items list
-                      const mainCartList =
-                        document.querySelector('.cart__list');
+                  //     // get the cart items list
+                  //     const mainCartList =
+                  //       document.querySelector('.cart__list');
 
-                      if (mainCartList) {
-                        parsedState.items.forEach((item, itemIndex) => {
-                          // ===== variables
-                          const sideCartItemClone =
-                            sideCartItemTemplate.content.cloneNode(true);
+                  //     if (mainCartList) {
+                  //       parsedState.items.forEach((item, itemIndex) => {
+                  //         // ===== variables
+                  //         const sideCartItemClone =
+                  //           sideCartItemTemplate.content.cloneNode(true);
 
-                          const listItemWrapper =
-                            sideCartItemClone.querySelector(
-                              `.cart__list__item`
-                            );
+                  //         const listItemWrapper =
+                  //           sideCartItemClone.querySelector(
+                  //             `.cart__list__item`
+                  //           );
 
-                          const listItemHeader =
-                            sideCartItemClone.querySelector(`#product-title`);
+                  //         const listItemHeader =
+                  //           sideCartItemClone.querySelector(`#product-title`);
 
-                          const quantityInput =
-                            sideCartItemClone.querySelector(
-                              `.cart-item-quantity`
-                            );
-                          const adjustQuantityDownButton =
-                            sideCartItemClone.querySelector(
-                              `.cart-item-adjust--down`
-                            );
-                          const adjustQuantityUpButton =
-                            sideCartItemClone.querySelector(
-                              `.cart-item-adjust--up`
-                            );
+                  //         const quantityInput =
+                  //           sideCartItemClone.querySelector(
+                  //             `.cart-item-quantity`
+                  //           );
+                  //         const adjustQuantityDownButton =
+                  //           sideCartItemClone.querySelector(
+                  //             `.cart-item-adjust--down`
+                  //           );
+                  //         const adjustQuantityUpButton =
+                  //           sideCartItemClone.querySelector(
+                  //             `.cart-item-adjust--up`
+                  //           );
 
-                          // ===== methods
-                          listItemWrapper.setAttribute(
-                            'data-cart-item-index',
-                            itemIndex
-                          );
+                  //         // ===== methods
+                  //         listItemWrapper.setAttribute(
+                  //           'data-cart-item-index',
+                  //           itemIndex
+                  //         );
 
-                          listItemHeader.innerText = item.title;
+                  //         listItemHeader.innerText = item.title;
 
-                          quantityInput.setAttribute(
-                            `id`,
-                            `product-quantity-${itemIndex + 1}`
-                          );
-                          quantityInput.setAttribute(
-                            `name`,
-                            `product-quantity-${itemIndex + 1}`
-                          );
-                          quantityInput.setAttribute(
-                            `aria-label`,
-                            `Quantity adjust ${item.product_title}`
-                          );
-                          quantityInput.setAttribute(`data-id`, `${item.id}`);
-                          quantityInput.setAttribute(
-                            `data-index`,
-                            `${itemIndex + 1}`
-                          );
-                          quantityInput.setAttribute(
-                            `value`,
-                            `${item.quantity}`
-                          );
+                  //         quantityInput.setAttribute(
+                  //           `id`,
+                  //           `product-quantity-${itemIndex + 1}`
+                  //         );
+                  //         quantityInput.setAttribute(
+                  //           `name`,
+                  //           `product-quantity-${itemIndex + 1}`
+                  //         );
+                  //         quantityInput.setAttribute(
+                  //           `aria-label`,
+                  //           `Quantity adjust ${item.product_title}`
+                  //         );
+                  //         quantityInput.setAttribute(`data-id`, `${item.id}`);
+                  //         quantityInput.setAttribute(
+                  //           `data-index`,
+                  //           `${itemIndex + 1}`
+                  //         );
+                  //         quantityInput.setAttribute(
+                  //           `value`,
+                  //           `${item.quantity}`
+                  //         );
 
-                          adjustQuantityDownButton.setAttribute(
-                            `data-id`,
-                            `${item.id}`
-                          );
-                          adjustQuantityUpButton.setAttribute(
-                            `data-id`,
-                            `${item.id}`
-                          );
+                  //         adjustQuantityDownButton.setAttribute(
+                  //           `data-id`,
+                  //           `${item.id}`
+                  //         );
+                  //         adjustQuantityUpButton.setAttribute(
+                  //           `data-id`,
+                  //           `${item.id}`
+                  //         );
 
-                          if (item.quantity > 1) {
-                            return;
-                          } else {
-                            mainCartList.appendChild(sideCartItemClone);
-                          }
-                        });
-                      }
-                    }
-                  }
+                  //         if (item.quantity > 1) {
+                  //           return;
+                  //         } else {
+                  //           mainCartList.appendChild(sideCartItemClone);
+                  //         }
+                  //       });
+                  //     }
+                  //   }
+                  // }
                 });
             }
 

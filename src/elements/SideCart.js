@@ -1,3 +1,4 @@
+import { fetchConfig } from '../utils/helpers';
 
 class SideCart extends HTMLElement {
   //
@@ -10,69 +11,86 @@ class SideCart extends HTMLElement {
   constructor() {
     // reserved function name super()
     super();
-
     // assign member variables (this.*) for all DOM operations we might want later
     // static DOM objects that are never deleted
     this.sideCart = document.getElementById(`side-cart`);
     this.closeButton = document.getElementById(`side-cart-close`);
     this.sideCartOverlay = document.getElementById(`side-cart-overlay`);
-    
+
+    this.mainCartListEmpty = document.getElementById(`main-cart-list-empty`);
+    this.mainCartListTemplate = document.getElementById(
+      `main-cart-list-template`
+    );
+    this.sideCartItemTemplate = document.getElementById(
+      `side-cart-item-template`
+    );
+
     // dynamic DOM objects that change and require re-query sometimes
     // this.cartList = document.getElementById(`side-cart-list`);
-
-    // add listeners for all of these objects
-    this.addListeners();
   }
 
   //
   // 2. (add) listeners
-  
-  addListeners = () => {
-    // listen for cart_add
-    // todo: test
-    // document.body.addEventListener(`lam:cart-add`, this.onAddToCart, false);
 
+  // componentDidMount
+  connectedCallback() {
+    this.addListeners();
+  }
+
+  addListeners = () => {
     if (!this?.sideCart) {
       return;
     }
 
     if (this?.closeButton) {
       this.closeButton.addEventListener(`click`, e => {
-        this.sideCart.setAttribute(`aria-hidden`, `true`);
+        this.closeCart();
       });
     }
 
     if (this?.sideCartOverlay) {
       this.sideCartOverlay.addEventListener(`click`, e => {
-        this.sideCart.setAttribute('aria-hidden', 'true');
+        this.closeCart();
       });
     }
 
-    //
-    // broadcast receiver that an add happened somewhere
-  }
+    this.addEventListener(`lam:cart-add`, () => {
+      console.log(`lam:cart-add`);
+      this.onAddToCart();
+    });
+  };
 
   //
   // 3. (on) refresh live areas
 
-  onAddToCart = () => {
-    this.refreshCartList();
+  closeCart = () => {
+    this.sideCart.setAttribute(`aria-hidden`, `true`);
+  };
+
+  onAddToCart = async () => {
+    const cartResponse = await this.fetchCart();
+
+    console.log(`cartResponse`, cartResponse);
     // do things unique to the add operation
-  }
-  
-  onDeleteFromCart = () => {
-    this.refreshCartList();
-    // do things unique to the delete operation
-  }
+
+    if (this.mainCartListEmpty) {
+      this.mainCartListEmpty.remove();
+    }
+  };
+
+  // onDeleteFromCart = () => {
+  //   // this.refreshCartList();
+  //   // do things unique to the delete operation
+  // };
 
   //
   // 4. (do) all general stuff
 
-  refreshCartList = () => {
-    // refetch maybe? or ignore, maybe it doesn't exist anymore etc.
-    // this.cartList = document.getElementById(`side-cart-list`);
-    console.log(`refreshCartList`);
-  }
+  fetchCart = () => {
+    return fetch(routes.cart_url, {
+      ...fetchConfig()
+    }).then(res => res.json());
+  };
 }
 
 customElements.define(`side-cart`, SideCart);
