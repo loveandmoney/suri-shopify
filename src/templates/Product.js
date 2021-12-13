@@ -33,9 +33,13 @@ const Product = () => {
   const addOnButton = document.getElementById(`add-on-button`);
   const addOnButtonText = document.getElementById(`add-on-button-text`);
   const addOnImage = document.getElementById(`product-add-on-image`);
+
+  // this could be a custom element that also listens for lam:cart-add
   const addWidget = document.getElementById(`add-widget`);
   const addWidgetItem = document.getElementById(`add-widget-item`);
   const addWidgetQuantity = document.getElementById(`add-widget-quantity`);
+  //
+
   const buyButton = document.getElementById(`buy-button`);
   const buyButtonText = buyButton.querySelector(`.button-text`);
   const expanders = document.querySelectorAll(`.main-product__expander`);
@@ -438,6 +442,18 @@ const Product = () => {
               console.error(response.description);
               return;
             }
+
+            // yes, the add_to_cart form was submitted properly
+            // 
+            // what are the ways we can get from here to SideCart.onAddToCart?
+            // 1. SideCart.onAddToCart, but we need the singleton already attached to <side-cart>
+            //    - can we document.getElementsByTagName(`side-cart`)
+            //    - does that object have some information about the attached class instance?
+            // 2. Event broadcast
+            //    - document.body.dispatchEvent(new CustomEvent(`lam:cart-add`));
+
+            //
+            // product.js live area stuff which we could improve later
 
             const { title, quantity } = response;
 
