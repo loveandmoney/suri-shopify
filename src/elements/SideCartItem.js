@@ -57,15 +57,6 @@ class SideCartItem extends HTMLElement {
     if (attr === `quantity`) this.quantityInput.value = this.quantity;
   }
 
-  set cartItem(cartItem) {
-    this.innerHTML = `
-        <span slot="cart-item-title">${cartItem.title}</span>
-        <span slot="cart-item-price">${cartItem.price}</span>
-    `;
-
-    this.setAttribute(`quantity`, cartItem.quantity);
-  }
-
   disconnectedCallback() {
     this.quantityUpBtn.removeEventListener('click', this.increment);
     this.quantityDownBtn.removeEventListener('click', this.decrement);

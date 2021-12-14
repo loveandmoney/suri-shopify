@@ -84,7 +84,7 @@ class SideCart extends HTMLElement {
 
     cartResponse.items.map(cartItem => {
       const item = document.createElement(`side-cart-item`);
-      item.cartItem = cartItem;
+      item.quantity = cartItem.quantity;
 
       this.cartList.appendChild(item);
     });
