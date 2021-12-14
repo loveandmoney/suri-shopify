@@ -1,8 +1,7 @@
+import * as Components from './components';
+import * as Templates from './templates';
 
-import * as Components from "./components";
-import * as Templates from "./templates";
-
-import "./scss/index.scss";
+import './scss/index.scss';
 
 const main = () => {
   if (typeof document === `undefined` || typeof window === `undefined`) {
@@ -25,9 +24,9 @@ const main = () => {
   // }
 
   document.addEventListener(`DOMContentLoaded`, () => {
-    require("./elements");
+    require('./elements');
 
-    document.querySelectorAll(`[data-component]`).forEach((element) => {
+    document.querySelectorAll(`[data-component]`).forEach(element => {
       const componentId = element.getAttribute(`data-component`);
 
       if (typeof Components?.[componentId] === `function`) {
@@ -35,7 +34,7 @@ const main = () => {
       }
     });
 
-    document.querySelectorAll(`[data-template]`).forEach((element) => {
+    document.querySelectorAll(`[data-template]`).forEach(element => {
       const templateId = element.getAttribute(`data-template`);
 
       if (typeof Templates?.[templateId] === `function`) {

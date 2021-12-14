@@ -9,8 +9,7 @@ const Header = () => {
   // DOM
 
   const cartButton = document.getElementById(`header-cart-button`);
-  const checkoutButton = document.getElementById(`header-checkout-button`);
-  const sideCart = document.getElementById(`side-cart`);
+  const sideCartComponent = document.getElementById(`side-cart-component`);
 
   // ---------------------------------------------------------------------------
   // initialization
@@ -18,7 +17,7 @@ const Header = () => {
   const addListeners = () => {
     if (cartButton) {
       cartButton.addEventListener(`click`, e => {
-        sideCart.setAttribute('aria-hidden', 'false');
+        sideCartComponent.dispatchEvent(new Event(`lam:cart-open`));
       });
     }
   };

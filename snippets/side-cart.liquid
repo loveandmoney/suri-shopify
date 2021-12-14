@@ -1,15 +1,15 @@
 {% assign tax_percent = 10 %}
 
-<side-cart id="side-cart-component">
-    <div aria-hidden="true" class="side-cart w-full h-full fixed top-0 right-0 bottom-0 left-0 z-50 pointer-events-none" data-component="SideCart" id="side-cart">
+<side-cart id="side-cart-component"></side-cart>
 
-        <!-- Cart Overlay -->
+<!-- Initial Side Cart Template -->
+<template id="initial-side-cart-template">
+    <div aria-hidden="true" class="side-cart block w-full h-full fixed top-0 right-0 bottom-0 left-0 z-50 pointer-events-none" data-component="SideCart" id="side-cart">
+
         <div class="side-cart__overlay absolute w-full h-full bg-midnight-black-100 opacity-0 transition-all duration-300" id="side-cart-overlay"></div>
 
-        <!-- Cart Content -->
         <nav class="side-cart__content grid w-full sm:w-1/2 md:w-1/3 h-full absolute right-[-100%] sm:right-[-50%] md:right-[-33.33%] !pb-24 bg-mono-white transition-all duration-300" id="side-cart-content">
 
-            <!-- Header -->
             <header class="col-span-12 w-full z-10 flex items-center justify-between pt-6 pb-6 px-8 border-b border-mono-75">
                 <h1 class="h3">Your Shopping Cart</h1>
 
@@ -21,7 +21,6 @@
             </header>
 
             {% if cart.item_count == 0 %}
-                <!-- Empty Cart -->
                 <div class="main-cart__empty animation-appear-down-slow animation-delay-4 col-span-12 relative pt-12 px-8 flex flex-col items-center justify-center" id="main-cart-list-empty">
                     <div class="w-full relative flex items-center">
                         <svg class="w-6 relative block mr-2" fill="black" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +42,6 @@
                 </div>
             {% else %}
                 <div class="overflow-y-scroll animation-appear-down-slow animation-delay-3 col-span-12 relative" id="main-cart-list">
-                    <!-- Items List -->
                     <article class="pt-6 px-8">
                         <ul class="cart__list w-full relative mx-auto pb-0">
                             {% for line_item in cart.items %}
@@ -93,7 +91,6 @@
                     </article>
                 </div>
 
-                <!-- Checkout Button -->
                 <div class="absolute bottom-0 left-0 right-0 w-full px-8 py-6 bg-mono-white">
                     <form action="{{ routes.cart_url }}" method="post">
                         <button class="button button--green w-full h-12 relative block" name="checkout" type="submit">
@@ -106,38 +103,13 @@
             {% endif %}
         </nav>
     </div>
-</side-cart>
-
-
-<!-- Empty Cart List Template -->
-<template id="empty-cart-list-template">
-    <div class="main-cart__empty animation-appear-down-slow animation-delay-4 col-span-12 relative pt-12 px-8 flex flex-col items-center justify-center" id="main-cart-list-empty">
-        <div class="w-full relative flex items-center">
-            <svg class="w-6 relative block mr-2" fill="black" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 16C4.9 16 4.01 16.9 4.01 18C4.01 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16ZM0 0V2H2L5.6 9.59L4.25 12.04C4.09 12.32 4 12.65 4 13C4 14.1 4.9 15 6 15H18V13H6.42C6.28 13 6.17 12.89 6.17 12.75L6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.59 16.3 9.97L19.88 3.48C19.96 3.34 20 3.17 20 3C20 2.45 19.55 2 19 2H4.21L3.27 0H0ZM16 16C14.9 16 14.01 16.9 14.01 18C14.01 19.1 14.9 20 16 20C17.1 20 18 19.1 18 18C18 16.9 17.1 16 16 16Z" fill="current"></path>
-            </svg>
-
-            <h2 class="h3">Your cart is empty</h2>
-        </div>
-
-        <p class="w-full mt-3 mb-8 b1">Get the world's first truly sustainable electric toothbrush delivered to you.</p>
-
-        <a class="w-full" href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case?variant=41196774064316">
-            <button class="button button--green w-full h-12 relative block" type="button">
-                <span class="button-text">
-                    Take a look
-                </span>
-            </button>
-        </a>
-    </div>
 </template>
 
 <!-- Main Cart List Template -->
-<template id="main-cart-list-template">
-    <div class="overflow-y-scroll animation-appear-down-slow animation-delay-3 col-span-12 relative" id="main-cart-list-2">
-        <!-- Items List -->
+<template id="cart-list-template">
+    <div class="overflow-y-scroll animation-appear-down-slow animation-delay-3 col-span-12 relative">
         <article class="pt-6 px-8">
-            <ul class="cart__list w-full relative mx-auto pb-0"></ul>
+            <ul id="cart-list" class="cart__list w-full relative mx-auto pb-0"></ul>
         </article>
 
         <article class="col-span-12" id="main-cart-summary">
@@ -179,7 +151,6 @@
         </article>
     </div>
 
-    <!-- Checkout Button -->
     <div class="absolute bottom-0 left-0 right-0 w-full px-8 py-6 bg-mono-white">
         <form action="{{ routes.cart_url }}" method="post">
             <button class="button button--green w-full h-12 relative block" name="checkout" type="submit">
@@ -188,6 +159,29 @@
                 </span>
             </button>
         </form>
+    </div>
+</template>
+
+<!-- Empty Cart List Template -->
+<template id="empty-cart-list-template">
+    <div class="main-cart__empty animation-appear-down-slow animation-delay-4 col-span-12 relative pt-12 px-8 flex flex-col items-center justify-center">
+        <div class="w-full relative flex items-center">
+            <svg class="w-6 relative block mr-2" fill="black" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 16C4.9 16 4.01 16.9 4.01 18C4.01 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16ZM0 0V2H2L5.6 9.59L4.25 12.04C4.09 12.32 4 12.65 4 13C4 14.1 4.9 15 6 15H18V13H6.42C6.28 13 6.17 12.89 6.17 12.75L6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.59 16.3 9.97L19.88 3.48C19.96 3.34 20 3.17 20 3C20 2.45 19.55 2 19 2H4.21L3.27 0H0ZM16 16C14.9 16 14.01 16.9 14.01 18C14.01 19.1 14.9 20 16 20C17.1 20 18 19.1 18 18C18 16.9 17.1 16 16 16Z" fill="current"></path>
+            </svg>
+
+            <h2 class="h3">Your cart is empty</h2>
+        </div>
+
+        <p class="w-full mt-3 mb-8 b1">Get the world's first truly sustainable electric toothbrush delivered to you.</p>
+
+        <a class="w-full" href="/products/suri-sustainable-sonic-toothbrush-uv-c-led-case?variant=41196774064316">
+            <button class="button button--green w-full h-12 relative block" type="button">
+                <span class="button-text">
+                    Take a look
+                </span>
+            </button>
+        </a>
     </div>
 </template>
 
@@ -216,15 +210,15 @@
                         </label>
 
                         <div class="main-cart__quantity w-20 h-8 relative flex items-center justify-between overflow-hidden rounded-full border">
-                            <button class="main-cart__quantity-adjust cart-item-adjust cart-item-adjust--down w-10 h-8 relative block select-none" data-id="" name="minus" type="button">
+                            <button id="cart-item-quantity-down" class="main-cart__quantity-adjust cart-item-adjust cart-item-adjust--down w-10 h-8 relative block select-none" data-id="" name="minus" type="button">
                                 <div class="w-full h-full relative flex items-center justify-center">
                                     <span class="-mt-1 b1">-</span>
                                 </div>
                             </button>
 
-                            <input aria-label="Quantity adjust" class="cart-item-quantity main-cart__input main-cart__input--number w-6 h-full relative block bg-transparent text-center" data-id="" data-index="" id="product-quantity-" min="1" name="product-quantity-" type="number" value=""/>
+                            <input aria-label="Quantity adjust" class="cart-item-quantity main-cart__input main-cart__input--number w-6 h-full relative block bg-transparent text-center" data-id="" data-index="" min="1" name="product-quantity" type="number" value=""/>
 
-                            <button class="main-cart__quantity-adjust cart-item-adjust cart-item-adjust--up w-10 h-8 relative block select-none" data-id="" name="plus" type="button">
+                            <button id="cart-item-quantity-up" class="main-cart__quantity-adjust cart-item-adjust cart-item-adjust--up w-10 h-8 relative block select-none" data-id="" name="plus" type="button">
                                 <div class="w-full h-full relative flex items-center justify-center">
                                     <span class="-mt-1 b1">+</span>
                                 </div>
