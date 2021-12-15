@@ -15,33 +15,21 @@
       opacity: 1;
       pointer-events: auto;
       transform: translate3D(0, 3rem, 0);
-      // transform: translate3D(0, 3rem);
-
-      // @include md {
-      //   transform: translate3D(0, 0rem, 0);
-      // }
-
-      // & + .header__cookie-banner {
-      //   transform: translate3D(0, 0%, 0);
-
-      //   // @include md {
-      //   //   transform: translate3D(0, 0%, 0);
-      //   // }
-      // }
     }
   }
 
   &__cookie-banner {
     transition: 0.3s opacity $ease-out-cubic, 0.3s transform $ease-out-cubic;
 
-    opacity: 1;
-
-    animation: appear 0.3s;
+    opacity: 0;
+    pointer-events: none;
     transform: translate3D(0, 0, 0);
 
-    // @include md {
-    //   transform: translate3D(0, calc(-5rem), 0);
-    // }
+    &.active {
+      opacity: 1;
+      pointer-events: auto;
+      animation: appear 0.3s;
+    }
   }
 
   // cart svg
