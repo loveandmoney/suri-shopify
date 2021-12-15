@@ -20,6 +20,14 @@ const Header = () => {
   // initialization
 
   const addListeners = () => {
+    window.addEventListener(
+      `resize`,
+      () => {
+        mainContent.style.marginTop = `calc(${cookieBanner.clientHeight}px + ${headerHeight})`;
+      },
+      false
+    );
+
     if (checkoutButton) {
       checkoutButton.addEventListener(`click`, e => {
         // todo : insert analytics triggers if required
@@ -55,14 +63,7 @@ const Header = () => {
     }
 
     mainContent.style.transition = `margin-top .3s cubic-bezier(.215,.61,.355,1)`;
-
-    window.addEventListener(
-      `resize`,
-      () => {
-        mainContent.style.marginTop = `calc(${cookieBanner.clientHeight}px + ${headerHeight})`;
-      },
-      false
-    );
+    mainContent.style.marginTop = `calc(${cookieBanner.clientHeight}px + ${headerHeight})`;
   };
 
   // ---------------------------------------------------------------------------
