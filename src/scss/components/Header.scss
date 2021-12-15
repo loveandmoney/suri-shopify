@@ -8,13 +8,40 @@
 
     opacity: 0;
     pointer-events: none;
-    transform: translate3d(0, -2rem, 0);
+
+    transform: translate3D(0, calc(-100% + 3rem), 0);
 
     &.active {
       opacity: 1;
       pointer-events: auto;
-      transform: translate3d(0, 0, 0);
+      transform: translate3D(0, 3rem, 0);
+      // transform: translate3D(0, 3rem);
+
+      // @include md {
+      //   transform: translate3D(0, 0rem, 0);
+      // }
+
+      // & + .header__cookie-banner {
+      //   transform: translate3D(0, 0%, 0);
+
+      //   // @include md {
+      //   //   transform: translate3D(0, 0%, 0);
+      //   // }
+      // }
     }
+  }
+
+  &__cookie-banner {
+    transition: 0.3s opacity $ease-out-cubic, 0.3s transform $ease-out-cubic;
+
+    opacity: 1;
+
+    animation: appear 0.3s;
+    transform: translate3D(0, 0, 0);
+
+    // @include md {
+    //   transform: translate3D(0, calc(-5rem), 0);
+    // }
   }
 
   // cart svg
@@ -30,5 +57,14 @@
         height: 20px !important;
       }
     }
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

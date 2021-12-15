@@ -4,18 +4,18 @@
   &--black {
     transition: 0.3s $ease-out-cubic background, 0.3s $ease-out-cubic color;
 
-    background: theme("colors.mono-100");
-    color: theme("colors.mono-white");
-    border: 1px solid theme("colors.mono-100");
+    background: theme('colors.mono-100');
+    color: theme('colors.mono-white');
+    border: 1px solid theme('colors.mono-100');
 
     &-border {
-      border: 1px solid theme("colors.mono-white");
+      border: 1px solid theme('colors.mono-white');
     }
 
     @include hoverable {
       &:hover {
-        background: theme("colors.mono-white");
-        color: theme("colors.mono-100");
+        background: theme('colors.mono-white');
+        color: theme('colors.mono-100');
       }
     }
   }
@@ -23,18 +23,18 @@
   &--green {
     transition: 0.3s $ease-out-cubic background, 0.3s $ease-out-cubic color;
 
-    background: theme("colors.ux-green");
-    color: theme("colors.mono-white");
-    border: 1px solid theme("colors.ux-green");
+    background: theme('colors.ux-green');
+    color: theme('colors.mono-white');
+    border: 1px solid theme('colors.ux-green');
 
     &-border {
-      border: 1px solid theme("colors.mono-white");
+      border: 1px solid theme('colors.mono-white');
     }
 
     @include hoverable {
       &:hover {
-        background: theme("colors.mono-white");
-        color: theme("colors.ux-green");
+        background: theme('colors.mono-white');
+        color: theme('colors.ux-green');
       }
     }
   }
@@ -42,18 +42,33 @@
   &--white {
     transition: 0.3s $ease-out-cubic background, 0.3s $ease-out-cubic color;
 
-    background: theme("colors.mono-white");
-    color: theme("colors.ux-green");
-    border: 1px solid theme("colors.mono-white");
+    background: theme('colors.mono-white');
+    color: theme('colors.ux-green');
+    border: 1px solid theme('colors.mono-white');
 
     &-border {
-      border: 1px solid theme("colors.ux-green");
+      border: 1px solid theme('colors.ux-green');
     }
 
     @include hoverable {
       &:hover {
-        background: theme("colors.ux-green");
-        color: theme("colors.mono-white");
+        background: theme('colors.ux-green');
+        color: theme('colors.mono-white');
+      }
+    }
+  }
+
+  &--transparent {
+    transition: 0.3s $ease-out-cubic background, 0.3s $ease-out-cubic color;
+
+    background: transparent;
+    color: theme('colors.mono-white');
+    border: 1px solid theme('colors.mono-white');
+
+    @include hoverable {
+      &:hover {
+        background: theme('colors.mono-white');
+        color: theme('colors.brand-75');
       }
     }
   }
@@ -64,8 +79,8 @@
   &--disabled {
     opacity: 0.5 !important;
     pointer-events: none !important;
-    background: theme("colors.mono-75");
-    color: theme("colors.mono-100");
+    background: theme('colors.mono-75');
+    color: theme('colors.mono-100');
     border: 1px solid transparent;
   }
 }

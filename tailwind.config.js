@@ -30,6 +30,7 @@ module.exports = {
   },
   theme: {
     colors: {
+      transparent: 'transparent',
       'ux-lime': '#50CE34',
       'ux-green': '#097c07',
       'midnight-black': '#494949',

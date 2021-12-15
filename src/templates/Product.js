@@ -36,9 +36,11 @@ const Product = () => {
   const addOnButton = document.getElementById(`add-on-button`);
   const addOnButtonText = document.getElementById(`add-on-button-text`);
   const addOnImage = document.getElementById(`product-add-on-image`);
+  const siteNav = document.getElementById(`site-nav`);
   const addWidget = document.getElementById(`add-widget`);
   const addWidgetItem = document.getElementById(`add-widget-item`);
   const addWidgetQuantity = document.getElementById(`add-widget-quantity`);
+  const cookieBanner = document.getElementById(`cookie-banner`);
   const buyButton = document.getElementById(`buy-button`);
   const buyButtonText = buyButton.querySelector(`.button-text`);
   const expanders = document.querySelectorAll(`.main-product__expander`);
@@ -462,16 +464,18 @@ const Product = () => {
 
               widgetShowTimeout = setTimeout(() => {
                 addWidget.classList.add(`active`);
+                cookieBanner.style.transform = `translate3D(0, ${addWidget.clientHeight}px, 0)`;
               }, 100);
 
               widgetHideTimeout = setTimeout(() => {
                 addWidget.classList.remove(`active`);
+                cookieBanner.style.transform = `translate3D(0, 0, 0)`;
               }, 4000);
 
-              widgetResetTimeout = setTimeout(() => {
-                addWidgetItem.innerHTML = ``;
-                addWidgetQuantity.innerHTML = ``;
-              }, 4500);
+              // widgetResetTimeout = setTimeout(() => {
+              //   addWidgetItem.innerHTML = ``;
+              //   addWidgetQuantity.innerHTML = ``;
+              // }, 4500);
             }
           })
           .catch(e => {
@@ -549,16 +553,18 @@ const Product = () => {
 
               widgetShowTimeout = setTimeout(() => {
                 addWidget.classList.add(`active`);
+                cookieBanner.style.transform = `translate3D(0, ${addWidget.clientHeight}px, 0)`;
               }, 100);
 
               widgetHideTimeout = setTimeout(() => {
                 addWidget.classList.remove(`active`);
+                cookieBanner.style.transform = `translate3D(0, 0, 0)`;
               }, 4000);
 
-              widgetResetTimeout = setTimeout(() => {
-                addWidgetItem.innerHTML = ``;
-                addWidgetQuantity.innerHTML = ``;
-              }, 4500);
+              // widgetResetTimeout = setTimeout(() => {
+              //   addWidgetItem.innerHTML = ``;
+              //   addWidgetQuantity.innerHTML = ``;
+              // }, 4500);
             }
           })
           .catch(e => {
