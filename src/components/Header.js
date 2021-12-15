@@ -28,12 +28,10 @@ const Header = () => {
       false
     );
 
-    if (checkoutButton) {
-      checkoutButton.addEventListener(`click`, e => {
-        // todo : insert analytics triggers if required
-        // window.location.href = `/checkout`;
-      });
-    }
+    // if (checkoutButton) {
+    //   checkoutButton.addEventListener(`click`, e => {
+    //   });
+    // }
 
     if (!cookieBannerCookie && cookieAcceptBtn) {
       cookieAcceptBtn.addEventListener(`click`, e => {
